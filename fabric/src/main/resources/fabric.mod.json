@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "mcpitanlibarch",
+  "version": "${version}",
+  "name": "MCPitanLibarch",
+  "description": "Pitan's Minecraft Mod Library",
+  "authors": [
+    "Pitan"
+  ],
+  "contact": {
+    "website": "https://www.curseforge.com/minecraft/mc-mods/mcpitanlibarch",
+    "repo": "https://github.com/Pitan76/mcpitanlibarch",
+    "issues": "https://github.com/Pitan76/mcpitanlibarch/issue"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "ml.pkom.mcpitanlibarch.fabric.MCPitanLibarchFabric"
+    ]
+  },
+  "mixins": [
+    "mcpitanlibarch.mixins.json",
+    "mcpitanlibarch-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "minecraft": ">=1.18.2"
+  }
+}
