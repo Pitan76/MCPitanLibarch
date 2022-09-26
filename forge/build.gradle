@@ -29,6 +29,8 @@ processResources {
     filesMatching("META-INF/mods.toml") {
         expand "version": project.version
     }
+
+    project.version = project.version + "-forge"
 }
 
 shadowJar {
