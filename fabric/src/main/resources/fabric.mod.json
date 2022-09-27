@@ -14,12 +14,16 @@
   },
   "license": "MIT",
   "icon": "icon.png",
-  "badges": ["library"],
   "environment": "*",
   "entrypoints": {
     "main": [
       "ml.pkom.mcpitanlibarch.fabric.MCPitanLibarchFabric"
     ]
+  },
+  "custom": {
+    "modmenu": {
+      "badges": ["library"]
+    }
   },
   "mixins": [
     "mcpitanlibarch.mixins.json",
