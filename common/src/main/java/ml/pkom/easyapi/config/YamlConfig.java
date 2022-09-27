@@ -1,8 +1,8 @@
 package ml.pkom.easyapi.config;
 
-import me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.DumperOptions;
-import me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.Yaml;
-import ml.pkom.uncraftingtable.easyapi.FileControl;
+import ml.pkom.easyapi.FileControl;
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.util.Map;

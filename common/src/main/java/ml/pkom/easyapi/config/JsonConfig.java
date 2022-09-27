@@ -3,7 +3,7 @@ package ml.pkom.easyapi.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import ml.pkom.uncraftingtable.easyapi.FileControl;
+import ml.pkom.easyapi.FileControl;
 
 import java.io.File;
 import java.lang.reflect.Type;
