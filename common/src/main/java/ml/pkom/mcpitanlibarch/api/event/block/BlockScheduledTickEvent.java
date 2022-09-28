@@ -4,7 +4,8 @@ import ml.pkom.mcpitanlibarch.api.event.BaseEvent;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
+
+import java.util.Random;
 
 public class BlockScheduledTickEvent extends BaseEvent {
     public BlockState state;

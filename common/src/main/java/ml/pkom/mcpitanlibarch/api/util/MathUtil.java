@@ -1,14 +1,14 @@
 package ml.pkom.mcpitanlibarch.api.util;
 
-import net.minecraft.util.math.random.Random;
+import java.util.Random;
 
 public class MathUtil {
 
     public static Random createRandom(long seed) {
-        return Random.create(seed);
+        return new Random(seed);
     }
 
     public static Random createRandom() {
-        return Random.create();
+        return new Random();
     }
 }
