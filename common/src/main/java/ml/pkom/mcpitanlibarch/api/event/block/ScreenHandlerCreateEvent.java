@@ -1,13 +1,14 @@
-package ml.pkom.mcpitanlibarch.api.event;
+package ml.pkom.mcpitanlibarch.api.event.block;
 
 import ml.pkom.mcpitanlibarch.api.entity.Player;
+import ml.pkom.mcpitanlibarch.api.event.BaseEvent;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ScreenHandlerCreateEvent {
+public class ScreenHandlerCreateEvent extends BaseEvent {
 
     public BlockState state;
     public World world;
