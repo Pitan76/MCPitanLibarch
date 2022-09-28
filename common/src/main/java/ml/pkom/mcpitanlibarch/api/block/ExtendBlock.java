@@ -1,8 +1,8 @@
 package ml.pkom.mcpitanlibarch.api.block;
 
-import ml.pkom.mcpitanlibarch.api.event.BlockScheduledTickEvent;
-import ml.pkom.mcpitanlibarch.api.event.BlockUseEvent;
-import ml.pkom.mcpitanlibarch.api.event.ScreenHandlerCreateEvent;
+import ml.pkom.mcpitanlibarch.api.event.block.BlockScheduledTickEvent;
+import ml.pkom.mcpitanlibarch.api.event.block.BlockUseEvent;
+import ml.pkom.mcpitanlibarch.api.event.block.ScreenHandlerCreateEvent;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
