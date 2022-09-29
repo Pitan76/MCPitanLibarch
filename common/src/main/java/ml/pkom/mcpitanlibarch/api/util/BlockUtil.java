@@ -22,4 +22,12 @@ public class BlockUtil {
 
         return settings;
     }
+
+    public static AbstractBlock.Settings dropsNothing(AbstractBlock.Settings settings) {
+        return settings.dropsNothing();
+    }
+
+    public static AbstractBlock.Settings requiresTool(AbstractBlock.Settings settings) {
+        return settings.requiresTool();
+    }
 }
