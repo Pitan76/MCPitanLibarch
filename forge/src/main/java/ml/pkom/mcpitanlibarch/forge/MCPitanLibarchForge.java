@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.forge;
 
-import me.shedaniel.architectury.platform.forge.EventBuses;
+import dev.architectury.platform.forge.EventBuses;
 import ml.pkom.mcpitanlibarch.MCPitanLibarch;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
