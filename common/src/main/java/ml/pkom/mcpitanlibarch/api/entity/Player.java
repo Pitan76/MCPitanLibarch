@@ -37,7 +37,7 @@ public class Player {
      * @return PlayerInventory
      */
     public PlayerInventory getInv() {
-        return getEntity().getInventory();
+        return getEntity().inventory;
     }
 
     /**
@@ -117,7 +117,7 @@ public class Player {
     }
 
     public PlayerAbilities getAbilities() {
-        return getEntity().getAbilities();
+        return getEntity().abilities;
     }
 
     /**

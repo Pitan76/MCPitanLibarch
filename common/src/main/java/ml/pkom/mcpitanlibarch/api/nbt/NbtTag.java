@@ -35,7 +35,7 @@ public class NbtTag extends NbtCompound {
      * @return boolean
      */
     public static boolean hasNbt(ItemStack stack) {
-        return stack.hasNbt();
+        return stack.hasTag();
     }
 
     /**
@@ -44,7 +44,7 @@ public class NbtTag extends NbtCompound {
      * @return NbtTag
      */
     public static NbtTag getNbt(ItemStack stack) {
-        return from(stack.getNbt());
+        return from(stack.getTag());
     }
 
     /**
@@ -53,7 +53,7 @@ public class NbtTag extends NbtCompound {
      * @param nbt NbtTag
      */
     public static void setNbt(ItemStack stack, NbtTag nbt) {
-        stack.setNbt(nbt);
+        stack.setTag(nbt);
     }
 
     public boolean contains(String key) {
