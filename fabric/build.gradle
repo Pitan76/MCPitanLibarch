@@ -31,6 +31,8 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
+
+    project.version = project.version + "-fabric"
 }
 
 shadowJar {

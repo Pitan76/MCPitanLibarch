@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -124,5 +125,17 @@ public class Player {
      */
     public boolean isCreative() {
         return getAbilities().creativeMode;
+    }
+
+    public World getWorld() {
+        return getEntity().world;
+    }
+
+    public ScreenHandler getCurrentScreenHandler() {
+        return getEntity().currentScreenHandler;
+    }
+
+    public boolean isSneaking() {
+        return getEntity().isSneaking();
     }
 }

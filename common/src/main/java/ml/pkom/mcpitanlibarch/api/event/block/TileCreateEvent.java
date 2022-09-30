@@ -1,5 +1,6 @@
-package ml.pkom.mcpitanlibarch.api.event;
+package ml.pkom.mcpitanlibarch.api.event.block;
 
+import ml.pkom.mcpitanlibarch.api.event.BaseEvent;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
