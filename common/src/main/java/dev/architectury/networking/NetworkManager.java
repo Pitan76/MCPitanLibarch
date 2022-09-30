@@ -19,12 +19,12 @@ import java.util.List;
 
 public final class NetworkManager {
     public static void registerReceiver(Side side, Identifier id, NetworkReceiver receiver) {
-        me.shedaniel.architectury.networking.NetworkManager.registerReceiver(sideConvert(side), id, receiver);
+        me.shedaniel.architectury.networking.NetworkManager.registerReceiver(sideConvert(side), id, (buf, context) -> {receiver.receive(buf, contextConvert(context));});
     }
 
     @ApiStatus.Experimental
     public static void registerReceiver(Side side, Identifier id, List<PacketTransformer> packetTransformers, NetworkReceiver receiver) {
-        me.shedaniel.architectury.networking.NetworkManager.registerReceiver(sideConvert(side), id, packetTransformers, receiver);
+        me.shedaniel.architectury.networking.NetworkManager.registerReceiver(sideConvert(side), id, packetTransformers, (buf, context) -> {receiver.receive(buf, contextConvert(context));});
     }
 
     @Deprecated
@@ -72,6 +72,11 @@ public final class NetworkManager {
         return me.shedaniel.architectury.networking.NetworkManager.createAddEntityPacket(entity);
     }
 
+    @FunctionalInterface
+    public interface NetworkReceiver {
+        void receive(PacketByteBuf buf, PacketContext context);
+    }
+
     public interface PacketContext {
         PlayerEntity getPlayer();
 
@@ -114,5 +119,24 @@ public final class NetworkManager {
                 return me.shedaniel.architectury.networking.NetworkManager.Side.C2S;
         }
         return null;
+    }
+
+    private static PacketContext contextConvert(me.shedaniel.architectury.networking.NetworkManager.PacketContext context) {
+        return new PacketContext() {
+            @Override
+            public PlayerEntity getPlayer() {
+                return context.getPlayer();
+            }
+
+            @Override
+            public void queue(Runnable runnable) {
+                context.queue(runnable);
+            }
+
+            @Override
+            public Env getEnvironment() {
+                return context.getEnvironment();
+            }
+        };
     }
 }
