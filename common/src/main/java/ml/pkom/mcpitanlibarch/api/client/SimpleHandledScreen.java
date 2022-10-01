@@ -16,8 +16,7 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
         super(handler, inventory, title);
     }
 
-    @Override
-    protected <T extends Element & Drawable & Selectable> T addDrawableChild(T drawableElement) {
+    protected <T extends Element & Drawable & Selectable> T addDrawableChild_compatibility(T drawableElement) {
         return super.addDrawableChild(drawableElement);
         // addButton
     }
