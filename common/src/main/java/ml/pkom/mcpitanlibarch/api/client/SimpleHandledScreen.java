@@ -14,7 +14,7 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
         super(handler, inventory, title);
     }
 
-    protected <T extends ClickableWidget> T addDrawableChild(T drawableElement) {
+    protected <T extends ClickableWidget> T addDrawableChild_compatibility(T drawableElement) {
         return super.addButton(drawableElement);
     }
 }
