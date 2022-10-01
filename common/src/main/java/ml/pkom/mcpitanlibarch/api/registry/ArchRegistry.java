@@ -75,4 +75,8 @@ public class ArchRegistry {
     public RegistryEvent<Fluid> registerFluid(Identifier id, Supplier<Fluid> supplier) {
         return new RegistryEvent<>(FLUID.register(id, supplier));
     }
+
+    public void allRegister() {
+        // 1.16 Register
+    }
 }

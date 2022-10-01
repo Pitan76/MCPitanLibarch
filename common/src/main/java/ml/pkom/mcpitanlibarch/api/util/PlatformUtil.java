@@ -1,7 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.util;
 
-import me.shedaniel.architectury.platform.Platform;
-import me.shedaniel.architectury.utils.Env;
+import dev.architectury.platform.Platform;
+import dev.architectury.utils.Env;
 import net.fabricmc.api.EnvType;
 
 import java.nio.file.Path;
