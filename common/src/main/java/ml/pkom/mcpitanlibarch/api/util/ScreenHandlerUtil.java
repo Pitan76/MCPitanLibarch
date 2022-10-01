@@ -6,6 +6,8 @@ import net.minecraft.util.collection.DefaultedList;
 
 public class ScreenHandlerUtil {
     public static DefaultedList<Slot> getSlots(ScreenHandler screenHandler) {
-        return screenHandler.slots;
+        DefaultedList<Slot> slots = DefaultedList.of();
+        slots.addAll(screenHandler.slots);
+        return slots;
     }
 }
