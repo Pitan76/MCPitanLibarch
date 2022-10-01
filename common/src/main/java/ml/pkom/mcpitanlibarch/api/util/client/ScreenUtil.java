@@ -1,9 +1,12 @@
 package ml.pkom.mcpitanlibarch.api.util.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.util.Identifier;
 
+@Environment(EnvType.CLIENT)
 public class ScreenUtil {
     public static void setBackground(Identifier GUI, float f, float g, float h, float i) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
