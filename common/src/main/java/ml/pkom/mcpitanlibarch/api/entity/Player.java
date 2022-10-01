@@ -104,6 +104,10 @@ public class Player {
         getInv().insertStack(slot, stack);
     }
 
+    public void offerOrDrop(ItemStack itemStack) {
+        getInv().offerOrDrop(getWorld(), itemStack);
+    }
+
     public void giveStack(ItemStack stack) {
         getEntity().giveItemStack(stack);
     }
@@ -137,5 +141,9 @@ public class Player {
 
     public boolean isSneaking() {
         return getEntity().isSneaking();
+    }
+
+    public ItemStack getCursorStack() {
+        return getInv().getCursorStack();
     }
 }
