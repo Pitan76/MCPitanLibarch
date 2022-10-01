@@ -12,6 +12,8 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ArchRegistry {
@@ -34,6 +36,15 @@ public class ArchRegistry {
         FLUID = DeferredRegister.create(MOD_ID, Registry.FLUID_KEY);
     }
 
+    public void allRegister() {
+        BLOCKS.register();
+        ITEMS.register();
+        SCREEN_HANDLER_TYPE.register();
+        BLOCK_ENTITY_TYPE.register();
+        ENTITY_TYPE.register();
+        SOUND_EVENT.register();
+        FLUID.register();
+    }
     public static ArchRegistry createRegistry(String MOD_ID) {
         return new ArchRegistry(MOD_ID);
     }
