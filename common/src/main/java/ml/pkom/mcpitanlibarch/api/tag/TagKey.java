@@ -3,7 +3,6 @@ package ml.pkom.mcpitanlibarch.api.tag;
 import dev.architectury.hooks.tags.TagHooks;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class TagKey<T> {
     private final Tag.Identified<T> tagKey;
@@ -13,20 +12,23 @@ public class TagKey<T> {
         this.tagKey = tagKey;
     }
 
-    public static Tag.Identified<?> create(Type type, Identifier identifier) {
+    public static TagKey<?> create(Type type, Identifier identifier) {
         switch (type) {
             case BLOCK:
-                return TagHooks.optionalBlock(identifier);
+                return new TagKey<>(TagHooks.optionalBlock(identifier));
             case ITEM:
-                return TagHooks.optionalItem(identifier);
+                return new TagKey<>(TagHooks.optionalItem(identifier));
             case FLUID:
-                return TagHooks.optionalFluid(identifier);
+                return new TagKey<>(TagHooks.optionalFluid(identifier));
+            case ENTITY_TYPE:
+                return new TagKey<>(TagHooks.optionalEntityType(identifier));
+            default:
+                throw new IllegalArgumentException();
         }
-        return null;
     }
 
     @Deprecated
-    public Tag.Identified getTagKey() {
+    public Tag.Identified<T> getTagKey() {
         return tagKey;
     }
 
@@ -34,6 +36,7 @@ public class TagKey<T> {
         BLOCK,
         ITEM,
         FLUID,
+        ENTITY_TYPE,
     }
 
     public boolean isOf(T value) {
