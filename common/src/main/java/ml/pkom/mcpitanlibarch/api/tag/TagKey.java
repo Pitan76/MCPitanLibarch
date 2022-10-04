@@ -1,31 +1,32 @@
 package ml.pkom.mcpitanlibarch.api.tag;
 
+import dev.architectury.hooks.tags.TagHooks;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
 
 public class TagKey<T> {
-    private final net.minecraft.tag.TagKey<T> tagKey;
+    private final Tag.Identified<T> tagKey;
 
     @Deprecated
-    public TagKey(net.minecraft.tag.TagKey<T> tagKey) {
+    public TagKey(Tag.Identified<T> tagKey) {
         this.tagKey = tagKey;
     }
 
-    public static TagKey<?> create(Type type, Identifier identifier) {
+    public static Tag.Identified<?> create(Type type, Identifier identifier) {
         switch (type) {
             case BLOCK:
-                new TagKey<>(net.minecraft.tag.TagKey.of(Registry.BLOCK_KEY, identifier));
+                return TagHooks.optionalBlock(identifier);
             case ITEM:
-                new TagKey<>(net.minecraft.tag.TagKey.of(Registry.ITEM_KEY, identifier));
+                return TagHooks.optionalItem(identifier);
             case FLUID:
-                new TagKey<>(net.minecraft.tag.TagKey.of(Registry.FLUID_KEY, identifier));
+                return TagHooks.optionalFluid(identifier);
         }
         return null;
     }
 
     @Deprecated
-    public net.minecraft.tag.TagKey<T> getTagKey() {
+    public Tag.Identified getTagKey() {
         return tagKey;
     }
 
@@ -36,6 +37,6 @@ public class TagKey<T> {
     }
 
     public boolean isOf(T value) {
-        return RegistryEntry.of(value).isIn(tagKey);
+        return tagKey.contains(value);
     }
 }
