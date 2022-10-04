@@ -13,15 +13,11 @@ public class TagKey<T> {
     }
 
     public static TagKey<?> create(Type type, Identifier identifier) {
-        switch (type) {
-            case BLOCK:
-                new TagKey<>(net.minecraft.tag.TagKey.of(Registry.BLOCK_KEY, identifier));
-            case ITEM:
-                new TagKey<>(net.minecraft.tag.TagKey.of(Registry.ITEM_KEY, identifier));
-            case FLUID:
-                new TagKey<>(net.minecraft.tag.TagKey.of(Registry.FLUID_KEY, identifier));
-        }
-        return null;
+        return switch (type) {
+            case BLOCK -> new TagKey<>(net.minecraft.tag.TagKey.of(Registry.BLOCK_KEY, identifier));
+            case ITEM -> new TagKey<>(net.minecraft.tag.TagKey.of(Registry.ITEM_KEY, identifier));
+            case FLUID -> new TagKey<>(net.minecraft.tag.TagKey.of(Registry.FLUID_KEY, identifier));
+        };
     }
 
     @Deprecated
