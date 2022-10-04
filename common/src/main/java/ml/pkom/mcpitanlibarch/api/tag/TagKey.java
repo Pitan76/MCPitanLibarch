@@ -1,31 +1,34 @@
 package ml.pkom.mcpitanlibarch.api.tag;
 
+import me.shedaniel.architectury.hooks.TagHooks;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
 
 public class TagKey<T> {
-    private final net.minecraft.tag.TagKey<T> tagKey;
+    private final Tag.Identified<T> tagKey;
 
     @Deprecated
-    public TagKey(net.minecraft.tag.TagKey<T> tagKey) {
+    public TagKey(Tag.Identified<T> tagKey) {
         this.tagKey = tagKey;
     }
 
     public static TagKey<?> create(Type type, Identifier identifier) {
         switch (type) {
             case BLOCK:
-                new TagKey<>(net.minecraft.tag.TagKey.of(Registry.BLOCK_KEY, identifier));
+                return new TagKey<>(TagHooks.getBlockOptional(identifier));
             case ITEM:
-                new TagKey<>(net.minecraft.tag.TagKey.of(Registry.ITEM_KEY, identifier));
+                return new TagKey<>(TagHooks.getItemOptional(identifier));
             case FLUID:
-                new TagKey<>(net.minecraft.tag.TagKey.of(Registry.FLUID_KEY, identifier));
+                return new TagKey<>(TagHooks.getFluidOptional(identifier));
+            case ENTITY_TYPE:
+                return new TagKey<>(TagHooks.getEntityTypeOptional(identifier));
+            default:
+                throw new IllegalArgumentException();
         }
-        return null;
     }
 
     @Deprecated
-    public net.minecraft.tag.TagKey<T> getTagKey() {
+    public Tag.Identified<T> getTagKey() {
         return tagKey;
     }
 
@@ -33,9 +36,10 @@ public class TagKey<T> {
         BLOCK,
         ITEM,
         FLUID,
+        ENTITY_TYPE,
     }
 
     public boolean isOf(T value) {
-        return RegistryEntry.of(value).isIn(tagKey);
+        return tagKey.contains(value);
     }
 }
