@@ -26,4 +26,9 @@ public class ItemUtil {
     public static boolean isIn(Item item, TagKey<Item> tagKey) {
         return tagKey.isOf(item);
     }
+
+    public static boolean isExist(Identifier identifier) {
+        return Registry.ITEM.containsId(identifier);
+    }
+
 }

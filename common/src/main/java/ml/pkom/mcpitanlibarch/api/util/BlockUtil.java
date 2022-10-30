@@ -30,4 +30,8 @@ public class BlockUtil {
     public static AbstractBlock.Settings requiresTool(AbstractBlock.Settings settings) {
         return settings.requiresTool();
     }
+
+    public static boolean isExist(Identifier identifier) {
+        return Registry.BLOCK.containsId(identifier);
+    }
 }
