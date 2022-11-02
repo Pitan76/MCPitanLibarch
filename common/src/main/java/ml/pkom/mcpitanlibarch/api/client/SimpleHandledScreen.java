@@ -1,5 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.client;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
@@ -25,4 +26,43 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
     }
 
     public abstract void drawBackgroundOverride(MatrixStack matrices, float delta, int mouseX, int mouseY);
+
+    public void callDrawTexture(MatrixStack matrices, int x, int y, int u, int v, int width, int height) {
+        super.drawTexture(matrices, x, y, u, v, width, height);
+    }
+
+    public void callRenderBackground(MatrixStack matrices) {
+        super.renderBackground(matrices);
+    }
+
+    public void callDrawMouseoverTooltip(MatrixStack matrices, int x, int y) {
+        super.drawMouseoverTooltip(matrices, x, y);
+    }
+
+    public void renderOverride(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        super.render(matrices, mouseX, mouseY, delta);
+    }
+
+    public void resizeOverride(MinecraftClient client, int width, int height) {
+        super.resize(client, width, height);
+    }
+
+    public void initOverride() {
+        super.init();
+    }
+
+    @Override
+    protected void init() {
+        initOverride();
+    }
+
+    @Override
+    public void resize(MinecraftClient client, int width, int height) {
+        resizeOverride(client, width, height);
+    }
+
+    @Override
+    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        renderOverride(matrices, mouseX, mouseY, delta);
+    }
 }
