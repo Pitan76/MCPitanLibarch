@@ -26,4 +26,15 @@ public class ItemUtil {
     public static boolean isIn(Item item, TagKey<Item> tagKey) {
         return tagKey.isOf(item);
     }
+
+    public static boolean isExist(Identifier identifier) {
+        return Registry.ITEM.containsId(identifier);
+    }
+    public static Identifier toID(Item item) {
+        return Registry.ITEM.getId(item);
+    }
+
+    public static Item fromId(Identifier identifier) {
+        return Registry.ITEM.get(identifier);
+    }
 }

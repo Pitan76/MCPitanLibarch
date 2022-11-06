@@ -18,12 +18,8 @@ public class ExampleScreen extends SimpleHandledScreen {
     }
 
     @Override
-    protected void init() {
-        super.init();
-        this.backgroundWidth = 176;
-        this.backgroundHeight = 166;
-        int x = (width - backgroundWidth) / 2;
-        int y = (height - backgroundHeight) / 2;
+    public void initOverride() {
+        super.initOverride();
         System.out.println("hogehogehoge1111");
         this.addDrawableChild_compatibility(new TexturedButtonWidget(0,  0, 30, 30, 0, 0, 16, GUI, (buttonWidget) -> {
             System.out.println("hogehoge");
@@ -32,22 +28,14 @@ public class ExampleScreen extends SimpleHandledScreen {
 
     @Override
     public void drawBackgroundOverride(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        int x = (this.width - this.backgroundWidth) / 2;
-        int y = (this.height - this.backgroundHeight) / 2;
-
         ScreenUtil.setBackground(GUI);
-        drawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        callDrawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
     }
 
     @Override
-    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-        super.drawForeground(matrices, mouseX, mouseY);
-    }
-
-    @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        this.drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void renderOverride(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        this.callRenderBackground(matrices);
+        super.renderOverride(matrices, mouseX, mouseY, delta);
+        this.callDrawMouseoverTooltip(matrices, mouseX, mouseY);
     }
 }
