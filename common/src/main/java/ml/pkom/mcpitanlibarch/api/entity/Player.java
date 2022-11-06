@@ -1,12 +1,15 @@
 package ml.pkom.mcpitanlibarch.api.entity;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -145,5 +148,29 @@ public class Player {
 
     public ItemStack getCursorStack() {
         return getCurrentScreenHandler().getCursorStack();
+    }
+
+    public boolean isClient() {
+        return getWorld().isClient();
+    }
+
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        getEntity().readCustomDataFromNbt(nbt);
+    }
+
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        getEntity().writeCustomDataToNbt(nbt);
+    }
+
+    public void sendMessage(Text text) {
+        getEntity().sendMessage(text, false);
+    }
+
+    public void sendActionBar(Text text) {
+        getEntity().sendMessage(text, true);
+    }
+
+    public void equipStack(EquipmentSlot slot, ItemStack stack) {
+        getEntity().equipStack(slot, stack);
     }
 }

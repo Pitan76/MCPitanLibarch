@@ -1,5 +1,5 @@
 <?php
-define('VERSION', '1.0.13');
+define('VERSION', '1.1.0');
 
 define('DIRS', array(
 	'common' => './common/build/libs/',
@@ -8,10 +8,10 @@ define('DIRS', array(
 ));
 
 define('GAME_VERSIONS', array(
-	//'1.16.5' => '1.16', 
-	//'1.17' => '1.17', 
+	'1.16.5' => '1.16', 
+	'1.17' => '1.17', 
 	'1.18' => '1.18', 
-	//'1.19' => '1.19',
+	'1.19' => '1.19',
 ));
 
 define('PLATFORM_FILE_MARK', array(
