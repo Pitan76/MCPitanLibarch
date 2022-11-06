@@ -30,5 +30,11 @@ public class ItemUtil {
     public static boolean isExist(Identifier identifier) {
         return Registry.ITEM.containsId(identifier);
     }
+    public static Identifier toID(Item item) {
+        return Registry.ITEM.getId(item);
+    }
 
+    public static Item fromId(Identifier identifier) {
+        return Registry.ITEM.get(identifier);
+    }
 }

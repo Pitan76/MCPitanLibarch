@@ -34,4 +34,12 @@ public class BlockUtil {
     public static boolean isExist(Identifier identifier) {
         return Registry.BLOCK.containsId(identifier);
     }
+
+    public static Identifier toID(Block block) {
+        return Registry.BLOCK.getId(block);
+    }
+
+    public static Block fromId(Identifier identifier) {
+        return Registry.BLOCK.get(identifier);
+    }
 }

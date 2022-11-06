@@ -1,6 +1,6 @@
 <?php
 
-define('VERSION', '1.0.8');
+define('VERSION', '1.1.0');
 define('CHANGE_LOG', '');
 
 define('DIRS', array(
