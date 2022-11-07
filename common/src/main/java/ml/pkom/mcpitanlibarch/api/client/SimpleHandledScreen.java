@@ -70,13 +70,12 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
 
     public void initOverride() {
         super.init();
-        this.textRenderer = super.textRenderer;
-        this.itemRenderer = super.itemRenderer;
     }
 
     @Override
     protected void init() {
         initOverride();
+        fixScreen();
     }
 
     @Override
@@ -86,20 +85,22 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
     }
 
     public void fixScreen() {
-        this.width = MinecraftClient.getInstance().getWindow().getScaledWidth();
-        this.height = MinecraftClient.getInstance().getWindow().getScaledHeight();
         this.backgroundWidth = getBackgroundWidth();
         this.backgroundHeight = getBackgroundHeight();
-        this.x = (this.width - this.backgroundWidth) / 2;
-        this.y = (this.height - this.backgroundHeight) / 2;
+        this.x = super.x; //(this.width - this.backgroundWidth) / 2;
+        this.y = super.y; //(this.height - this.backgroundHeight) / 2;
+        this.textRenderer = super.textRenderer;
+        this.itemRenderer = super.itemRenderer;
+        this.width = super.width;
+        this.height = super.height;
     }
 
     public int getBackgroundWidth() {
-        return 176;
+        return super.backgroundWidth;
     }
 
     public int getBackgroundHeight() {
-        return 166;
+        return super.backgroundHeight;
     }
 
     @Override
