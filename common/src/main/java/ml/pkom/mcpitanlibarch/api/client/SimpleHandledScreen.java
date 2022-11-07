@@ -21,12 +21,7 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
 
     public SimpleHandledScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
-        this.width = MinecraftClient.getInstance().getWindow().getScaledWidth();
-        this.height = MinecraftClient.getInstance().getWindow().getScaledHeight();
-        this.backgroundWidth = 176;
-        this.backgroundHeight = 166;
-        this.x = (this.width - this.backgroundWidth) / 2;
-        this.y = (this.height - this.backgroundHeight) / 2;
+        fixScreen();
         this.handler = handler;
     }
 
@@ -93,8 +88,18 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
     public void fixScreen() {
         this.width = MinecraftClient.getInstance().getWindow().getScaledWidth();
         this.height = MinecraftClient.getInstance().getWindow().getScaledHeight();
+        this.backgroundWidth = getBackgroundWidth();
+        this.backgroundHeight = getBackgroundHeight();
         this.x = (this.width - this.backgroundWidth) / 2;
         this.y = (this.height - this.backgroundHeight) / 2;
+    }
+
+    public int getBackgroundWidth() {
+        return 176;
+    }
+
+    public int getBackgroundHeight() {
+        return 166;
     }
 
     @Override
