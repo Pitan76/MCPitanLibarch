@@ -63,21 +63,21 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
     }
 
     public void resizeOverride(MinecraftClient client, int width, int height) {
-        super.resize(client, width, height);
     }
 
     public void initOverride() {
-        super.init();
     }
 
     @Override
     protected void init() {
+        super.init();
         fixScreen();
         initOverride();
     }
 
     @Override
     public void resize(MinecraftClient client, int width, int height) {
+        super.resize(client, width, height);
         fixScreen();
         resizeOverride(client, width, height);
     }
