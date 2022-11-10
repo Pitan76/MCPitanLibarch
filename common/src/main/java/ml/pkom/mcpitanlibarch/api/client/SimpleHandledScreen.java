@@ -74,14 +74,14 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
 
     @Override
     protected void init() {
-        initOverride();
         fixScreen();
+        initOverride();
     }
 
     @Override
     public void resize(MinecraftClient client, int width, int height) {
-        resizeOverride(client, width, height);
         fixScreen();
+        resizeOverride(client, width, height);
     }
 
     public void fixScreen() {
@@ -93,6 +93,46 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
         this.itemRenderer = super.itemRenderer;
         this.width = super.width;
         this.height = super.height;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+        super.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+        super.y = y;
+    }
+
+    public void setTextRenderer(TextRenderer textRenderer) {
+        this.textRenderer = textRenderer;
+        super.textRenderer = textRenderer;
+    }
+
+    public void setItemRenderer(ItemRenderer itemRenderer) {
+        this.itemRenderer = itemRenderer;
+        super.itemRenderer = itemRenderer;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+        super.width = width;
+    }
+
+    public void setBackgroundWidth(int backgroundWidth) {
+        this.backgroundWidth = backgroundWidth;
+        super.backgroundWidth = backgroundWidth;
+    }
+
+    public void setBackgroundHeight(int backgroundHeight) {
+        this.backgroundHeight = backgroundHeight;
+        super.backgroundHeight = backgroundHeight;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+        super.height = height;
     }
 
     public int getBackgroundWidth() {
