@@ -1,5 +1,5 @@
 <?php
-define('VERSION', '1.1.2');
+define('VERSION', '1.1.3');
 
 define('DIRS', array(
 	'common' => './common/build/libs/',
