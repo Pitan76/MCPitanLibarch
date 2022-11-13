@@ -29,7 +29,7 @@ $ch = curl_init('https://minecraft.curseforge.com/api/game/version-types');
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'X-Api-Token: 788ae0f4-ae9a-405f-be51-7988574a533a'));
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'X-Api-Token: 3ff711ba-5123-49d0-8d08-bbada59929e7'));
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 $result = curl_exec($ch);
 
