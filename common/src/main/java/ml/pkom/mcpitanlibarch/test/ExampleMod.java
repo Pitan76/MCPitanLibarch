@@ -1,6 +1,7 @@
 package ml.pkom.mcpitanlibarch.test;
 
 import me.shedaniel.architectury.registry.MenuRegistry;
+import ml.pkom.mcpitanlibarch.api.command.CommandRegistry;
 import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
 import ml.pkom.mcpitanlibarch.api.registry.ArchRegistry;
 import net.minecraft.block.AbstractBlock;
@@ -32,20 +33,25 @@ public class ExampleMod {
 
     public static RegistryEvent<ScreenHandlerType<?>> supplierEXAMPLE_SCREENHANDLER = registry.registerScreenHandlerType(id("example_gui"), () -> MenuRegistry.of(ExampleScreenHandler::new));;
 
+    public static RegistryEvent<Item> EXAMPLE_ITEM_SUPPLIER;
+    public static RegistryEvent<Block> EXAMPLE_BLOCK_SUPPLIER;
+    public static RegistryEvent<Item> EXAMPLE_BLOCK_ITEM_SUPPLIER;
+    public static RegistryEvent<Item> EXAMPLE_GUI_ITEM_SUPPLIER;
+    public static RegistryEvent<Block> EXAMPLE_GUI_BLOCK_SUPPLIER;
+    public static RegistryEvent<Item> EXAMPLE_GUI_BLOCK_ITEM_SUPPLIER;
+
     public static void init() {
-        registry.registerItem(id("example_item"), () -> new Item(new Item.Settings().group(ItemGroup.MISC)));
-        RegistryEvent<Block> EXAMPLE_BLOCK_SUPPLIER = registry.registerBlock(id("example_block"), () -> new Block(AbstractBlock.Settings.of(Material.STONE)));
-        registry.registerItem(id("example_block"), () -> new BlockItem(EXAMPLE_BLOCK_SUPPLIER.supplier.get(), new Item.Settings().group(ItemGroup.MISC)));
+        EXAMPLE_ITEM_SUPPLIER = registry.registerItem(id("example_item"), () -> new Item(new Item.Settings().group(ItemGroup.MISC)));
+        EXAMPLE_BLOCK_SUPPLIER = registry.registerBlock(id("example_block"), () -> new Block(AbstractBlock.Settings.of(Material.STONE)));
+        EXAMPLE_BLOCK_ITEM_SUPPLIER = registry.registerItem(id("example_block"), () -> new BlockItem(EXAMPLE_BLOCK_SUPPLIER.supplier.get(), new Item.Settings().group(ItemGroup.MISC)));
 
+        EXAMPLE_GUI_ITEM_SUPPLIER = registry.registerItem(id("example_gui_item"), () -> new ExampleGuiItem(new Item.Settings().group(ItemGroup.MISC)));
 
-
-        registry.registerItem(id("example_gui_item"), () -> new ExampleGuiItem(new Item.Settings().group(ItemGroup.MISC)));
-
-
-
-        RegistryEvent<Block> EXAMPLE_GUI_BLOCK_SUPPLIER = registry.registerBlock(id("example_gui_block"), () -> new ExampleGuiBlock(AbstractBlock.Settings.of(Material.STONE)));
-        registry.registerItem(id("example_gui_block"), () -> new BlockItem(EXAMPLE_GUI_BLOCK_SUPPLIER.supplier.get(), new Item.Settings().group(ItemGroup.MISC)));
+        EXAMPLE_GUI_BLOCK_SUPPLIER = registry.registerBlock(id("example_gui_block"), () -> new ExampleGuiBlock(AbstractBlock.Settings.of(Material.STONE)));
+        EXAMPLE_GUI_BLOCK_ITEM_SUPPLIER = registry.registerItem(id("example_gui_block"), () -> new BlockItem(EXAMPLE_GUI_BLOCK_SUPPLIER.supplier.get(), new Item.Settings().group(ItemGroup.MISC)));
 
         registry.allRegister();
+
+        CommandRegistry.register("mpla", new ExampleCommand());
     }
 }
