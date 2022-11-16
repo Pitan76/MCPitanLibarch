@@ -1,0 +1,2 @@
+php upload_modrinth.php
+pause
