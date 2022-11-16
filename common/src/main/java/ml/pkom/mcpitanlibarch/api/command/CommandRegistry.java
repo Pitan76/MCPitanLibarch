@@ -20,7 +20,7 @@ public class CommandRegistry {
 
         forArgsCmd(command, builder);
 
-        CommandRegistrationEvent.EVENT.register((dispatcher, environment) ->
+        CommandRegistrationEvent.EVENT.register((dispatcher, registryAccess, environment) ->
                 dispatcher.register(builder)
         );
     }
