@@ -5,12 +5,14 @@ import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
 public interface ExtendBlockEntityProvider extends BlockEntityProvider {
     @Nullable
-    default BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return createBlockEntity(new TileCreateEvent(pos, state));
+    @Override
+    default BlockEntity createBlockEntity(BlockView world) {
+        return createBlockEntity(new TileCreateEvent(world));
     }
 
     @Nullable
