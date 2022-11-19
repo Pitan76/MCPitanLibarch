@@ -37,6 +37,6 @@ public class InventoryUtil {
         if (first.getCount() + second.getCount() > first.getMaxCount()) {
             return false;
         }
-        return ItemStack.areNbtEqual(first, second);
+        return ItemStack.areTagsEqual(first, second);
     }
 }
