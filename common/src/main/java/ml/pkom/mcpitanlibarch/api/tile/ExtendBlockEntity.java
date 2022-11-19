@@ -15,12 +15,17 @@ public class ExtendBlockEntity extends BlockEntity {
     }
 
     public ExtendBlockEntity(BlockEntityType<?> type, TileCreateEvent event) {
-        this(type, event.getBlockPos(), event.getBlockState());
+        this(type);
+    }
+
+    public void setWorld(World world) {
+        super.setLocation(world, pos);
+        this.world = new ExtendWorld(world);
     }
 
     @Override
-    public void setWorld(World world) {
-        super.setWorld(world);
+    public void setLocation(World world, BlockPos pos) {
+        super.setLocation(world, pos);
         this.world = new ExtendWorld(world);
     }
 }
