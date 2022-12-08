@@ -4,6 +4,7 @@ import ml.pkom.mcpitanlibarch.api.entity.Player;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
@@ -113,5 +114,40 @@ public class SimpleScreenHandler extends ScreenHandler {
             slots.add(slot);
         }
         return slots;
+    }
+
+    public ItemStack quickMoveOverride(PlayerEntity player, int index) {
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+        if (slot.hasStack()) {
+            ItemStack itemStack2 = slot.getStack();
+            itemStack = itemStack2.copy();
+            if (index < 9) {
+                if (!this.insertItem(itemStack2, 9, 36, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.insertItem(itemStack2, 0, 9, false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (itemStack2.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
+            }
+
+            if (itemStack2.getCount() == itemStack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTakeItem(player, itemStack2);
+        }
+
+        return itemStack;
+    }
+
+    @Override
+    public ItemStack transferSlot(PlayerEntity player, int slot) {
+        return quickMoveOverride(player, slot);
     }
 }

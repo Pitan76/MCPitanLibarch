@@ -3,6 +3,8 @@ package ml.pkom.mcpitanlibarch.test;
 import me.shedaniel.architectury.registry.MenuRegistry;
 import ml.pkom.mcpitanlibarch.api.command.CommandRegistry;
 import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
+import ml.pkom.mcpitanlibarch.api.item.DefaultItemGroups;
+import ml.pkom.mcpitanlibarch.api.item.ExtendSettings;
 import ml.pkom.mcpitanlibarch.api.registry.ArchRegistry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -10,6 +12,7 @@ import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.Level;
@@ -41,14 +44,14 @@ public class ExampleMod {
     public static RegistryEvent<Item> EXAMPLE_GUI_BLOCK_ITEM_SUPPLIER;
 
     public static void init() {
-        EXAMPLE_ITEM_SUPPLIER = registry.registerItem(id("example_item"), () -> new Item(new Item.Settings().group(ItemGroup.MISC)));
+        EXAMPLE_ITEM_SUPPLIER = registry.registerItem(id("example_item"), () -> new Item(new ExtendSettings().addGroup(DefaultItemGroups.INGREDIENTS, id("example_item"))));
         EXAMPLE_BLOCK_SUPPLIER = registry.registerBlock(id("example_block"), () -> new Block(AbstractBlock.Settings.of(Material.STONE)));
-        EXAMPLE_BLOCK_ITEM_SUPPLIER = registry.registerItem(id("example_block"), () -> new BlockItem(EXAMPLE_BLOCK_SUPPLIER.supplier.get(), new Item.Settings().group(ItemGroup.MISC)));
+        EXAMPLE_BLOCK_ITEM_SUPPLIER = registry.registerItem(id("example_block"), () -> new BlockItem(EXAMPLE_BLOCK_SUPPLIER.supplier.get(), new ExtendSettings().addGroup(DefaultItemGroups.INGREDIENTS)));
 
-        EXAMPLE_GUI_ITEM_SUPPLIER = registry.registerItem(id("example_gui_item"), () -> new ExampleGuiItem(new Item.Settings().group(ItemGroup.MISC)));
+        EXAMPLE_GUI_ITEM_SUPPLIER = registry.registerItem(id("example_gui_item"), () -> new ExampleGuiItem(new ExtendSettings().addGroup(DefaultItemGroups.INGREDIENTS)));
 
         EXAMPLE_GUI_BLOCK_SUPPLIER = registry.registerBlock(id("example_gui_block"), () -> new ExampleGuiBlock(AbstractBlock.Settings.of(Material.STONE)));
-        EXAMPLE_GUI_BLOCK_ITEM_SUPPLIER = registry.registerItem(id("example_gui_block"), () -> new BlockItem(EXAMPLE_GUI_BLOCK_SUPPLIER.supplier.get(), new Item.Settings().group(ItemGroup.MISC)));
+        EXAMPLE_GUI_BLOCK_ITEM_SUPPLIER = registry.registerItem(id("example_gui_block"), () -> new BlockItem(EXAMPLE_GUI_BLOCK_SUPPLIER.supplier.get(), new ExtendSettings().addGroup(DefaultItemGroups.INGREDIENTS)));
 
         registry.allRegister();
 
