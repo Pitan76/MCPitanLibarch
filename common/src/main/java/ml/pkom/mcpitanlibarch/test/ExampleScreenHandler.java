@@ -1,11 +1,12 @@
 package ml.pkom.mcpitanlibarch.test;
 
+import ml.pkom.mcpitanlibarch.api.gui.SimpleScreenHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 
-public class ExampleScreenHandler extends ScreenHandler {
+public class ExampleScreenHandler extends SimpleScreenHandler {
 
     public ExampleScreenHandler(int i, PlayerInventory playerInventory) {
         super(ExampleMod.supplierEXAMPLE_SCREENHANDLER.getOrNull(), i);
@@ -13,7 +14,7 @@ public class ExampleScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack transferSlot(PlayerEntity player, int index) {
+    public ItemStack quickMoveOverride(PlayerEntity player, int slot) {
         return null;
     }
 
