@@ -3,12 +3,12 @@ package ml.pkom.mcpitanlibarch.api.util;
 import ml.pkom.mcpitanlibarch.api.tag.TagKey;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class ItemUtil {
     public static Item item(Identifier id) {
-        return Registry.ITEM.get(id);
+        return Registries.ITEM.get(id);
     }
 
     public static boolean isEqual(Item item, Item item2) {
@@ -28,13 +28,13 @@ public class ItemUtil {
     }
 
     public static boolean isExist(Identifier identifier) {
-        return Registry.ITEM.containsId(identifier);
+        return Registries.ITEM.containsId(identifier);
     }
     public static Identifier toID(Item item) {
-        return Registry.ITEM.getId(item);
+        return Registries.ITEM.getId(item);
     }
 
     public static Item fromId(Identifier identifier) {
-        return Registry.ITEM.get(identifier);
+        return Registries.ITEM.get(identifier);
     }
 }

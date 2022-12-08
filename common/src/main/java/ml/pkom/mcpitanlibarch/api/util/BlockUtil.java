@@ -3,12 +3,12 @@ package ml.pkom.mcpitanlibarch.api.util;
 import ml.pkom.mcpitanlibarch.api.tag.MineableToolTags;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class BlockUtil {
     public static Block block(Identifier id) {
-        return Registry.BLOCK.get(id);
+        return Registries.BLOCK.get(id);
     }
 
     /**
@@ -32,14 +32,14 @@ public class BlockUtil {
     }
 
     public static boolean isExist(Identifier identifier) {
-        return Registry.BLOCK.containsId(identifier);
+        return Registries.BLOCK.containsId(identifier);
     }
 
     public static Identifier toID(Block block) {
-        return Registry.BLOCK.getId(block);
+        return Registries.BLOCK.getId(block);
     }
 
     public static Block fromId(Identifier identifier) {
-        return Registry.BLOCK.get(identifier);
+        return Registries.BLOCK.get(identifier);
     }
 }
