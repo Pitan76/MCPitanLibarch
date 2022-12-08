@@ -116,8 +116,7 @@ public class SimpleScreenHandler extends ScreenHandler {
         return slots;
     }
 
-    @Override
-    public ItemStack transferSlot(PlayerEntity player, int index) {
+    public ItemStack quickMoveOverride(PlayerEntity player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot.hasStack()) {
@@ -145,5 +144,10 @@ public class SimpleScreenHandler extends ScreenHandler {
         }
 
         return itemStack;
+    }
+
+    @Override
+    public ItemStack quickMove(PlayerEntity player, int slot) {
+        return quickMoveOverride(player, slot);
     }
 }
