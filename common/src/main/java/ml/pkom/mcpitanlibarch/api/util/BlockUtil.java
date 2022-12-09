@@ -48,7 +48,7 @@ public class BlockUtil {
 
     public static List<Block> getAllBlocks() {
         List<Block> blocks = new ArrayList<>();
-        for (Block block : Registries.BLOCK) {
+        for (Block block : Registry.BLOCK) {
             blocks.add(block);
         }
         return blocks;
