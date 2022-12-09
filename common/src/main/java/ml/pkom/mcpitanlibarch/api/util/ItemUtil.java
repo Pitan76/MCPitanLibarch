@@ -6,6 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemUtil {
     public static Item item(Identifier id) {
         return Registry.ITEM.get(id);
@@ -36,5 +39,13 @@ public class ItemUtil {
 
     public static Item fromId(Identifier identifier) {
         return Registry.ITEM.get(identifier);
+    }
+
+    public static List<Item> getAllItems() {
+        List<Item> items = new ArrayList<>();
+        for (Item item : Registries.ITEM) {
+            items.add(item);
+        }
+        return items;
     }
 }
