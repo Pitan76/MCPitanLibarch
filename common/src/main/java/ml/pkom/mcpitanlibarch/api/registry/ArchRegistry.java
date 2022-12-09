@@ -3,7 +3,9 @@ package ml.pkom.mcpitanlibarch.api.registry;
 import com.google.common.base.Suppliers;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.Registries;
+import dev.architectury.registry.registries.RegistrySupplier;
 import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
+import ml.pkom.mcpitanlibarch.api.item.CreativeTabManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityType;
@@ -45,7 +47,9 @@ public class ArchRegistry {
     }
 
     public RegistryEvent<Item> registerItem(Identifier id, Supplier<Item> supplier) {
-        return new RegistryEvent<>(ITEMS.register(id, supplier));
+        RegistrySupplier<Item> registrySupplier = ITEMS.register(id, supplier);
+        CreativeTabManager.register(id);
+        return new RegistryEvent<>(registrySupplier);
     }
 
     public RegistryEvent<Block> registerBlock(Identifier id, Supplier<Block> supplier) {
