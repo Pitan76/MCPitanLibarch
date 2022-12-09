@@ -30,7 +30,8 @@
     "mcpitanlibarch-common.mixins.json"
   ],
   "depends": {
+    "minecraft": ">1.19.2",
     "fabricloader": "*",
-    "minecraft": ">1.19.2"
+    "architectury": "*"
   }
 }
