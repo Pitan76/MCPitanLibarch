@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.item;
 
-import dev.architectury.registry.CreativeTabRegistry;
+import me.shedaniel.architectury.registry.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -71,7 +71,7 @@ public class CreativeTabBuilder {
         return tabSupplier.get();
 
          */
-        ItemGroup itemGroup = CreativeTabRegistry.create(identifier, iconSupplier);
+        ItemGroup itemGroup = CreativeTabs.create(identifier, iconSupplier);
         if (displayName != null) itemGroup.setName(displayName.getString());
         if (noRenderedName) itemGroup.setName("");
         if (noScrollbar) itemGroup.setNoScrollbar();

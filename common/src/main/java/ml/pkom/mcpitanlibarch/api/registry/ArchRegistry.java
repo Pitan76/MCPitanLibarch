@@ -85,7 +85,7 @@ public class ArchRegistry {
     }
 
     public RegistryEvent<SoundEvent> registerSoundEvent(Identifier id, float distanceToTravel) {
-        return registerSoundEvent(id, () -> new SoundEvent(id, distanceToTravel));
+        return registerSoundEvent(id);
     }
 
     public RegistryEvent<Fluid> registerFluid(Identifier id, Supplier<Fluid> supplier) {
