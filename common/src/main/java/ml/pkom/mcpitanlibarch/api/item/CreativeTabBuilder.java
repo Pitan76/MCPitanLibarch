@@ -66,7 +66,6 @@ public class CreativeTabBuilder {
             if (noScrollbar) builder.noScrollbar();
             if (special) builder.special();
             if (texture != null) builder.texture(texture);
-            builder.build();
         }));
         return tabSupplier.get();
 
