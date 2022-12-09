@@ -1,7 +1,9 @@
 package ml.pkom.mcpitanlibarch.api.registry;
 
 import me.shedaniel.architectury.registry.DeferredRegister;
+import me.shedaniel.architectury.registry.RegistrySupplier;
 import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
+import ml.pkom.mcpitanlibarch.api.item.CreativeTabManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityType;
@@ -12,8 +14,6 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Supplier;
 
 public class ArchRegistry {
@@ -50,7 +50,9 @@ public class ArchRegistry {
     }
 
     public RegistryEvent<Item> registerItem(Identifier id, Supplier<Item> supplier) {
-        return new RegistryEvent<>(ITEMS.register(id, supplier));
+        RegistrySupplier<Item> registrySupplier = ITEMS.register(id, supplier);
+        CreativeTabManager.register(id);
+        return new RegistryEvent<>(registrySupplier);
     }
 
     public RegistryEvent<Block> registerBlock(Identifier id, Supplier<Block> supplier) {
