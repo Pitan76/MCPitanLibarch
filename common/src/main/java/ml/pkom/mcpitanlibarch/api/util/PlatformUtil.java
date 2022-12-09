@@ -51,4 +51,8 @@ public class PlatformUtil {
     public static EnvType getEnv() {
         return Platform.getEnv();
     }
+
+    public static String getGameVersion() {
+        return Platform.getMinecraftVersion();
+    }
 }
