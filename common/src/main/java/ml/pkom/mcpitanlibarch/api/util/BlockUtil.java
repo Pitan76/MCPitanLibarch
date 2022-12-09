@@ -6,6 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BlockUtil {
     public static Block block(Identifier id) {
         return Registry.BLOCK.get(id);
@@ -41,5 +44,13 @@ public class BlockUtil {
 
     public static Block fromId(Identifier identifier) {
         return Registry.BLOCK.get(identifier);
+    }
+
+    public static List<Block> getAllBlocks() {
+        List<Block> blocks = new ArrayList<>();
+        for (Block block : Registries.BLOCK) {
+            blocks.add(block);
+        }
+        return blocks;
     }
 }
