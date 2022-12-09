@@ -6,7 +6,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ExtendSettings extends Item.Settings {
+
     public ExtendSettings addGroup(ItemGroup itemGroup) {
         return this;
     }
@@ -14,7 +18,9 @@ public class ExtendSettings extends Item.Settings {
     // Support 1.19.3～
     // identifier: Item ID
     public ExtendSettings addGroup(ItemGroup itemGroup, Identifier identifier) {
-        CreativeTabRegistry.append(itemGroup, ItemUtil.fromId(identifier));
+        CreativeTabManager.addItem(itemGroup, identifier);
         return this;
     }
+
+
 }
