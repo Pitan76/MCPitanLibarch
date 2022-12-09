@@ -43,7 +43,7 @@ public class ItemUtil {
 
     public static List<Item> getAllItems() {
         List<Item> items = new ArrayList<>();
-        for (Item item : Registries.ITEM) {
+        for (Item item : Registry.ITEM) {
             items.add(item);
         }
         return items;
