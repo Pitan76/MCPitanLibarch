@@ -11,11 +11,12 @@ import java.util.List;
 
 public class ExtendSettings extends Item.Settings {
 
+    // ～1.19.2
     public ExtendSettings addGroup(ItemGroup itemGroup) {
         return this;
     }
 
-    // Support 1.19.3～
+    // 1.19.3～
     // identifier: Item ID
     public ExtendSettings addGroup(ItemGroup itemGroup, Identifier identifier) {
         CreativeTabManager.addItem(itemGroup, identifier);

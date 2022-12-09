@@ -7,7 +7,6 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CreativeTabManager {
     private static final List<BookingItem> bookingItems = new ArrayList<>();

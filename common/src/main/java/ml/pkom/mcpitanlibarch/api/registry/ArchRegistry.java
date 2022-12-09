@@ -72,8 +72,17 @@ public class ArchRegistry {
         return new RegistryEvent<>(ENTITY_TYPE.register(id, supplier));
     }
 
+    @Deprecated
     public RegistryEvent<SoundEvent> registerSoundEvent(Identifier id, Supplier<SoundEvent> supplier) {
         return new RegistryEvent<>(SOUND_EVENT.register(id, supplier));
+    }
+
+    public RegistryEvent<SoundEvent> registerSoundEvent(Identifier id) {
+        return registerSoundEvent(id, () -> SoundEvent.of(id));
+    }
+
+    public RegistryEvent<SoundEvent> registerSoundEvent(Identifier id, float distanceToTravel) {
+        return registerSoundEvent(id, () -> SoundEvent.of(id, distanceToTravel));
     }
 
     public RegistryEvent<Fluid> registerFluid(Identifier id, Supplier<Fluid> supplier) {
