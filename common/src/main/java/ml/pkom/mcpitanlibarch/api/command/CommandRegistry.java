@@ -35,7 +35,7 @@ public class CommandRegistry {
         );
     }
 
-    private static void forArgsCmd(AbstractCommand<?> absCmd, ArgumentBuilder<? extends ServerCommandSource, ?> builder) {
+    private static <T extends ArgumentBuilder<ServerCommandSource, T>> void forArgsCmd(AbstractCommand<?> absCmd, ArgumentBuilder<ServerCommandSource, T> builder) {
 
         if (!absCmd.getArgumentCommands().isEmpty()) {
             // 引数コマンド
@@ -92,7 +92,7 @@ public class CommandRegistry {
                             );
                 }
                 forArgsCmd(argCmd.getValue(), nextBuilder);
-                ((LiteralArgumentBuilder<ServerCommandSource>) builder).then(nextBuilder);
+                builder.then(nextBuilder);
             }
         }
 
