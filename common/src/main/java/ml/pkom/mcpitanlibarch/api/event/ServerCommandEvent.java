@@ -11,8 +11,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
-public class ServerCommandEvent {
-    public CommandContext<ServerCommandSource> context;
+public class ServerCommandEvent extends CommandEvent<ServerCommandSource> {
 
     public CommandContext<ServerCommandSource> getContext() {
         return context;
