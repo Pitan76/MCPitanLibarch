@@ -41,7 +41,7 @@ public class ServerCommandEvent extends CommandEvent<ServerCommandSource> {
         return context.getInput();
     }
 
-    public Command<ServerCommandSource> getCommand() {
+    public Command<ServerCommandSource> getContextCommand() {
         return context.getCommand();
     }
 
