@@ -18,20 +18,25 @@ public class CommandRegistry {
     public static CommandRegistryAccess latestCommandRegistryAccess;
 
     public static void register(String name, LiteralCommand command) {
-        CommandSettings settings = new CommandSettings();
-        command.init(settings);
+        CommandRegistrationEvent.EVENT.register((dispatcher, registry, environment) -> {
+            latestCommandRegistryAccess = registry;
 
-        LiteralArgumentBuilder<ServerCommandSource> builder = LiteralArgumentBuilder.<ServerCommandSource>literal(name).requires(settings::requires)
-                .executes(context -> {
-                    ServerCommandEvent event = new ServerCommandEvent();
-                    event.setContext(context);
-                    command.execute(event);
-                    return command.isSuccess;
-                });
+            CommandSettings settings = new CommandSettings();
+            command.init(settings);
 
-        forArgsCmd(command, builder);
+            LiteralArgumentBuilder<ServerCommandSource> builder = LiteralArgumentBuilder.<ServerCommandSource>literal(name).requires(settings::requires)
+                    .executes(context -> {
+                        ServerCommandEvent event = new ServerCommandEvent();
+                        event.setContext(context);
+                        command.execute(event);
+                        return command.isSuccess;
+                    });
 
-        register(builder);
+            forArgsCmd(command, builder);
+
+            //register(builder);
+            dispatcher.register(builder);
+        });
     }
 
     public static void register(LiteralArgumentBuilder<ServerCommandSource> builder) {
