@@ -1,10 +1,13 @@
 package ml.pkom.mcpitanlibarch.api.registry;
 
 import com.google.common.base.Suppliers;
+import dev.architectury.registry.menu.MenuRegistry;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.Registries;
 import dev.architectury.registry.registries.RegistrySupplier;
 import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
+import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandler;
+import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandlerType;
 import ml.pkom.mcpitanlibarch.api.item.CreativeTabManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
@@ -58,6 +61,10 @@ public class ArchRegistry {
 
     public RegistryEvent<ScreenHandlerType<?>> registerScreenHandlerType(Identifier id, Supplier<ScreenHandlerType<?>> supplier) {
         return new RegistryEvent<>(SCREEN_HANDLER_TYPE.register(id, supplier));
+    }
+
+    public RegistryEvent<ScreenHandlerType<?>> registerExtendedScreenHandlerType(Identifier id, Supplier<ExtendedScreenHandlerType<? extends ExtendedScreenHandler>> supplier) {
+        return registerScreenHandlerType(id, () -> MenuRegistry.ofExtended((id1, inventory, buf) -> supplier.get().create(id1, inventory, buf)));
     }
 
     public RegistryEvent<ScreenHandlerType<?>> registerMenu(Identifier id, Supplier<ScreenHandlerType<?>> supplier) {

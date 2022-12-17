@@ -1,5 +1,13 @@
 package ml.pkom.mcpitanlibarch.api.tag;
 
+import ml.pkom.mcpitanlibarch.api.util.BlockUtil;
+import ml.pkom.mcpitanlibarch.api.util.EntityTypeUtil;
+import ml.pkom.mcpitanlibarch.api.util.FluidUtil;
+import ml.pkom.mcpitanlibarch.api.util.ItemUtil;
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
@@ -34,6 +42,15 @@ public class TagKey<T> {
     }
 
     public boolean isOf(T value) {
-        return RegistryEntry.of(value).isIn(tagKey);
+        if (value instanceof Item)
+            return getTagKey() == net.minecraft.tag.TagKey.of(Registry.ITEM_KEY, ItemUtil.toID((Item) value));
+        if (value instanceof Block)
+            return getTagKey() == net.minecraft.tag.TagKey.of(Registry.BLOCK_KEY, BlockUtil.toID((Block) value));
+        if (value instanceof Fluid)
+            return getTagKey() == net.minecraft.tag.TagKey.of(Registry.FLUID_KEY, FluidUtil.toID((Fluid) value));
+        if (value instanceof EntityType<?>)
+            return getTagKey() == net.minecraft.tag.TagKey.of(Registry.ENTITY_TYPE_KEY, EntityTypeUtil.toID((EntityType<?>) value));
+
+        return RegistryEntry.of(value).isIn(getTagKey());
     }
 }

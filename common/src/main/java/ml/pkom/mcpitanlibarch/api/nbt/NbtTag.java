@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtType;
 
+@Deprecated
 public class NbtTag extends NbtCompound {
     public NbtTag() {
         super();

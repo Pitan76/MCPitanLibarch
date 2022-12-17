@@ -28,10 +28,40 @@ public class SimpleScreenHandler extends ScreenHandler {
         return true;
     }
 
-    protected Slot addNormalSlot(Inventory inventory, int index, int x, int y) {
+    public Slot addNormalSlot(Inventory inventory, int index, int x, int y) {
         Slot slot = new Slot(inventory, index, x, y);
         return this.addSlot(slot);
     }
+
+    public <T extends Slot> Slot addSlot(Inventory inventory, int index, int x, int y, SlotFactory<T> factory) {
+        Slot slot = factory.create(inventory, index, x, y);
+        return this.addSlot(slot);
+    }
+
+    public interface SlotFactory<T extends Slot> {
+        T create(Inventory inventory, int index, int x, int y);
+    }
+
+    public Slot callAddSlot(Slot slot) {
+        return this.addSlot(slot);
+    }
+
+    @Deprecated
+    @Override
+    protected Slot addSlot(Slot slot) {
+        return super.addSlot(slot);
+    }
+
+    @Deprecated
+    @Override
+    public void close(PlayerEntity player) {
+        this.close(new Player(player));
+    }
+
+    public void close(Player player) {
+        super.close(player.getPlayerEntity());
+    }
+
 
     public static final int DEFAULT_SLOT_SIZE = 18;
 
@@ -116,7 +146,22 @@ public class SimpleScreenHandler extends ScreenHandler {
         return slots;
     }
 
+    @Deprecated
     public ItemStack quickMoveOverride(PlayerEntity player, int index) {
+        return quickMoveOverride(new Player(player), index);
+    }
+
+    public boolean callInsertItem(ItemStack stack, int startIndex, int endIndex, boolean fromLast) {
+        return this.insertItem(stack, startIndex, endIndex, fromLast);
+    }
+
+    @Deprecated
+    @Override
+    protected boolean insertItem(ItemStack stack, int startIndex, int endIndex, boolean fromLast) {
+        return super.insertItem(stack, startIndex, endIndex, fromLast);
+    }
+
+    public ItemStack quickMoveOverride(Player player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot.hasStack()) {
@@ -140,12 +185,14 @@ public class SimpleScreenHandler extends ScreenHandler {
                 return ItemStack.EMPTY;
             }
 
-            slot.onTakeItem(player, itemStack2);
+            slot.onTakeItem(player.getEntity(), itemStack2);
         }
 
         return itemStack;
     }
 
+
+    @Deprecated
     @Override
     public ItemStack transferSlot(PlayerEntity player, int slot) {
         return quickMoveOverride(player, slot);
