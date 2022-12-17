@@ -35,11 +35,11 @@ public class WorldUtil {
     }
 
     public static void scheduleBlockTick(World world, BlockPos pos, Block block, int delay) {
-        world.createAndScheduleBlockTick(pos, block, delay);
+        world.scheduleBlockTick(pos, block, delay);
     }
 
     public static void scheduleFluidTick(World world, BlockPos pos, Fluid fluid, int delay) {
-        world.createAndScheduleFluidTick(pos, fluid, delay);
+        world.scheduleFluidTick(pos, fluid, delay);
     }
 
     public static boolean isServer(World world) {
