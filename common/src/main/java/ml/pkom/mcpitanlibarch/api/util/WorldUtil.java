@@ -1,5 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.util;
 
+import net.minecraft.block.Block;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -30,6 +32,14 @@ public class WorldUtil {
 
     public static boolean isClient(World world) {
         return world.isClient();
+    }
+
+    public static void scheduleBlockTick(World world, BlockPos pos, Block block, int delay) {
+        world.getBlockTickScheduler().schedule(pos, block, delay);
+    }
+
+    public static void scheduleFluidTick(World world, BlockPos pos, Fluid fluid, int delay) {
+        world.getFluidTickScheduler().schedule(pos, fluid, delay);
     }
 
     public static boolean isServer(World world) {

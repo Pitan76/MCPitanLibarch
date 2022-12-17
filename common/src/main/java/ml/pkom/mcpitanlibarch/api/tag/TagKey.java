@@ -36,7 +36,7 @@ public class TagKey<T> {
         BLOCK,
         ITEM,
         FLUID,
-        ENTITY_TYPE,
+        ENTITY_TYPE;
     }
 
     public boolean isOf(T value) {
