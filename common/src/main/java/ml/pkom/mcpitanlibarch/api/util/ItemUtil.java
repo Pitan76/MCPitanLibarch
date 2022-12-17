@@ -27,6 +27,7 @@ public class ItemUtil {
     }
 
     public static boolean isIn(Item item, TagKey<Item> tagKey) {
+        if (item.getRegistryEntry().isIn(tagKey.getTagKey())) return true;
         return tagKey.isOf(item);
     }
 

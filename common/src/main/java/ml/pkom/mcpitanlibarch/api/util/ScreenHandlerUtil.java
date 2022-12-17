@@ -14,6 +14,10 @@ public class ScreenHandlerUtil {
         return screenHandler.slots;
     }
 
+    public static Slot getSlot(ScreenHandler screenHandler, int index) {
+        return screenHandler.getSlot(index);
+    }
+
     public static List<ScreenHandlerType<?>> getAllScreenHandlerTypes() {
         List<ScreenHandlerType<?>> screenHandlerTypes = new ArrayList<>();
         for (ScreenHandlerType<?> screenHandler : Registries.SCREEN_HANDLER) {
