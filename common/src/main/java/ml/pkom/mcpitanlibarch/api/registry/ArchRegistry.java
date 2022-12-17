@@ -1,8 +1,11 @@
 package ml.pkom.mcpitanlibarch.api.registry;
 
 import me.shedaniel.architectury.registry.DeferredRegister;
+import me.shedaniel.architectury.registry.MenuRegistry;
 import me.shedaniel.architectury.registry.RegistrySupplier;
 import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
+import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandler;
+import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandlerType;
 import ml.pkom.mcpitanlibarch.api.item.CreativeTabManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
@@ -36,15 +39,6 @@ public class ArchRegistry {
         FLUID = DeferredRegister.create(MOD_ID, Registry.FLUID_KEY);
     }
 
-    public void allRegister() {
-        BLOCKS.register();
-        ITEMS.register();
-        SCREEN_HANDLER_TYPE.register();
-        BLOCK_ENTITY_TYPE.register();
-        ENTITY_TYPE.register();
-        SOUND_EVENT.register();
-        FLUID.register();
-    }
     public static ArchRegistry createRegistry(String MOD_ID) {
         return new ArchRegistry(MOD_ID);
     }
@@ -61,6 +55,10 @@ public class ArchRegistry {
 
     public RegistryEvent<ScreenHandlerType<?>> registerScreenHandlerType(Identifier id, Supplier<ScreenHandlerType<?>> supplier) {
         return new RegistryEvent<>(SCREEN_HANDLER_TYPE.register(id, supplier));
+    }
+
+    public RegistryEvent<ScreenHandlerType<?>> registerExtendedScreenHandlerType(Identifier id, Supplier<ExtendedScreenHandlerType<? extends ExtendedScreenHandler>> supplier) {
+        return registerScreenHandlerType(id, () -> MenuRegistry.ofExtended((id1, inventory, buf) -> supplier.get().create(id1, inventory, buf)));
     }
 
     public RegistryEvent<ScreenHandlerType<?>> registerMenu(Identifier id, Supplier<ScreenHandlerType<?>> supplier) {
@@ -90,5 +88,15 @@ public class ArchRegistry {
 
     public RegistryEvent<Fluid> registerFluid(Identifier id, Supplier<Fluid> supplier) {
         return new RegistryEvent<>(FLUID.register(id, supplier));
+    }
+
+    public void allRegister() {
+        BLOCKS.register();
+        ITEMS.register();
+        SCREEN_HANDLER_TYPE.register();
+        BLOCK_ENTITY_TYPE.register();
+        ENTITY_TYPE.register();
+        SOUND_EVENT.register();
+        FLUID.register();
     }
 }
