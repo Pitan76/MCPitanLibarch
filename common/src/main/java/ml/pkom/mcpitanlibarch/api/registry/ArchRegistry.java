@@ -5,11 +5,15 @@ import dev.architectury.registry.menu.MenuRegistry;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrarManager;
 import dev.architectury.registry.registries.RegistrySupplier;
+import ml.pkom.mcpitanlibarch.MCPitanLibarch;
 import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
 import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandler;
 import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandlerType;
 import ml.pkom.mcpitanlibarch.api.item.CreativeTabManager;
+import ml.pkom.mcpitanlibarch.api.item.ExtendSettings;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
@@ -50,12 +54,14 @@ public class ArchRegistry {
     }
 
     public RegistryEvent<Item> registerItem(Identifier id, Supplier<Item> supplier) {
+        if (MCPitanLibarch.itemBlackList.contains(id.toString())) supplier = () -> new Item(new ExtendSettings());
         RegistrySupplier<Item> registrySupplier = ITEMS.register(id, supplier);
         CreativeTabManager.register(id);
         return new RegistryEvent<>(registrySupplier);
     }
 
     public RegistryEvent<Block> registerBlock(Identifier id, Supplier<Block> supplier) {
+        if (MCPitanLibarch.blockBlackList.contains(id.toString())) supplier = () -> new Block(AbstractBlock.Settings.of(Material.STONE));
         return new RegistryEvent<>(BLOCKS.register(id, supplier));
     }
 
