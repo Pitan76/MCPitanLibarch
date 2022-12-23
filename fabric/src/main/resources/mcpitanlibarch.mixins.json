@@ -1,9 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "ml.pkom.mcpitanlibarch.mixin.fabric",
+  "package": "ml.pkom.mcpitanlibarch.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "RecipeMixin"
   ],
   "client": [
   ],
