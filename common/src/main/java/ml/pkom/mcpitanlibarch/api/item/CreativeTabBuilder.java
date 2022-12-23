@@ -68,6 +68,4 @@ public class CreativeTabBuilder {
         }));
         return tabSupplier.get();
     }
-
-
 }
