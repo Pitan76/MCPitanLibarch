@@ -197,4 +197,14 @@ public class SimpleScreenHandler extends ScreenHandler {
     public ItemStack transferSlot(PlayerEntity player, int slot) {
         return quickMoveOverride(player, slot);
     }
+
+    @Deprecated
+    @Override
+    public Slot getSlot(int index) {
+        return super.getSlot(index);
+    }
+
+    public Slot callGetSlot(int index) {
+        return getSlot(index);
+    }
 }
