@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.fabric.mixin;
 
-import ml.pkom.mcpitanlibarch.recipe.FixedRecipeRemainder;
+import ml.pkom.mcpitanlibarch.api.item.FixedRecipeRemainderItem;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
@@ -18,9 +18,9 @@ public interface RecipeMixin<C extends Inventory> {
 
         int i = 0;
         for(ItemStack stack : defaultedList) {
-            if (stack.getItem() instanceof FixedRecipeRemainder) {
-                FixedRecipeRemainder remainder = (FixedRecipeRemainder) stack.getItem();
-                defaultedList.set(i, remainder.getFixedRecipeRemainder(stack));
+            if (stack.getItem() instanceof FixedRecipeRemainderItem) {
+                FixedRecipeRemainderItem remainder = (FixedRecipeRemainderItem) stack.getItem();
+                defaultedList.set(i, remainder.getFixedRecipeRemainder(stack.copy()));
             }
             i++;
         }
