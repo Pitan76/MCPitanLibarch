@@ -5,6 +5,7 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 public class ResourceUtil {
@@ -12,11 +13,15 @@ public class ResourceUtil {
         return resourceManager.getResource(identifier).get();
     }
 
-    public static Map<Identifier, Resource> findResources(ResourceManager resourceManager, String startingPath, String endingPath) {
+    public static InputStream getInputStream(Resource resource) throws IOException {
+        return resource.getInputStream();
+    }
+
+    public static Map<Identifier, Resource> findResources(ResourceManager resourceManager, String startingPath, String endingPath) throws IOException {
         return resourceManager.findResources(startingPath, s -> s.toString().endsWith(endingPath));
     }
 
     public static void close(Resource resource) throws IOException {
-        resource.getInputStream().close();
+        getInputStream(resource);
     }
 }
