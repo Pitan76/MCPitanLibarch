@@ -1,5 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.item;
 
+import ml.pkom.mcpitanlibarch.Dummy;
 import ml.pkom.mcpitanlibarch.api.event.item.ItemUseEvent;
 import ml.pkom.mcpitanlibarch.api.event.item.ItemUseOnBlockEvent;
 import ml.pkom.mcpitanlibarch.mixin.ItemUsageContextMixin;
@@ -17,15 +18,23 @@ public class ExtendItem extends Item {
         super(settings);
     }
 
+    @Deprecated
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         return onRightClick(new ItemUseEvent(world, user, hand));
     }
 
+    @Deprecated
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         ItemUsageContextMixin contextAccessor = (ItemUsageContextMixin) context;
         return onRightClickOnBlock(new ItemUseOnBlockEvent(context.getPlayer(), context.getHand(), contextAccessor.getHit()));
+    }
+
+    @Deprecated
+    @Override
+    public boolean hasRecipeRemainder() {
+        return hasRecipeRemainder(new Dummy());
     }
 
     /**
@@ -45,5 +54,9 @@ public class ExtendItem extends Item {
      */
     public ActionResult onRightClickOnBlock(ItemUseOnBlockEvent event) {
         return super.useOnBlock(event.toIUC());
+    }
+
+    public boolean hasRecipeRemainder(Dummy dummy) {
+        return super.hasRecipeRemainder();
     }
 }
