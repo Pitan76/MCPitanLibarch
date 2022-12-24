@@ -1,7 +1,7 @@
-package ml.pkom.mcpitanlibarch.recipe;
+package ml.pkom.mcpitanlibarch.api.item;
 
 import net.minecraft.item.ItemStack;
 
-public interface FixedRecipeRemainder {
+public interface FixedRecipeRemainderItem {
     ItemStack getFixedRecipeRemainder(ItemStack stack);
 }
