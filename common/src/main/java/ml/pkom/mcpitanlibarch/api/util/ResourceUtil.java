@@ -22,6 +22,6 @@ public class ResourceUtil {
     }
 
     public static void close(Resource resource) throws IOException {
-        getInputStream(resource);
+        getInputStream(resource).close();
     }
 }
