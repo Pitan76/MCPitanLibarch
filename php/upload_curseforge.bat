@@ -1,0 +1,2 @@
+php upload_curseforge.php
+pause
