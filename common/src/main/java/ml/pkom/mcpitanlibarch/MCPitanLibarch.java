@@ -13,7 +13,7 @@ import java.util.List;
 public class MCPitanLibarch {
     public static final String MOD_ID = "mcpitanlibarch";
 
-    private static File configFile = new File(PlatformUtil.getConfigFolder().toFile(), MOD_ID + "/blacklist.json");
+    private static File configFile = new File(PlatformUtil.getConfigFolder().toFile(), MOD_ID + "/blacklist.yml");
 
     public static Config config = new YamlConfig();
     private static boolean configLoaded = false;
@@ -31,13 +31,19 @@ public class MCPitanLibarch {
     public static void configInit() {
         if (configLoaded) return;
         configLoaded = true;
+        if (!configFile.getParentFile().exists())
+            configFile.mkdirs();
+
         config.setString("item", "examplemod:hogehoge_item,examplemod:fuga_item");
         config.setString("block", "examplemod:hogehoge_block,examplemod:fuga_block");
 
         config.load(configFile);
 
-        itemBlackList.addAll(Arrays.asList(config.getString("item").split(",")));
-        blockBlackList.addAll(Arrays.asList(config.getString("block").split(",")));
+        if (config.configMap.containsKey("item"))
+            itemBlackList.addAll(Arrays.asList(config.getString("item").split(",")));
+
+        if (config.configMap.containsKey("block"))
+            blockBlackList.addAll(Arrays.asList(config.getString("block").split(",")));
 
         config.save(configFile);
 
