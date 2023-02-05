@@ -173,4 +173,16 @@ public class Player {
     public void equipStack(EquipmentSlot slot, ItemStack stack) {
         getEntity().equipStack(slot, stack);
     }
+
+    public void dropStack(ItemStack stack, boolean throwRandomly, boolean retainOwnership) {
+        getEntity().dropItem(stack, throwRandomly, retainOwnership);
+    }
+
+    public void dropStack(ItemStack stack, boolean retainOwnership) {
+        dropStack(stack, false, retainOwnership);
+    }
+
+    public void dropStack(ItemStack stack) {
+        dropStack(stack, false, false);
+    }
 }

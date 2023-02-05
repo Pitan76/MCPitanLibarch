@@ -1,15 +1,19 @@
 package ml.pkom.mcpitanlibarch.api.tile;
 
+import ml.pkom.mcpitanlibarch.api.block.ExtendBlockEntityProvider;
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
+import ml.pkom.mcpitanlibarch.api.event.tile.TileTickEvent;
 import ml.pkom.mcpitanlibarch.api.world.ExtendWorld;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ExtendBlockEntity extends BlockEntity {
+public class ExtendBlockEntity extends BlockEntity implements Tickable {
     ExtendWorld world;
     public ExtendBlockEntity(BlockEntityType<?> type) {
         super(type);
@@ -49,5 +53,16 @@ public class ExtendBlockEntity extends BlockEntity {
     public void setLocation(World world, BlockPos pos) {
         super.setLocation(world, pos);
         this.world = new ExtendWorld(world);
+    }
+
+    @Override
+    public void tick() {
+        if (this instanceof ExtendBlockEntityTicker) {
+            Block block = world.getMinecraftWorld().getBlockState(pos).getBlock();
+            if (block instanceof ExtendBlockEntityProvider && ((ExtendBlockEntityProvider) block).isTick()) {
+                ExtendBlockEntityTicker<?> ticker = (ExtendBlockEntityTicker<?>) this;
+                ticker.tick(new TileTickEvent(world.getMinecraftWorld(), pos, getCachedState(), this));
+            }
+        }
     }
 }

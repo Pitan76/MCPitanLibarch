@@ -2,9 +2,8 @@ package ml.pkom.mcpitanlibarch.api.block;
 
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,5 +15,19 @@ public interface ExtendBlockEntityProvider extends BlockEntityProvider {
     }
 
     @Nullable
-    BlockEntity createBlockEntity(TileCreateEvent event);
+    default BlockEntity createBlockEntity(TileCreateEvent event) {
+        if (getBlockEntityType() == null) return null;
+
+        // return new ...BlockEntity(world)
+        return getBlockEntityType().instantiate();
+    }
+
+    @Nullable
+    default <T extends BlockEntity> BlockEntityType<T> getBlockEntityType() {
+        return null;
+    }
+
+    default boolean isTick() {
+        return false;
+    }
 }
