@@ -62,7 +62,7 @@ public class WorldUtil {
     }
 
     public static void spawnExperienceOrb(World world, BlockPos pos, int amount) {
-        spawnExperienceOrb(world, pos.toCenterPos(), amount);
+        spawnExperienceOrb(world, Vec3d.ofCenter(pos), amount);
     }
 
 
