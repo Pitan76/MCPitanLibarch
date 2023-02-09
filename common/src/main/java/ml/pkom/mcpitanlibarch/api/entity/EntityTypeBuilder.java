@@ -29,11 +29,32 @@ public class EntityTypeBuilder<T extends Entity> {
         setSummonable(true);
         setFireImmune(false);
         setChangingDimensions(-1.0f, -1.0f);
+        spawnableFarFromPlayer = false;
+        maxTrackDistance = 5;
+        trackTickInterval = 3;
+        canSpawnBlocks = ImmutableSet.of();
+    }
 
+    @Deprecated
+    public EntityTypeBuilder(SpawnGroup spawnGroup, EntityType.EntityFactory<T> factory) {
+        setSaveable(true);
+        setSummonable(true);
+        setFireImmune(false);
+        setChangingDimensions(-1.0f, -1.0f);
+        spawnableFarFromPlayer = false;
+        maxTrackDistance = 5;
+        trackTickInterval = 3;
+        canSpawnBlocks = ImmutableSet.of();
+        this.spawnGroup = spawnGroup;
+        this.factory = factory;
     }
 
     public static <T extends Entity> EntityTypeBuilder<T> create() {
         return new EntityTypeBuilder<>();
+    }
+
+    public static <T extends Entity> EntityTypeBuilder<T> create(SpawnGroup spawnGroup, EntityType.EntityFactory<T> factory) {
+        return new EntityTypeBuilder<>(spawnGroup, factory);
     }
 
     public EntityType<T> build() {
