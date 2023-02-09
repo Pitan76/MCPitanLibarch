@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,8 +52,8 @@ public class BlockEntityTypeBuilder<T extends BlockEntity> {
         T create(TileCreateEvent event);
 
         @Deprecated
-        default T create(BlockPos pos, BlockState state) {
-            return create(new TileCreateEvent(pos, state));
+        default T create() {
+            return create(new TileCreateEvent(null));
         }
     }
 }
