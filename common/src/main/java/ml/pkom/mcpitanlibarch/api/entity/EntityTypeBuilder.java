@@ -37,14 +37,7 @@ public class EntityTypeBuilder<T extends Entity> {
 
     @Deprecated
     public EntityTypeBuilder(SpawnGroup spawnGroup, EntityType.EntityFactory<T> factory) {
-        setSaveable(true);
-        setSummonable(true);
-        setFireImmune(false);
-        setChangingDimensions(-1.0f, -1.0f);
-        spawnableFarFromPlayer = false;
-        maxTrackDistance = 5;
-        trackTickInterval = 3;
-        canSpawnBlocks = ImmutableSet.of();
+        this();
         this.spawnGroup = spawnGroup;
         this.factory = factory;
     }
