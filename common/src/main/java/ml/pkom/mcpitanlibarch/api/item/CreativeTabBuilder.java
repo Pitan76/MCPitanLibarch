@@ -19,6 +19,8 @@ public class CreativeTabBuilder {
     private boolean special = false;
     private String texture;
 
+    @Deprecated
+    // Recommend: create(identifier)
     public CreativeTabBuilder(Identifier identifier) {
         this.identifier = identifier;
     }
