@@ -69,7 +69,7 @@ public class ArchRegistry {
         return new RegistryEvent<>(SCREEN_HANDLER_TYPE.register(id, supplier));
     }
 
-    public RegistryEvent<ScreenHandlerType<?>> registerExtendedScreenHandlerType(Identifier id, Supplier<ExtendedScreenHandlerType<? extends ExtendedScreenHandler>> supplier) {
+    public RegistryEvent<ScreenHandlerType<?>> registerExtendedScreenHandlerType(Identifier id, Supplier<ExtendedScreenHandlerType<?>> supplier) {
         return registerScreenHandlerType(id, () -> MenuRegistry.ofExtended((id1, inventory, buf) -> supplier.get().create(id1, inventory, buf)));
     }
 

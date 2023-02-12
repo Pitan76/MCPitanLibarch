@@ -7,18 +7,19 @@ import net.minecraft.screen.ScreenHandlerType;
 
 public class ExtendedScreenHandlerType<T extends ExtendedScreenHandler> extends ScreenHandlerType<T> {
 
+    private final Factory<T> factory;
+
     public ExtendedScreenHandlerType(Factory<T> factory) {
-        super(factory);
+        super(null);
         this.factory = factory;
     }
 
-    private final Factory<T> factory;
-
-    public T create(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
-        return this.factory.create(syncId, playerInventory, buf);
+    public T create(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
+        return factory.create(syncId, inventory, buf);
     }
 
-    public interface Factory<T extends ScreenHandler> extends ScreenHandlerType.Factory<T> {
-        T create(int syncId, PlayerInventory playerInventory, PacketByteBuf buf);
+    @FunctionalInterface
+    public interface Factory<T extends ScreenHandler> {
+        T create(int syncId, PlayerInventory inventory, PacketByteBuf buf);
     }
 }
