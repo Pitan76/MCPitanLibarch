@@ -29,6 +29,7 @@
     "mcpitanlibarch.mixins.json",
     "mcpitanlibarch-common.mixins.json"
   ],
+  "accessWidener" : "mcpitanlibarch.accesswidener",
   "depends": {
     "fabricloader": "*",
     "minecraft": ">=1.18"

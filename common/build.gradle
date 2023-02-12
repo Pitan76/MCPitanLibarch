@@ -10,6 +10,10 @@ architectury {
     common()
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/mcpitanlibarch.accesswidener")
+}
+
 publishing {
     publications {
         mavenCommon(MavenPublication) {
