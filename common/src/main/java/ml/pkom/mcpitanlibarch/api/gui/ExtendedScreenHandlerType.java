@@ -12,6 +12,7 @@ public class ExtendedScreenHandlerType<T extends ExtendedScreenHandler> extends 
     public ExtendedScreenHandlerType(Factory<T> factory) {
         super(null);
         this.factory = factory;
+
     }
 
     public T create(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
