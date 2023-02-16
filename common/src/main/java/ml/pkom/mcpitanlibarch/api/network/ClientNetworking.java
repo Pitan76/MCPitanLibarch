@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 
 import static dev.architectury.networking.NetworkManager.Side.S2C;
 
-public class ClientNetwork {
+public class ClientNetworking {
     public static void send(Identifier identifier, PacketByteBuf buf) {
         NetworkManager.sendToServer(identifier, buf);
     }
