@@ -7,7 +7,6 @@ import dev.architectury.registry.registries.RegistrarManager;
 import dev.architectury.registry.registries.RegistrySupplier;
 import ml.pkom.mcpitanlibarch.MCPitanLibarch;
 import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
-import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandler;
 import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandlerType;
 import ml.pkom.mcpitanlibarch.api.item.CreativeTabManager;
 import ml.pkom.mcpitanlibarch.api.item.ExtendSettings;
