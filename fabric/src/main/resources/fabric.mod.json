@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "mcpitanlibarch",
   "version": "${version}",
-  "name": "MCPitanLibarch",
+  "name": "MCPitanLib",
   "description": "Pitan's Minecraft Mod Library",
   "authors": [
     "Pitan"
