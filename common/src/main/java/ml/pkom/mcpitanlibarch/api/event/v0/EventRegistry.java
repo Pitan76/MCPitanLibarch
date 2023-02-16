@@ -19,11 +19,11 @@ public class EventRegistry {
             PlayerEvent.PLAYER_QUIT.register(state::quit);
         }
 
-        interface PlayerJoin {
+        public interface PlayerJoin {
             void join(ServerPlayerEntity player);
         }
 
-        interface PlayerQuit {
+        public interface PlayerQuit {
             void quit(ServerPlayerEntity player);
         }
     }
@@ -58,18 +58,18 @@ public class EventRegistry {
             LifecycleEvent.SERVER_WORLD_UNLOAD.register(state::act);
         }
 
-        interface ServerState extends InstanceState<MinecraftServer> {
+        public interface ServerState extends InstanceState<MinecraftServer> {
         }
 
-        interface InstanceState<T> {
+        public interface InstanceState<T> {
             void stateChanged(T instance);
         }
 
-        interface WorldState<T extends World> {
+        public interface WorldState<T extends World> {
             void act(T world);
         }
 
-        interface ServerWorldState extends WorldState<ServerWorld> {
+        public interface ServerWorldState extends WorldState<ServerWorld> {
         }
     }
 }
