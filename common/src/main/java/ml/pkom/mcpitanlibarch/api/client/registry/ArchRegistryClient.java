@@ -9,7 +9,7 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.Text;
 
 public class ArchRegistryClient {
-    public <H extends ScreenHandler, S extends Screen & ScreenHandlerProvider<H>> void registerScreen(ScreenHandlerType<? extends H> type, ScreenFactory<H, S> factory) {
+    public static <H extends ScreenHandler, S extends Screen & ScreenHandlerProvider<H>> void registerScreen(ScreenHandlerType<? extends H> type, ScreenFactory<H, S> factory) {
         MenuRegistry.registerScreenFactory(type, factory::create);
     }
 
