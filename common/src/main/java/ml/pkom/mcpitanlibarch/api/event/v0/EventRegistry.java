@@ -1,7 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.event.v0;
 
-import me.shedaniel.architectury.event.events.LifecycleEvent;
-import me.shedaniel.architectury.event.events.PlayerEvent;
+import dev.architectury.event.events.common.LifecycleEvent;
+import dev.architectury.event.events.common.PlayerEvent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -47,15 +47,15 @@ public class EventRegistry {
         }
 
         public static void serverWorldLoad(ServerWorldState state) {
-            LifecycleEvent.SERVER_WORLD_LOAD.register(state::act);
+            LifecycleEvent.SERVER_LEVEL_LOAD.register(state::act);
         }
 
         public static void serverWorldSave(ServerWorldState state) {
-            LifecycleEvent.SERVER_WORLD_SAVE.register(state::act);
+            LifecycleEvent.SERVER_LEVEL_SAVE.register(state::act);
         }
 
         public static void serverWorldUnload(ServerWorldState state) {
-            LifecycleEvent.SERVER_WORLD_UNLOAD.register(state::act);
+            LifecycleEvent.SERVER_LEVEL_UNLOAD.register(state::act);
         }
 
         interface ServerState extends InstanceState<MinecraftServer> {
