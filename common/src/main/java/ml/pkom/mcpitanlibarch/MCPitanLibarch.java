@@ -13,7 +13,7 @@ import java.util.List;
 public class MCPitanLibarch {
     public static final String MOD_ID = "mcpitanlibarch";
 
-    private static File configFile = new File(PlatformUtil.getConfigFolder().toFile(), MOD_ID + "/blacklist.yml");
+    private static final File configFile = new File(PlatformUtil.getConfigFolder().toFile(), MOD_ID + "/blacklist.yml");
 
     public static Config config = new YamlConfig();
     private static boolean configLoaded = false;
@@ -29,24 +29,28 @@ public class MCPitanLibarch {
     }
 
     public static void configInit() {
-        if (configLoaded) return;
-        configLoaded = true;
-        if (!configFile.getParentFile().exists())
-            configFile.mkdirs();
+        try {
+            if (configLoaded) return;
+            configLoaded = true;
+            if (!configFile.getParentFile().exists())
+                if (!configFile.getParentFile().mkdirs())
+                    return;
 
-        config.setString("item", "examplemod:hogehoge_item,examplemod:fuga_item");
-        config.setString("block", "examplemod:hogehoge_block,examplemod:fuga_block");
+            config.setString("item", "examplemod:hogehoge_item,examplemod:fuga_item");
+            config.setString("block", "examplemod:hogehoge_block,examplemod:fuga_block");
 
-        config.load(configFile);
+            config.load(configFile);
 
-        if (config.configMap.containsKey("item"))
-            itemBlackList.addAll(Arrays.asList(config.getString("item").split(",")));
+            if (config.configMap.containsKey("item"))
+                itemBlackList.addAll(Arrays.asList(config.getString("item").split(",")));
 
-        if (config.configMap.containsKey("block"))
-            blockBlackList.addAll(Arrays.asList(config.getString("block").split(",")));
+            if (config.configMap.containsKey("block"))
+                blockBlackList.addAll(Arrays.asList(config.getString("block").split(",")));
 
-        config.save(configFile);
-
+            config.save(configFile);
+        } catch (Exception e) {
+            System.out.println("MCPitanLib: Cannot save config file");
+        }
     }
 
 }
