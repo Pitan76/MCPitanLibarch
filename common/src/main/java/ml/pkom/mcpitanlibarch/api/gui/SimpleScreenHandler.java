@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -206,5 +207,15 @@ public class SimpleScreenHandler extends ScreenHandler {
 
     public Slot callGetSlot(int index) {
         return getSlot(index);
+    }
+
+    @Deprecated
+    @Override
+    public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
+        overrideOnSlotClick(slotIndex, button, actionType, new Player(player));
+    }
+
+    public void overrideOnSlotClick(int slotIndex, int button, SlotActionType actionType, Player player) {
+        super.onSlotClick(slotIndex, button, actionType, player.getPlayerEntity());
     }
 }
