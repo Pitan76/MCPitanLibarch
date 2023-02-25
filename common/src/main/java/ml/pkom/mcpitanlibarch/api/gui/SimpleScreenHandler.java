@@ -211,8 +211,9 @@ public class SimpleScreenHandler extends ScreenHandler {
 
     @Deprecated
     @Override
-    public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
+    public ItemStack onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
         overrideOnSlotClick(slotIndex, button, actionType, new Player(player));
+        return super.onSlotClick(slotIndex, button, actionType, player);
     }
 
     public void overrideOnSlotClick(int slotIndex, int button, SlotActionType actionType, Player player) {
