@@ -1,12 +1,12 @@
 package ml.pkom.mcpitanlibarch.api.util.client;
 
 import ml.pkom.mcpitanlibarch.api.client.gui.widget.RedrawableTexturedButtonWidget;
+import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -74,7 +74,7 @@ public class ScreenUtil {
 
     public static class Texts {
         public static Text empty() {
-            return ScreenTexts.EMPTY;
+            return TextUtil.empty();
         }
     }
 }
