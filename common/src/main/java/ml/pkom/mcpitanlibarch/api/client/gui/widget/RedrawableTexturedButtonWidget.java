@@ -28,17 +28,14 @@ public class RedrawableTexturedButtonWidget extends TexturedButtonWidget {
         RenderUtil.setShaderToPositionTexProgram();
         RenderUtil.setShaderTexture(0, this.texture);
         int i = this.v;
-        if (!this.isNarratable()) {
-            i += this.hoveredVOffset * 2;
-        } else if (this.isHovered()) {
+        if (this.isHovered()) {
             i += this.hoveredVOffset;
         }
 
         RenderUtil.enableDepthTest();
         drawTexture(matrices, this.x, this.y, (float)this.u, (float)i, this.width, this.height, this.textureWidth, this.textureHeight);
-
-        if (this.hovered) {
-            this.renderTooltip(matrices, mouseX, mouseY);
+        if (this.isHovered()) {
+            this.renderToolTip(matrices, mouseX, mouseY);
         }
     }
 
