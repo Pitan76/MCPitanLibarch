@@ -12,6 +12,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.OptionalInt;
@@ -184,5 +185,13 @@ public class Player {
 
     public void dropStack(ItemStack stack) {
         dropStack(stack, false, false);
+    }
+
+    public BlockPos getBlockPos() {
+        return getEntity().getBlockPos();
+    }
+
+    public Vec3d getPos() {
+        return getEntity().getPos();
     }
 }
