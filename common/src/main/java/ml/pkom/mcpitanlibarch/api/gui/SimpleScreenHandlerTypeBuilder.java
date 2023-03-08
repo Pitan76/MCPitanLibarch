@@ -1,5 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.gui;
 
+import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
@@ -13,7 +14,7 @@ public class SimpleScreenHandlerTypeBuilder<T extends ScreenHandler> {
     }
 
     public ScreenHandlerType<T> build() {
-        return new ScreenHandlerType<>(factory::create);
+        return MenuRegistry.of(factory::create);
     }
 
     @FunctionalInterface
