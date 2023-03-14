@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "quilt_loader" : {
+    "group": "ml.pkom",
+    "id": "mcpitanlibarch",
+    "version": "${version}",
+    "metadata" : {
+      "name": "MCPitanLib",
+      "description": "Pitan's Minecraft Mod Library",
+      "authors": [
+        "Pitan"
+      ],
+      "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/mcpitanlibarch",
+        "sources": "https://github.com/Pitan76/mcpitanlibarch",
+        "issues": "https://github.com/Pitan76/mcpitanlibarch/issue"
+      },
+      "license": "MIT",
+      "icon": "icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "environment": "*",
+    "entrypoints": {
+      "init": [
+        "ml.pkom.mcpitanlibarch.quilt.MCPitanLibarchQuilt"
+      ]
+    },
+    "custom": {
+      "modmenu": {
+        "badges": [
+          "library"
+        ]
+      }
+    },
+    "depends": [
+      {
+        "id": "minecraft",
+        "version": ">=1.16"
+      },
+      {
+        "id": "quilt_loader",
+        "version": "*"
+      },
+      {
+        "id": "architectury",
+        "version": "*"
+      }
+    ]
+  },
+  "accessWidener": "mcpitanlibarch.accesswidener",
+  "mixins": [
+    "mcpitanlibarch.mixins.json",
+    "mcpitanlibarch-common.mixins.json"
+  ]
+}
