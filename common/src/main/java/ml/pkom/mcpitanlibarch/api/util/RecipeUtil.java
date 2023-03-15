@@ -20,12 +20,12 @@ public class RecipeUtil {
     }
 
     public static ItemStack craft(Recipe<Inventory> recipe, Inventory inventory, World world) {
-        return recipe.craft(inventory, world.getRegistryManager());
+        return recipe.craft(inventory);
     }
 
 
     public static ItemStack getOutput(Recipe<Inventory> recipe, World world) {
-        return recipe.getOutput(world.getRegistryManager());
+        return recipe.getOutput();
     }
 
     public enum CompatibilityCraftingRecipeCategory {
