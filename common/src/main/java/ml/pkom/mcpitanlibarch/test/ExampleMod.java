@@ -2,6 +2,7 @@ package ml.pkom.mcpitanlibarch.test;
 
 import ml.pkom.mcpitanlibarch.api.command.CommandRegistry;
 import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
+import ml.pkom.mcpitanlibarch.api.gui.SimpleScreenHandlerTypeBuilder;
 import ml.pkom.mcpitanlibarch.api.item.DefaultItemGroups;
 import ml.pkom.mcpitanlibarch.api.item.ExtendSettings;
 import ml.pkom.mcpitanlibarch.api.registry.ArchRegistry;
@@ -33,7 +34,7 @@ public class ExampleMod {
 
     public static ArchRegistry registry = ArchRegistry.createRegistry(MOD_ID);
 
-    public static RegistryEvent<ScreenHandlerType<?>> supplierEXAMPLE_SCREENHANDLER = registry.registerScreenHandlerType(id("example_gui"), () -> new ScreenHandlerType<>(ExampleScreenHandler::new));;
+    public static RegistryEvent<ScreenHandlerType<?>> supplierEXAMPLE_SCREENHANDLER = registry.registerScreenHandlerType(id("example_gui"), () -> new SimpleScreenHandlerTypeBuilder<>(ExampleScreenHandler::new).build());
 
     public static RegistryEvent<Item> EXAMPLE_ITEM_SUPPLIER;
     public static RegistryEvent<Block> EXAMPLE_BLOCK_SUPPLIER;

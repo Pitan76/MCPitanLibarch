@@ -13,3 +13,7 @@ accessible    field    net/minecraft/item/ItemGroups    INGREDIENTS    Lnet/mine
 accessible    field    net/minecraft/item/ItemGroups    SPAWN_EGGS    Lnet/minecraft/item/ItemGroup;
 accessible    field    net/minecraft/item/ItemGroups    OPERATOR    Lnet/minecraft/item/ItemGroup;
 accessible    field    net/minecraft/item/ItemGroups    INVENTORY    Lnet/minecraft/item/ItemGroup;
+
+accessible    class    net/minecraft/screen/ScreenHandlerType$Factory
+accessible    method   net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;Lnet/minecraft/resource/featuretoggle/FeatureSet;)V
+extendable    method   net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;Lnet/minecraft/resource/featuretoggle/FeatureSet;)V

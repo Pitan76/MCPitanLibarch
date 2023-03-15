@@ -55,12 +55,12 @@ public class SimpleScreenHandler extends ScreenHandler {
 
     @Deprecated
     @Override
-    public void close(PlayerEntity player) {
+    public void onClosed(PlayerEntity player) {
         this.close(new Player(player));
     }
 
     public void close(Player player) {
-        super.close(player.getPlayerEntity());
+        super.onClosed(player.getPlayerEntity());
     }
 
 

@@ -1,6 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.gui;
 
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 
@@ -13,7 +14,7 @@ public class SimpleScreenHandlerTypeBuilder<T extends ScreenHandler> {
     }
 
     public ScreenHandlerType<T> build() {
-        return new ScreenHandlerType<>(factory::create);
+        return new ScreenHandlerType<>(factory::create, FeatureFlags.VANILLA_FEATURES);
     }
 
     @FunctionalInterface
