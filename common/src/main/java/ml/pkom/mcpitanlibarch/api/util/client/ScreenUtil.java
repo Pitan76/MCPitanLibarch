@@ -85,7 +85,7 @@ public class ScreenUtil {
 
     public static class TextFieldUtil {
         public static void setFocused(TextFieldWidget widget, boolean focused) {
-            widget.setFocused(focused);
+            widget.setTextFieldFocused(focused);
         }
     }
 }
