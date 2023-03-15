@@ -4,6 +4,7 @@ import ml.pkom.mcpitanlibarch.api.client.gui.widget.RedrawableTexturedButtonWidg
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
@@ -79,6 +80,12 @@ public class ScreenUtil {
     public static class Texts {
         public static Text empty() {
             return ScreenTexts.EMPTY;
+        }
+    }
+
+    public static class TextFieldUtil {
+        public static void setFocused(TextFieldWidget widget, boolean focused) {
+            widget.setFocused(focused);
         }
     }
 }
