@@ -24,10 +24,10 @@ public class RenderUtil {
     }
 
     public static void enableTexture() {
-        // ～1.19.2
+        RenderSystem.enableTexture();
     }
 
     public static void disableTexture() {
-        // ～1.19.2
+        RenderSystem.disableTexture();
     }
 }
