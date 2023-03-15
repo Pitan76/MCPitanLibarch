@@ -22,4 +22,12 @@ public class RenderUtil {
     public static void enableDepthTest() {
         RenderSystem.enableDepthTest();
     }
+
+    public static void enableTexture() {
+        // ～1.19.2
+    }
+
+    public static void disableTexture() {
+        // ～1.19.2
+    }
 }
