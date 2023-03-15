@@ -5,10 +5,10 @@ import net.minecraft.util.math.Position;
 
 public class PosUtil {
     public BlockPos flooredBlockPos(double x, double y, double z) {
-        return BlockPos.ofFloored(x, y, z);
+        return new BlockPos(x, y, z);
     }
 
     public BlockPos flooredBlockPos(Position pos) {
-        return BlockPos.ofFloored(pos);
+        return new BlockPos(pos);
     }
 }
