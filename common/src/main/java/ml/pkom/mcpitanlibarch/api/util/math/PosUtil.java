@@ -5,11 +5,11 @@ import net.minecraft.util.math.Position;
 import net.minecraft.util.math.Vec3d;
 
 public class PosUtil {
-    public BlockPos flooredBlockPos(double x, double y, double z) {
+    public static BlockPos flooredBlockPos(double x, double y, double z) {
         return new BlockPos(x, y, z);
     }
 
-    public BlockPos flooredBlockPos(Position pos) {
+    public static BlockPos flooredBlockPos(Position pos) {
         return new BlockPos(pos);
     }
 
