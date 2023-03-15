@@ -18,12 +18,12 @@ public class RecipeUtil {
         return new ShapelessRecipe(id, group, output, input);
     }
 
-    public static ItemStack craft(Recipe<Inventory> recipe, Inventory inventory, World world) {
+    public static <C extends Inventory> ItemStack craft(Recipe<C> recipe, C inventory, World world) {
         return recipe.craft(inventory);
     }
 
 
-    public static ItemStack getOutput(Recipe<Inventory> recipe, World world) {
+    public static <C extends Inventory> ItemStack getOutput(Recipe<C> recipe, World world) {
         return recipe.getOutput();
     }
 
