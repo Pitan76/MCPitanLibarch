@@ -25,7 +25,7 @@ public class CreativeTabBuilder {
         this.identifier = identifier;
     }
 
-    public CreativeTabBuilder create(Identifier identifier) {
+    public static CreativeTabBuilder create(Identifier identifier) {
         return new CreativeTabBuilder(identifier);
     }
 

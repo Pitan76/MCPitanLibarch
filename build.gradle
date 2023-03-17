@@ -22,7 +22,7 @@ subprojects {
         mappings "net.fabricmc:yarn:${rootProject.yarn_mappings}:v2"
 
         // https://mvnrepository.com/artifact/org.yaml/snakeyaml
-        implementation 'org.yaml:snakeyaml:1.33'
+        implementation 'org.yaml:snakeyaml:2.0'
     }
 }
 
