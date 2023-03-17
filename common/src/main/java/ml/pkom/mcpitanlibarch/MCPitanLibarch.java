@@ -1,7 +1,7 @@
 package ml.pkom.mcpitanlibarch;
 
 import ml.pkom.easyapi.config.Config;
-import ml.pkom.easyapi.config.YamlConfig;
+import ml.pkom.easyapi.config.JsonConfig;
 import ml.pkom.mcpitanlibarch.api.util.PlatformUtil;
 
 import java.io.File;
@@ -12,9 +12,9 @@ import java.util.List;
 public class MCPitanLibarch {
     public static final String MOD_ID = "mcpitanlibarch";
 
-    private static final File configFile = new File(PlatformUtil.getConfigFolder().toFile(), MOD_ID + "/blacklist.yml");
+    private static final File configFile = new File(PlatformUtil.getConfigFolder().toFile(), MOD_ID + "/blacklist.json");
 
-    public static Config config = new YamlConfig();
+    public static Config config = new JsonConfig();
     private static boolean configLoaded = false;
 
     public static List<String> itemBlackList = new ArrayList<>();
