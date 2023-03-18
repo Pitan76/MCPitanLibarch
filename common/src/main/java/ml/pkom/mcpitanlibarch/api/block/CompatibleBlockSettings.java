@@ -176,7 +176,7 @@ public class CompatibleBlockSettings {
     }
 
     public CompatibleBlockSettings offset(AbstractBlock.OffsetType offsetType) {
-        settings.offsetType(offsetType);
+        // ?
         return this;
     }
 
