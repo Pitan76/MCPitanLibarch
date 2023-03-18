@@ -26,6 +26,10 @@ public class ExtendBlock extends Block {
         super(settings);
     }
 
+    public ExtendBlock(CompatibleBlockSettings settings) {
+        super(settings.build());
+    }
+
     public void scheduledTick(BlockScheduledTickEvent event) {
         super.scheduledTick(event.state, event.world, event.pos, event.random);
     }
