@@ -106,7 +106,7 @@ public class CompatibleBlockSettings {
     }
 
     public CompatibleBlockSettings noBlockBreakParticles() {
-        settings.noBlockBreakParticles();
+        //?
         return this;
     }
 
