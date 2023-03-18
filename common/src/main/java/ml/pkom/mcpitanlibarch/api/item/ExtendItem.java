@@ -18,6 +18,10 @@ public class ExtendItem extends Item {
         super(settings);
     }
 
+    public ExtendItem(CompatibleItemSettings settings) {
+        super(settings.build());
+    }
+
     @Deprecated
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
