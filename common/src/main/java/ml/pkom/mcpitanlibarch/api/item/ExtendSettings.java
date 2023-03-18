@@ -1,13 +1,8 @@
 package ml.pkom.mcpitanlibarch.api.item;
 
-import dev.architectury.registry.CreativeTabRegistry;
-import ml.pkom.mcpitanlibarch.api.util.ItemUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExtendSettings extends Item.Settings {
 
