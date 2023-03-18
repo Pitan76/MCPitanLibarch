@@ -9,6 +9,7 @@ import java.util.function.ToIntFunction;
 
 public class CompatibleBlockSettings {
     private final AbstractBlock.Settings settings;
+    private float resistance, hardness = 0.0f;
 
     public CompatibleBlockSettings(Material material, MapColor mapColor) {
         this.settings = AbstractBlock.Settings.of(material, mapColor);
@@ -76,7 +77,7 @@ public class CompatibleBlockSettings {
     }
 
     public CompatibleBlockSettings mapColor(MapColor color) {
-        settings.mapColor(color);
+        //settings.mapColor(color);
         return this;
     }
 
@@ -101,7 +102,8 @@ public class CompatibleBlockSettings {
     }
 
     public CompatibleBlockSettings hardness(float hardness) {
-        settings.hardness(hardness);
+        settings.strength(hardness, resistance);
+        this.hardness = hardness;
         return this;
     }
 
@@ -126,7 +128,8 @@ public class CompatibleBlockSettings {
     }
 
     public CompatibleBlockSettings resistance(float resistance) {
-        settings.resistance(resistance);
+        settings.strength(hardness, resistance);
+        this.resistance = resistance;
         return this;
     }
 
@@ -137,6 +140,8 @@ public class CompatibleBlockSettings {
 
     public CompatibleBlockSettings strength(float hardness, float resistance) {
         settings.strength(hardness, resistance);
+        this.resistance = resistance;
+        this.hardness = hardness;
         return this;
     }
 
