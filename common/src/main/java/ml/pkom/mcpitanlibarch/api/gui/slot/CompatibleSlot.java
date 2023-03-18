@@ -14,7 +14,7 @@ public class CompatibleSlot extends Slot {
     }
 
     public void callSetStackNoCallbacks(ItemStack stack) {
-        super.setStackNoCallbacks(stack);
+        //super.setStackNoCallbacks(stack);
     }
 
     public ItemStack callGetStack() {
@@ -33,12 +33,6 @@ public class CompatibleSlot extends Slot {
     @Override
     public void setStack(ItemStack stack) {
        callSetStack(stack);
-    }
-
-    @Deprecated
-    @Override
-    public void setStackNoCallbacks(ItemStack stack) {
-        callSetStackNoCallbacks(stack);
     }
 
     @Deprecated
