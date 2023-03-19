@@ -1,6 +1,9 @@
 package ml.pkom.mcpitanlibarch.api.util;
 
+import ml.pkom.mcpitanlibarch.api.item.CompatibleItemSettings;
 import ml.pkom.mcpitanlibarch.api.tag.TagKey;
+import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -40,6 +43,24 @@ public class ItemUtil {
 
     public static Item fromId(Identifier identifier) {
         return Registries.ITEM.get(identifier);
+    }
+
+    @Deprecated
+    public static BlockItem ofBlock(Block block, Item.Settings settings) {
+        return new BlockItem(block, settings);
+    }
+
+    public static BlockItem ofBlock(Block block, CompatibleItemSettings settings) {
+        return ofBlock(block, settings.build());
+    }
+
+    @Deprecated
+    public static Item of(Item.Settings settings) {
+        return new Item(settings);
+    }
+
+    public static Item of(CompatibleItemSettings settings) {
+        return of(settings.build());
     }
 
     public static List<Item> getAllItems() {
