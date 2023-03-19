@@ -1,5 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.util;
 
+import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import ml.pkom.mcpitanlibarch.api.tag.MineableToolTags;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -53,4 +54,14 @@ public class BlockUtil {
         }
         return blocks;
     }
+
+    @Deprecated
+    public static Block of(AbstractBlock.Settings settings) {
+        return new Block(settings);
+    }
+
+    public static Block of(CompatibleBlockSettings settings) {
+        return of(settings.build());
+    }
+
 }
