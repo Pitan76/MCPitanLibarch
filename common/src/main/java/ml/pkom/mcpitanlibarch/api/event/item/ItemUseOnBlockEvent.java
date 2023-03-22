@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -17,6 +18,7 @@ public class ItemUseOnBlockEvent extends BaseEvent {
     public BlockHitResult hit;
     public ItemStack stack;
     public World world;
+    public BlockPos blockPos;
 
     public ItemUseOnBlockEvent(PlayerEntity player, Hand hand, BlockHitResult hit) {
         this(player.world, player, hand, player.getStackInHand(hand), hit);
@@ -29,6 +31,7 @@ public class ItemUseOnBlockEvent extends BaseEvent {
         this.hit = hit;
         this.stack = stack;
         this.world = world;
+        this.blockPos = hit.getBlockPos();
     }
 
     public ItemUsageContext toIUC() {
@@ -37,5 +40,29 @@ public class ItemUseOnBlockEvent extends BaseEvent {
 
     public boolean isClient() {
         return world.isClient();
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public BlockHitResult getHit() {
+        return hit;
+    }
+
+    public BlockPos getBlockPos() {
+        return blockPos;
+    }
+
+    public Hand getHand() {
+        return hand;
+    }
+
+    public ItemStack getStack() {
+        return stack;
     }
 }

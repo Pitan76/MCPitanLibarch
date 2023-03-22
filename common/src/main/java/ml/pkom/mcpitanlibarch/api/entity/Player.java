@@ -1,5 +1,8 @@
 package ml.pkom.mcpitanlibarch.api.entity;
 
+import dev.architectury.registry.menu.ExtendedMenuProvider;
+import ml.pkom.mcpitanlibarch.api.gui.ExtendedNamedScreenHandlerFactory;
+import ml.pkom.mcpitanlibarch.api.util.ScreenHandlerUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerAbilities;
@@ -7,9 +10,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.Hand;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -17,6 +23,7 @@ import net.minecraft.world.World;
 
 import java.util.OptionalInt;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 /*
 PlayerEntity helper
@@ -98,6 +105,29 @@ public class Player {
 
     public OptionalInt openGuiScreen(World world, BlockState state, BlockPos pos) {
         return openGuiScreen(state.createScreenHandlerFactory(world, pos));
+    }
+
+    public boolean isServerPlayerEntity() {
+        return this.getEntity() instanceof ServerPlayerEntity;
+    }
+
+    public void openExtendedMenu(NamedScreenHandlerFactory provider, Consumer<PacketByteBuf> bufWriter) {
+        if (isServerPlayerEntity())
+            ScreenHandlerUtil.openExtendedMenu((ServerPlayerEntity) this.getPlayerEntity(), provider, bufWriter);
+    }
+
+    public void openExtendedMenu(ExtendedMenuProvider provider) {
+        if (isServerPlayerEntity())
+            ScreenHandlerUtil.openExtendedMenu((ServerPlayerEntity) this.getPlayerEntity(), provider);
+    }
+
+    public void openExtendedMenu(ExtendedNamedScreenHandlerFactory provider) {
+        this.openExtendedMenu((ExtendedMenuProvider) provider);
+    }
+
+    public void openMenu(NamedScreenHandlerFactory provider) {
+        if (isServerPlayerEntity())
+            ScreenHandlerUtil.openMenu((ServerPlayerEntity) this.getPlayerEntity(), provider);
     }
 
     public void insertStack(ItemStack stack) {
@@ -193,5 +223,21 @@ public class Player {
 
     public Vec3d getPos() {
         return getEntity().getPos();
+    }
+
+    public ItemStack getStackInHand(Hand hand) {
+        return this.getEntity().getStackInHand(hand);
+    }
+
+    public void heal(float amount) {
+        this.getEntity().heal(amount);
+    }
+
+    public float getYaw() {
+        return this.getEntity().getYaw();
+    }
+
+    public float getPitch() {
+        return this.getEntity().getPitch();
     }
 }
