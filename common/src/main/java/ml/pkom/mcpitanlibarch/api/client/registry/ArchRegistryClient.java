@@ -21,9 +21,9 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.random.Random;
 
 import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
 
 public class ArchRegistryClient {
