@@ -1,17 +1,22 @@
 package ml.pkom.mcpitanlibarch.api.item;
 
 import ml.pkom.mcpitanlibarch.Dummy;
-import ml.pkom.mcpitanlibarch.api.event.item.ItemUseEvent;
-import ml.pkom.mcpitanlibarch.api.event.item.ItemUseOnBlockEvent;
+import ml.pkom.mcpitanlibarch.api.event.item.*;
 import ml.pkom.mcpitanlibarch.mixin.ItemUsageContextMixin;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ExtendItem extends Item {
     public ExtendItem(Settings settings) {
@@ -37,8 +42,26 @@ public class ExtendItem extends Item {
 
     @Deprecated
     @Override
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        return onFinishUsing(new ItemFinishUsingEvent(stack, world, user));
+    }
+
+    @Deprecated
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+        return onRightClickOnEntity(new ItemUseOnEntityEvent(stack, user, entity, hand));
+    }
+
+    @Deprecated
+    @Override
     public boolean hasRecipeRemainder() {
         return hasRecipeRemainder(new Dummy());
+    }
+
+    @Deprecated
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        appendTooltip(new ItemAppendTooltipEvent(stack, world, tooltip, context));
     }
 
     /**
@@ -60,7 +83,19 @@ public class ExtendItem extends Item {
         return super.useOnBlock(event.toIUC());
     }
 
+    public ItemStack onFinishUsing(ItemFinishUsingEvent event) {
+        return super.finishUsing(event.stack, event.world, event.user);
+    }
+
+    public ActionResult onRightClickOnEntity(ItemUseOnEntityEvent event) {
+        return super.useOnEntity(event.stack, event.user.getEntity(), event.entity, event.hand);
+    }
+
     public boolean hasRecipeRemainder(Dummy dummy) {
         return super.hasRecipeRemainder();
+    }
+
+    public void appendTooltip(ItemAppendTooltipEvent event) {
+        super.appendTooltip(event.stack, event.world, event.tooltip, event.context);
     }
 }
