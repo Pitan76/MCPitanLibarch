@@ -19,4 +19,21 @@ public class BlockScheduledTickEvent extends BaseEvent {
         this.pos = pos;
         this.random = random;
     }
+
+    public BlockState getState() {
+        return state;
+    }
+
+    public BlockPos getPos() {
+        return pos;
+    }
+
+    public ServerWorld getWorld() {
+        return world;
+    }
+
+    @Deprecated
+    public Random getRandom() {
+        return random;
+    }
 }
