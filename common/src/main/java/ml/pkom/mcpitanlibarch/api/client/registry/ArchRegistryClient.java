@@ -64,7 +64,7 @@ public class ArchRegistryClient {
     }
 
     public static <T extends Entity> void registerEntityRenderer(Supplier<? extends EntityType<? extends T>> type, EntityRendererFactory<T> provider) {
-        EntityRendererRegistry.register(type, provider);
+        EntityRendererRegistry.register((Supplier<EntityType<? extends T>>) type, provider);
     }
 
     @FunctionalInterface
