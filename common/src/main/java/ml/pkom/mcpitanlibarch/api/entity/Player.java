@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.entity;
 
-import dev.architectury.registry.menu.ExtendedMenuProvider;
+import me.shedaniel.architectury.registry.menu.ExtendedMenuProvider;
 import ml.pkom.mcpitanlibarch.api.gui.ExtendedNamedScreenHandlerFactory;
 import ml.pkom.mcpitanlibarch.api.util.ScreenHandlerUtil;
 import net.minecraft.block.BlockState;
@@ -234,10 +234,10 @@ public class Player {
     }
 
     public float getYaw() {
-        return this.getEntity().getYaw();
+        return this.getEntity().getYaw(1.0f);
     }
 
     public float getPitch() {
-        return this.getEntity().getPitch();
+        return this.getEntity().getPitch(1.0f);
     }
 }

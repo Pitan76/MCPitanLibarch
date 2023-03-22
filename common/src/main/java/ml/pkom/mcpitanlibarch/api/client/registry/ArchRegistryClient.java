@@ -1,14 +1,14 @@
 package ml.pkom.mcpitanlibarch.api.client.registry;
 
-import dev.architectury.event.events.client.ClientTextureStitchEvent;
-import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
-import dev.architectury.registry.client.particle.ParticleProviderRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
+import me.shedaniel.architectury.registry.ParticleProviderRegistry;
+import me.shedaniel.architectury.registry.entity.EntityRenderers;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.ScreenHandlerProvider;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
-import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.entity.Entity;
@@ -24,6 +24,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.List;
 import java.util.Random;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ArchRegistryClient {
@@ -63,8 +64,8 @@ public class ArchRegistryClient {
         }));
     }
 
-    public static <T extends Entity> void registerEntityRenderer(Supplier<? extends EntityType<? extends T>> type, EntityRendererFactory<T> provider) {
-        EntityRendererRegistry.register((Supplier<EntityType<? extends T>>) type, provider);
+    public static <T extends Entity> void registerEntityRenderer(Supplier<? extends EntityType<? extends T>> type, Function<EntityRenderDispatcher, EntityRenderer<T>> factory) {
+        EntityRenderers.register((EntityType<T>) type.get(), factory);
     }
 
     @FunctionalInterface
@@ -87,10 +88,10 @@ public class ArchRegistryClient {
     }
 
     public void registryClientSprite(Identifier atlasId, Identifier identifier) {
-        ClientTextureStitchEvent.PRE.register(((atlas, spriteAdder) -> spriteAdder.accept(identifier)));
+        //?
     }
 
     public void registryClientSprite(Identifier atlasId, Sprite sprite) {
-        ClientTextureStitchEvent.PRE.register(((atlas, spriteAdder) -> spriteAdder.accept(sprite.getId())));
+        //?
     }
 }
