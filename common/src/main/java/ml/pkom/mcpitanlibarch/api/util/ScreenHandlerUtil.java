@@ -1,7 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.util;
 
-import dev.architectury.registry.menu.ExtendedMenuProvider;
-import dev.architectury.registry.menu.MenuRegistry;
+import me.shedaniel.architectury.registry.MenuRegistry;
+import me.shedaniel.architectury.registry.menu.ExtendedMenuProvider;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
