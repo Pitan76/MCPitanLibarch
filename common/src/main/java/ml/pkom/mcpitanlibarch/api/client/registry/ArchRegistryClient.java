@@ -77,31 +77,19 @@ public class ArchRegistryClient {
         List<Sprite> getSprites();
     }
 
-    public void registryClientSpriteAtlasTexture(Identifier identifier) {
+    public static void registryClientSpriteAtlasTexture(Identifier identifier) {
         registryClientSprite(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, identifier);
     }
 
-    public void registryClientSpriteAtlasTexture(Sprite sprite) {
+    public static void registryClientSpriteAtlasTexture(Sprite sprite) {
         registryClientSprite(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, sprite);
     }
 
-    public void registryClientSprite(Identifier atlasId, Identifier identifier) {
+    public static void registryClientSprite(Identifier atlasId, Identifier identifier) {
         // ～1.19.2
-        /*
-        ClientSpriteRegistryCallback.event(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).register(((atlasTexture, registry) -> {
-                registry.register(identifier);
-            }));
-
-         */
     }
 
-    public void registryClientSprite(Identifier atlasId, Sprite sprite) {
+    public static void registryClientSprite(Identifier atlasId, Sprite sprite) {
         // ～1.19.2
-        /*
-        ClientSpriteRegistryCallback.event(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).register(((atlasTexture, registry) -> {
-                registry.register(sprite);
-            }));
-
-         */
     }
 }
