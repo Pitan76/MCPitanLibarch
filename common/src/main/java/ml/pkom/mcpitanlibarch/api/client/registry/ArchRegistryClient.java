@@ -78,19 +78,19 @@ public class ArchRegistryClient {
         List<Sprite> getSprites();
     }
 
-    public void registryClientSpriteAtlasTexture(Identifier identifier) {
+    public static void registryClientSpriteAtlasTexture(Identifier identifier) {
         registryClientSprite(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, identifier);
     }
 
-    public void registryClientSpriteAtlasTexture(Sprite sprite) {
+    public static void registryClientSpriteAtlasTexture(Sprite sprite) {
         registryClientSprite(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, sprite);
     }
 
-    public void registryClientSprite(Identifier atlasId, Identifier identifier) {
+    public static void registryClientSprite(Identifier atlasId, Identifier identifier) {
         ClientTextureStitchEvent.PRE.register(((atlas, spriteAdder) -> spriteAdder.accept(identifier)));
     }
 
-    public void registryClientSprite(Identifier atlasId, Sprite sprite) {
+    public static void registryClientSprite(Identifier atlasId, Sprite sprite) {
         ClientTextureStitchEvent.PRE.register(((atlas, spriteAdder) -> spriteAdder.accept(sprite.getId())));
     }
 }
