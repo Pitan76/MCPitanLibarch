@@ -64,4 +64,7 @@ public class BlockUtil {
         return of(settings.build());
     }
 
+    public static int getRawId(Block block) {
+        return Registries.BLOCK.getRawId(block);
+    }
 }
