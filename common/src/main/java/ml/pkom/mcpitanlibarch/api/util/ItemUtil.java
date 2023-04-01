@@ -69,4 +69,8 @@ public class ItemUtil {
         }
         return items;
     }
+
+    public static int getRawId(Item item) {
+        return Registries.ITEM.getRawId(item);
+    }
 }

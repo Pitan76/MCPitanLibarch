@@ -1,7 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.registry;
 
 import com.google.common.base.Suppliers;
-import dev.architectury.registry.menu.MenuRegistry;
+import dev.architectury.registry.fuel.FuelRegistry;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.Registries;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -17,6 +17,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
@@ -102,7 +103,14 @@ public class ArchRegistry {
         return new RegistryEvent<>(FLUID.register(id, supplier));
     }
 
+    public static void registerFuel(int time, ItemConvertible... item) {
+        FuelRegistry.register(time, item);
+    }
+
     public void allRegister() {
         // 1.16 Register
+
+        // ItemGroup
+        CreativeTabManager.allRegister();
     }
 }
