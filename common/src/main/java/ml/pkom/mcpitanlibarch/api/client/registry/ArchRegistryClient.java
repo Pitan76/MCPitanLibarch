@@ -15,7 +15,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
-import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.Text;
@@ -78,11 +77,11 @@ public class ArchRegistryClient {
     }
 
     public static void registryClientSpriteAtlasTexture(Identifier identifier) {
-        registryClientSprite(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, identifier);
+        //registryClientSprite(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, identifier);
     }
 
     public static void registryClientSpriteAtlasTexture(Sprite sprite) {
-        registryClientSprite(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, sprite);
+        //registryClientSprite(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, sprite);
     }
 
     public static void registryClientSprite(Identifier atlasId, Identifier identifier) {
