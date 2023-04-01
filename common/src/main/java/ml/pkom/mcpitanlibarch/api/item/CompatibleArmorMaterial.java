@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.item;
 
-import net.minecraft.item.ArmorItem;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
@@ -12,14 +12,14 @@ public interface CompatibleArmorMaterial extends ArmorMaterial {
 
     @Override
     @Deprecated
-    default int getDurability(ArmorItem.Type type) {
-        return getDurability(ArmorEquipmentType.of(type));
+    default int getDurability(EquipmentSlot slot) {
+        return getDurability(ArmorEquipmentType.of(slot));
     }
 
     @Override
     @Deprecated
-    default int getProtection(ArmorItem.Type type) {
-        return getProtection(ArmorEquipmentType.of(type));
+    default int getProtectionAmount(EquipmentSlot slot) {
+        return getProtection(ArmorEquipmentType.of(slot));
     }
 
     int getEnchantability();
