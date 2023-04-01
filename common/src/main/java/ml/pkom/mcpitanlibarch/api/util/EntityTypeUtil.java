@@ -12,4 +12,8 @@ public class EntityTypeUtil {
     public static EntityType<?> fromId(Identifier identifier) {
         return Registry.ENTITY_TYPE.get(identifier);
     }
+
+    public static int getRawId(EntityType<?> type) {
+        return Registries.ENTITY_TYPE.getRawId(type);
+    }
 }

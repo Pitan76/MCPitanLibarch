@@ -43,4 +43,8 @@ public class ScreenHandlerUtil {
     public static void openMenu(ServerPlayerEntity player, NamedScreenHandlerFactory provider) {
         MenuRegistry.openMenu(player, provider);
     }
+
+    public static int getRawId(ScreenHandlerType<?> type) {
+        return Registries.SCREEN_HANDLER.getRawId(type);
+    }
 }
