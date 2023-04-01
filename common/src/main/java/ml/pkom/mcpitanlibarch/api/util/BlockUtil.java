@@ -65,6 +65,6 @@ public class BlockUtil {
     }
 
     public static int getRawId(Block block) {
-        return Registries.BLOCK.getRawId(block);
+        return Registry.BLOCK.getRawId(block);
     }
 }
