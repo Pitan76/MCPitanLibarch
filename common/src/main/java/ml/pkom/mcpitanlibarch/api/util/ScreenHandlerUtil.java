@@ -45,6 +45,6 @@ public class ScreenHandlerUtil {
     }
 
     public static int getRawId(ScreenHandlerType<?> type) {
-        return Registries.SCREEN_HANDLER.getRawId(type);
+        return Registry.SCREEN_HANDLER.getRawId(type);
     }
 }
