@@ -14,6 +14,6 @@ public class EntityTypeUtil {
     }
 
     public static int getRawId(EntityType<?> type) {
-        return Registries.ENTITY_TYPE.getRawId(type);
+        return Registry.ENTITY_TYPE.getRawId(type);
     }
 }
