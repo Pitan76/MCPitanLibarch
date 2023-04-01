@@ -25,21 +25,16 @@ public class ArmorEquipmentType {
     @Nullable
     public static ArmorEquipmentType of(EquipmentSlot slot) {
         switch (slot) {
-            case HEAD -> {
+            case HEAD:
                 return HEAD;
-            }
-            case CHEST -> {
+            case CHEST:
                 return CHEST;
-            }
-            case LEGS -> {
+            case LEGS:
                 return LEGS;
-            }
-            case FEET -> {
+            case FEET:
                 return FEET;
-            }
-            default -> {
+            default:
                 return null;
-            }
         }
     }
 }
