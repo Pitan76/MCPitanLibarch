@@ -7,12 +7,13 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
+import net.minecraft.world.World;
 
 public class ExtendEntityType<T extends Entity> extends EntityType<T> {
     private final Boolean alwaysUpdateVelocity;
 
-    public ExtendEntityType(EntityType.EntityFactory<T> factory, SpawnGroup spawnGroup, boolean saveable, boolean summonable, boolean fireImmune, boolean spawnableFarFromPlayer, ImmutableSet<Block> canSpawnBlocks, EntityDimensions entityDimensions, int maxTrackDistance, int trackTickInterval, Boolean alwaysUpdateVelocity) {
-        super(factory, spawnGroup, saveable, summonable, fireImmune, spawnableFarFromPlayer, canSpawnBlocks, entityDimensions, maxTrackDistance, trackTickInterval, FeatureFlags.DEFAULT_ENABLED_FEATURES);
+    public ExtendEntityType(EntityFactory<T> factory, SpawnGroup spawnGroup, boolean saveable, boolean summonable, boolean fireImmune, boolean spawnableFarFromPlayer, ImmutableSet<Block> canSpawnBlocks, EntityDimensions entityDimensions, int maxTrackDistance, int trackTickInterval, Boolean alwaysUpdateVelocity) {
+        super((factory::create), spawnGroup, saveable, summonable, fireImmune, spawnableFarFromPlayer, canSpawnBlocks, entityDimensions, maxTrackDistance, trackTickInterval, FeatureFlags.DEFAULT_ENABLED_FEATURES);
         this.alwaysUpdateVelocity = alwaysUpdateVelocity;
     }
 
@@ -22,5 +23,9 @@ public class ExtendEntityType<T extends Entity> extends EntityType<T> {
             return alwaysUpdateVelocity;
 
         return super.alwaysUpdateVelocity();
+    }
+
+    public interface EntityFactory<T extends Entity> {
+        T create(EntityType<T> type, World world);
     }
 }

@@ -12,4 +12,12 @@ public class FluidUtil {
     public static Fluid fromId(Identifier identifier) {
         return Registries.FLUID.get(identifier);
     }
+
+    public static int getRawId(Fluid fluid) {
+        return Registries.FLUID.getRawId(fluid);
+    }
+
+    public static Fluid fromIndex(int index) {
+        return Registries.FLUID.get(index);
+    }
 }
