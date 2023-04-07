@@ -41,6 +41,7 @@ public class MCPLRegistry {
         ENTITY_TYPE = REGISTRIES.get().get(Registry.ENTITY_TYPE_KEY);
         SOUND_EVENT = REGISTRIES.get().get(Registry.SOUND_EVENT_KEY);
         FLUID = REGISTRIES.get().get(Registry.FLUID_KEY);
+        PARTICLE_TYPE = REGISTRIES.get().get(Registry.PARTICLE_TYPE);
     }
 
     public RegistrySupplier<Item> registryItem(Identifier id, Supplier<Item> supplier) {
