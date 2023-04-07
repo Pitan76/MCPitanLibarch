@@ -1,19 +1,28 @@
 package ml.pkom.mcpitanlibarch.api.client.registry;
 
 import dev.architectury.registry.menu.MenuRegistry;
+import me.shedaniel.architectury.registry.BlockEntityRenderers;
 import me.shedaniel.architectury.registry.ParticleProviderRegistry;
+import me.shedaniel.architectury.registry.RenderTypes;
 import me.shedaniel.architectury.registry.entity.EntityRenderers;
+import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.ScreenHandlerProvider;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
+import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
+import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRenderer;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.screen.PlayerScreenHandler;
@@ -93,5 +102,17 @@ public class ArchRegistryClient {
 
     public static void registryClientSprite(Identifier atlasId, Sprite sprite) {
         //?
+    }
+
+    public static <T extends BlockEntity> void registerBlockEntityRenderer(BlockEntityType<T> type, Function<BlockEntityRenderDispatcher, BlockEntityRenderer<? super T>> provider) {
+        BlockEntityRenderers.registerRenderer(type, provider);
+    }
+
+    public static void registerRenderTypeBlock(RenderLayer layer, Block block) {
+        RenderTypes.register(layer, block);
+    }
+
+    public static void registerRenderTypeFluid(RenderLayer layer, Fluid fluid) {
+        RenderTypes.register(layer, fluid);
     }
 }

@@ -190,7 +190,6 @@ public class CompatibleBlockSettings {
         return this;
     }
 
-    @Deprecated
     public AbstractBlock.Settings build() {
         return settings;
 

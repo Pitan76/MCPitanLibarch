@@ -42,6 +42,8 @@ public class ExampleMod {
     public static RegistryEvent<Item> EXAMPLE_GUI_BLOCK_ITEM_SUPPLIER;
 
     public static void init() {
+        //EntityTypeBuilder.create().setSpawnGroup(SpawnGroup.AMBIENT).setEntityFactory(((type, world) -> new ZombieEntity((EntityType<? extends ZombieEntity>) type, world)));
+
         EXAMPLE_ITEM_SUPPLIER = registry.registerItem(id("example_item"), () -> new Item(new ExtendSettings().addGroup(DefaultItemGroups.INGREDIENTS, id("example_item"))));
         EXAMPLE_BLOCK_SUPPLIER = registry.registerBlock(id("example_block"), () -> new Block(AbstractBlock.Settings.of(Material.STONE)));
         EXAMPLE_BLOCK_ITEM_SUPPLIER = registry.registerItem(id("example_block"), () -> new BlockItem(EXAMPLE_BLOCK_SUPPLIER.supplier.get(), new ExtendSettings().addGroup(DefaultItemGroups.INGREDIENTS)));
