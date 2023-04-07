@@ -14,6 +14,7 @@ public class MathUtil {
         return new Random();
     }
 
+    @Deprecated
     public static Quaternion getRotationDegrees(RotationAxisType type, float deg) {
         return type.axis.getDegreesQuaternion(deg);
     }
