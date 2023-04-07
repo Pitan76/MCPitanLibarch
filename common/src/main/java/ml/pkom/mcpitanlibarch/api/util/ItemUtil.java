@@ -73,4 +73,8 @@ public class ItemUtil {
     public static int getRawId(Item item) {
         return Registry.ITEM.getRawId(item);
     }
+
+    public static Item fromIndex(int index) {
+        return Registry.ITEM.get(index);
+    }
 }
