@@ -6,11 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import ml.pkom.mcpitanlibarch.api.entity.ExtendEntityType.EntityFactory;
 
 public class EntityTypeBuilder<T extends Entity> {
 
     private SpawnGroup spawnGroup;
-    private EntityType.EntityFactory<T> factory;
+    private EntityFactory<T> factory;
     private EntityDimensions entityDimensions;
     private boolean saveable;
     private boolean summonable;
@@ -36,7 +37,7 @@ public class EntityTypeBuilder<T extends Entity> {
     }
 
     @Deprecated
-    public EntityTypeBuilder(SpawnGroup spawnGroup, EntityType.EntityFactory<T> factory) {
+    public EntityTypeBuilder(SpawnGroup spawnGroup, EntityFactory<T> factory) {
         this();
         this.spawnGroup = spawnGroup;
         this.factory = factory;
@@ -46,7 +47,7 @@ public class EntityTypeBuilder<T extends Entity> {
         return new EntityTypeBuilder<>();
     }
 
-    public static <T extends Entity> EntityTypeBuilder<T> create(SpawnGroup spawnGroup, EntityType.EntityFactory<T> factory) {
+    public static <T extends Entity> EntityTypeBuilder<T> create(SpawnGroup spawnGroup, EntityFactory<T> factory) {
         return new EntityTypeBuilder<>(spawnGroup, factory);
     }
 
@@ -59,7 +60,7 @@ public class EntityTypeBuilder<T extends Entity> {
         return this;
     }
 
-    public EntityTypeBuilder<T> setEntityFactory(EntityType.EntityFactory<T> factory) {
+    public EntityTypeBuilder<T> setEntityFactory(ExtendEntityType.EntityFactory<T> factory) {
         this.factory = factory;
         return this;
     }

@@ -16,4 +16,8 @@ public class BlockEntityTypeUtil {
     public static int getRawId(BlockEntityType<?> type) {
         return Registry.BLOCK_ENTITY_TYPE.getRawId(type);
     }
+
+    public static BlockEntityType<?> fromIndex(int index) {
+        return Registry.BLOCK_ENTITY_TYPE.get(index);
+    }
 }
