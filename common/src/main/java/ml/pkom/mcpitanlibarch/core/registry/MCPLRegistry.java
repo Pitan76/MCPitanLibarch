@@ -35,6 +35,7 @@ public class MCPLRegistry {
         ENTITY_TYPE = DeferredRegister.create(MOD_ID, Registry.ENTITY_TYPE_KEY);
         SOUND_EVENT = DeferredRegister.create(MOD_ID, Registry.SOUND_EVENT_KEY);
         FLUID = DeferredRegister.create(MOD_ID, Registry.FLUID_KEY);
+        PARTICLE_TYPE = DeferredRegister.create(MOD_ID, Registry.PARTICLE_TYPE_KEY);
     }
 
     public RegistrySupplier<Item> registryItem(Identifier id, Supplier<Item> supplier) {
@@ -77,5 +78,6 @@ public class MCPLRegistry {
         ENTITY_TYPE.register();
         SOUND_EVENT.register();
         FLUID.register();
+        PARTICLE_TYPE.register();
     }
 }
