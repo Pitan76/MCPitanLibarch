@@ -56,7 +56,6 @@ public class CompatibleItemSettings {
         return this;
     }
 
-    @Deprecated
     public ExtendSettings build() {
         return settings;
 

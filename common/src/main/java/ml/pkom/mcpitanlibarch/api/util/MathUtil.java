@@ -14,6 +14,7 @@ public class MathUtil {
         return Random.create();
     }
 
+    @Deprecated
     public static Quaternionf getRotationDegrees(RotationAxisType type, float deg) {
         return type.axis.rotationDegrees(deg);
     }

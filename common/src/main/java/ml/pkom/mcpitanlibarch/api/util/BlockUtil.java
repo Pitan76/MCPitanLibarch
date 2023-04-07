@@ -67,4 +67,8 @@ public class BlockUtil {
     public static int getRawId(Block block) {
         return Registries.BLOCK.getRawId(block);
     }
+
+    public static Block fromIndex(int index) {
+        return Registries.BLOCK.get(index);
+    }
 }
