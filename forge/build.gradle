@@ -80,7 +80,7 @@ components.java {
 publishing {
     publications {
         mavenForge(MavenPublication) {
-            artifactId = rootProject.archives_base_name + "-" + project.name
+            artifactId = info.archives_base_name + "-" + project.name
             from components.java
         }
     }
