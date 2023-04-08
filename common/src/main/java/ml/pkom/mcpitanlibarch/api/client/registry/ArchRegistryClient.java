@@ -116,7 +116,7 @@ public class ArchRegistryClient {
 
     public static <T extends BlockEntity> void registerBlockEntityRenderer(BlockEntityType<T> type, BlockEntityRendererFactory<T> provider) {
         BlockEntityRendererRegistry.register(type, ctx -> provider.create(new BlockEntityRendererFactory.Context(
-                ctx.getRenderDispatcher(), ctx.getRenderManager(), ctx.getItemRenderer(), ctx.getEntityRenderDispatcher(), ctx.getLayerRenderDispatcher(), ctx.getTextRenderer()
+                ctx.getRenderDispatcher(), ctx.getRenderManager(), ctx.getLayerRenderDispatcher(), ctx.getTextRenderer()
         )));
     }
 
@@ -127,16 +127,12 @@ public class ArchRegistryClient {
         class Context {
             private final BlockEntityRenderDispatcher renderDispatcher;
             private final BlockRenderManager renderManager;
-            private final ItemRenderer itemRenderer;
-            private final EntityRenderDispatcher entityRenderDispatcher;
             private final EntityModelLoader layerRenderDispatcher;
             private final TextRenderer textRenderer;
 
-            public Context(BlockEntityRenderDispatcher renderDispatcher, BlockRenderManager renderManager, ItemRenderer itemRenderer, EntityRenderDispatcher entityRenderDispatcher, EntityModelLoader layerRenderDispatcher, TextRenderer textRenderer) {
+            public Context(BlockEntityRenderDispatcher renderDispatcher, BlockRenderManager renderManager, EntityModelLoader layerRenderDispatcher, TextRenderer textRenderer) {
                 this.renderDispatcher = renderDispatcher;
                 this.renderManager = renderManager;
-                this.itemRenderer = itemRenderer;
-                this.entityRenderDispatcher = entityRenderDispatcher;
                 this.layerRenderDispatcher = layerRenderDispatcher;
                 this.textRenderer = textRenderer;
             }
@@ -147,14 +143,6 @@ public class ArchRegistryClient {
 
             public BlockRenderManager getRenderManager() {
                 return this.renderManager;
-            }
-
-            public EntityRenderDispatcher getEntityRenderDispatcher() {
-                return this.entityRenderDispatcher;
-            }
-
-            public ItemRenderer getItemRenderer() {
-                return this.itemRenderer;
             }
 
             public EntityModelLoader getLayerRenderDispatcher() {
