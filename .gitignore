@@ -122,3 +122,4 @@ run/
 /php/upload_maven.php
 /php/upload_modrinth.bat
 /php/upload_modrinth.php
+/php/build.bat
