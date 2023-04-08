@@ -26,14 +26,24 @@ subprojects {
     }
 }
 
+def loadProperties(filename) {
+    def props = new Properties()
+    file(filename).withInputStream {
+        props.load(it)
+    }
+    return props
+}
+
+ext.info = loadProperties("$rootDir/info.properties")
+
 allprojects {
     apply plugin: "java"
     apply plugin: "architectury-plugin"
     apply plugin: "maven-publish"
 
-    archivesBaseName = rootProject.archives_base_name
-    version = rootProject.mod_version + "-" + rootProject.minecraft_version
-    group = rootProject.maven_group
+    archivesBaseName = info.archives_base_name
+    version = info.mod_version + "-" + rootProject.minecraft_version
+    group = info.maven_group
 
     repositories {
         // Add repositories to retrieve artifacts from in here.
