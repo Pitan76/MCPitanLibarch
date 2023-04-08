@@ -6,16 +6,27 @@ import dev.architectury.registry.client.particle.ParticleProviderRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.ScreenHandlerProvider;
+import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.BlockRenderManager;
+import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
+import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
+import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.EntityModelLoader;
+import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.entity.Entity;
@@ -34,6 +45,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
+@Environment(EnvType.CLIENT)
 public class ArchRegistryClient {
     public static <H extends ScreenHandler, S extends Screen & ScreenHandlerProvider<H>> void registerScreen(ScreenHandlerType<? extends H> type, ScreenFactory<H, S> factory) {
         MenuRegistry.registerScreenFactory(type, factory::create);
@@ -102,9 +114,63 @@ public class ArchRegistryClient {
         ClientTextureStitchEvent.PRE.register(((atlas, spriteAdder) -> spriteAdder.accept(sprite.getId())));
     }
 
-    public static <T extends BlockEntity> void registerBlockEntityRenderer(BlockEntityType<T> type, BlockEntityRendererFactory<? super T> provider) {
-        BlockEntityRendererRegistry.register(type, provider);
+    public static <T extends BlockEntity> void registerBlockEntityRenderer(BlockEntityType<T> type, BlockEntityRendererFactory<T> provider) {
+        BlockEntityRendererRegistry.register(type, ctx -> provider.create(new BlockEntityRendererFactory.Context(
+                ctx.getRenderDispatcher(), ctx.getRenderManager(), ctx.getItemRenderer(), ctx.getEntityRenderDispatcher(), ctx.getLayerRenderDispatcher(), ctx.getTextRenderer()
+        )));
     }
+
+    @FunctionalInterface
+    public interface BlockEntityRendererFactory<T extends BlockEntity> {
+        BlockEntityRenderer<T> create(BlockEntityRendererFactory.Context ctx);
+
+        class Context {
+            private final BlockEntityRenderDispatcher renderDispatcher;
+            private final BlockRenderManager renderManager;
+            private final ItemRenderer itemRenderer;
+            private final EntityRenderDispatcher entityRenderDispatcher;
+            private final EntityModelLoader layerRenderDispatcher;
+            private final TextRenderer textRenderer;
+
+            public Context(BlockEntityRenderDispatcher renderDispatcher, BlockRenderManager renderManager, ItemRenderer itemRenderer, EntityRenderDispatcher entityRenderDispatcher, EntityModelLoader layerRenderDispatcher, TextRenderer textRenderer) {
+                this.renderDispatcher = renderDispatcher;
+                this.renderManager = renderManager;
+                this.itemRenderer = itemRenderer;
+                this.entityRenderDispatcher = entityRenderDispatcher;
+                this.layerRenderDispatcher = layerRenderDispatcher;
+                this.textRenderer = textRenderer;
+            }
+
+            public BlockEntityRenderDispatcher getRenderDispatcher() {
+                return this.renderDispatcher;
+            }
+
+            public BlockRenderManager getRenderManager() {
+                return this.renderManager;
+            }
+
+            public EntityRenderDispatcher getEntityRenderDispatcher() {
+                return this.entityRenderDispatcher;
+            }
+
+            public ItemRenderer getItemRenderer() {
+                return this.itemRenderer;
+            }
+
+            public EntityModelLoader getLayerRenderDispatcher() {
+                return this.layerRenderDispatcher;
+            }
+
+            public ModelPart getLayerModelPart(EntityModelLayer modelLayer) {
+                return this.layerRenderDispatcher.getModelPart(modelLayer);
+            }
+
+            public TextRenderer getTextRenderer() {
+                return this.textRenderer;
+            }
+        }
+    }
+
 
     public static void registerRenderTypeBlock(RenderLayer layer, Block block) {
         RenderTypeRegistry.register(layer, block);
