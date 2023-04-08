@@ -17,7 +17,7 @@ loom {
 publishing {
     publications {
         mavenCommon(MavenPublication) {
-            artifactId = rootProject.archives_base_name
+            artifactId = info.archives_base_name
             from components.java
         }
     }
