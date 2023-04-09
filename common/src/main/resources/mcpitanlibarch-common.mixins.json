@@ -4,6 +4,7 @@
   "package": "ml.pkom.mcpitanlibarch.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ItemMixin",
     "ItemUsageContextMixin"
   ],
   "client": [
