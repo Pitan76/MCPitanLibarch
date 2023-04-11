@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.event.v0;
 
-import dev.architectury.event.events.client.ClientTickEvent;
+import me.shedaniel.architectury.event.events.client.ClientTickEvent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -16,11 +16,11 @@ public class ClientTickEventRegistry {
     }
 
     public static void registerLevelPost(ClientLevel world) {
-        ClientTickEvent.CLIENT_LEVEL_POST.register(world::tick);
+        ClientTickEvent.CLIENT_WORLD_POST.register(world::tick);
     }
 
     public static void registerLevelPre(ClientLevel world) {
-        ClientTickEvent.CLIENT_LEVEL_PRE.register(world::tick);
+        ClientTickEvent.CLIENT_WORLD_PRE.register(world::tick);
     }
 
     @Environment(EnvType.CLIENT)

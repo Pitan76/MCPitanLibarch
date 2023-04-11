@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.event.v0.forge;
 
-import dev.architectury.event.EventResult;
+import me.shedaniel.architectury.event.EventResult;
 import ml.pkom.mcpitanlibarch.api.event.v0.AttackEntityEventRegistry.AttackEntity;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,7 +19,7 @@ public class AttackEntityEventRegistryImpl {
     public static void event(AttackEntityEvent event) {
         for (AttackEntity attackEntity : attackEntities) {
             EventResult result = attackEntity.attack(event.getPlayer(), event.getPlayer().world, event.getTarget(), event.getPlayer().getActiveHand(), null);
-            if (result.isFalse()) {
+            if (result == EventResult.interruptFalse()) {
                 event.setCanceled(true);
             }
         }

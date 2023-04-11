@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.client.registry;
 
-import dev.architectury.registry.client.keymappings.KeyMappingRegistry;
+import me.shedaniel.architectury.registry.KeyBindings;
 import ml.pkom.mcpitanlibarch.api.event.v0.ClientTickEventRegistry;
 import ml.pkom.mcpitanlibarch.api.network.ClientNetworking;
 import ml.pkom.mcpitanlibarch.api.network.PacketByteUtil;
@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 
 public class KeybindingRegistry {
     public static void register(KeyBinding keyBinding) {
-        KeyMappingRegistry.register(keyBinding);
+        KeyBindings.registerKeyBinding(keyBinding);
     }
 
     public static void register(KeyBinding keyBinding, ClientTickEventRegistry.Client client) {

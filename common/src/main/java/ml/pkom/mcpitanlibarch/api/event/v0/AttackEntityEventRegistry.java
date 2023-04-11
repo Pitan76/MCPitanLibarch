@@ -1,7 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.event.v0;
 
-import dev.architectury.event.EventResult;
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import me.shedaniel.architectury.event.EventResult;
 import ml.pkom.mcpitanlibarch.api.entity.Player;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
