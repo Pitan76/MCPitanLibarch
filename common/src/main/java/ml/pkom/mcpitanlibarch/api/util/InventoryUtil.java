@@ -3,6 +3,8 @@ package ml.pkom.mcpitanlibarch.api.util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
 
+import java.util.Objects;
+
 public class InventoryUtil {
     public static boolean insertItem(ItemStack insertStack, DefaultedList<ItemStack> inventory) {
         return insertItem(insertStack, inventory, false);
@@ -37,6 +39,6 @@ public class InventoryUtil {
         if (first.getCount() + second.getCount() > first.getMaxCount()) {
             return false;
         }
-        return ItemStack.areNbtEqual(first, second);
+        return ItemStackUtil.areNbtEqual(first, second);
     }
 }
