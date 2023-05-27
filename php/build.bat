@@ -2,6 +2,7 @@ cd "..\"
 
 git fetch origin
 git checkout 1.19.4
+call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
 call gradlew.bat generatePomFileForMavenFabricPublication
@@ -11,6 +12,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.19.3
+call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
 call gradlew.bat generatePomFileForMavenFabricPublication
@@ -20,6 +22,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.19.2
+call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
 call gradlew.bat generatePomFileForMavenFabricPublication
@@ -29,6 +32,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.18.2
+call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
 call gradlew.bat generatePomFileForMavenFabricPublication
@@ -38,6 +42,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.17.1
+call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
 call gradlew.bat generatePomFileForMavenFabricPublication
@@ -47,6 +52,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.16.5
+call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
 call gradlew.bat generatePomFileForMavenFabricPublication
@@ -58,4 +64,11 @@ git fetch origin
 git checkout 1.19.4
 
 cd ".\php"
+
+copy /y "C:\Users\ptms76\Documents\php\*.bat" ".\"
+copy /y "C:\Users\ptms76\Documents\php\*.php" ".\"
+
+start upload_maven.bat
+start upload_curseforge.bat
+start upload_modrinth.bat
 pause
