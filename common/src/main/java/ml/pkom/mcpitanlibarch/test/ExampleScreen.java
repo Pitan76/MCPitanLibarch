@@ -1,6 +1,9 @@
 package ml.pkom.mcpitanlibarch.test;
 
 import ml.pkom.mcpitanlibarch.api.client.SimpleHandledScreen;
+import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.DrawBackgroundArgs;
+import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.DrawMouseoverTooltipArgs;
+import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.RenderArgs;
 import ml.pkom.mcpitanlibarch.api.util.client.ScreenUtil;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -27,15 +30,14 @@ public class ExampleScreen extends SimpleHandledScreen {
     }
 
     @Override
-    public void drawBackgroundOverride(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        ScreenUtil.setBackground(GUI);
-        callDrawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
+    public void drawBackgroundOverride(DrawBackgroundArgs args) {
+        callDrawTexture(args.drawObjectDM, GUI, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
     }
 
     @Override
-    public void renderOverride(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.callRenderBackground(matrices);
-        super.renderOverride(matrices, mouseX, mouseY, delta);
-        this.callDrawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void renderOverride(RenderArgs args) {
+        this.callRenderBackground(args.drawObjectDM);
+        super.renderOverride(args);
+        this.callDrawMouseoverTooltip(new DrawMouseoverTooltipArgs(args.drawObjectDM, args.mouseX, args.mouseY));
     }
 }

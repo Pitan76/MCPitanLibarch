@@ -59,4 +59,9 @@ public class ExtendEntity extends Entity {
         this.readNbt(NbtTag.from(nbt));
         return nbt;
     }
+
+    @Override
+    public World getWorld() {
+        return super.getWorld();
+    }
 }

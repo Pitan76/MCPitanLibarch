@@ -32,7 +32,7 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionQuilt")) { transitive false }
 
-    shadowCommon 'org.yaml:snakeyaml:1.33'
+    shadowCommon 'org.yaml:snakeyaml:2.0'
 
 }
 
