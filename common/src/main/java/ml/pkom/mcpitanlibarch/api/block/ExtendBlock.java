@@ -2,10 +2,12 @@ package ml.pkom.mcpitanlibarch.api.block;
 
 import ml.pkom.mcpitanlibarch.api.event.block.BlockScheduledTickEvent;
 import ml.pkom.mcpitanlibarch.api.event.block.BlockUseEvent;
+import ml.pkom.mcpitanlibarch.api.event.block.OutlineShapeEvent;
 import ml.pkom.mcpitanlibarch.api.event.block.ScreenHandlerCreateEvent;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
@@ -17,6 +19,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -28,6 +32,16 @@ public class ExtendBlock extends Block {
 
     public ExtendBlock(CompatibleBlockSettings settings) {
         super(settings.build());
+    }
+
+    public VoxelShape getOutlineShape(OutlineShapeEvent event) {
+        return super.getOutlineShape(event.state, event.world, event.pos, event.context);
+    }
+
+    @Deprecated
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return super.getOutlineShape(state, world, pos, context);
     }
 
     public void scheduledTick(BlockScheduledTickEvent event) {
