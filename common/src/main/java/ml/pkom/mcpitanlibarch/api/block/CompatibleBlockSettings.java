@@ -12,46 +12,23 @@ public class CompatibleBlockSettings {
     private final AbstractBlock.Settings settings;
 
     public CompatibleBlockSettings() {
-        this.settings = AbstractBlock.Settings.create();
-    }
-
-    private static CompatibleBlockSettings copyCompatibleMaterial(CompatibleMaterial material, CompatibleBlockSettings settings) {
-        settings.mapColor(material.getColor());
-        if (material.isLiquid())
-            settings.settings.liquid();
-        if (material.isSolid())
-            settings.settings.solid();
-        if (material.isReplaceable())
-            settings.settings.replaceable();
-        if (material.isSolid())
-            settings.settings.solid();
-        if (material.isBurnable())
-            settings.settings.burnable();
-        settings.settings.pistonBehavior(material.getPistonBehavior());
-        return settings;
+        this.settings = AbstractBlock.Settings.of(Material.STONE);
     }
 
     public CompatibleBlockSettings(CompatibleMaterial material, MapColor mapColor) {
-        this.settings = AbstractBlock.Settings.create();
-        copyCompatibleMaterial(material, this);
-        mapColor(mapColor);
+        this.settings = AbstractBlock.Settings.of(material.getMaterial(), mapColor);
     }
 
     public CompatibleBlockSettings(CompatibleMaterial material, DyeColor dyeColor) {
-        this.settings = AbstractBlock.Settings.create();
-        copyCompatibleMaterial(material, this);
-        mapColor(dyeColor);
+        this.settings = AbstractBlock.Settings.of(material.getMaterial(), dyeColor);
     }
 
     public CompatibleBlockSettings(CompatibleMaterial material) {
-        this.settings = AbstractBlock.Settings.create();
-        copyCompatibleMaterial(material, this);
+        this.settings = AbstractBlock.Settings.of(material.getMaterial());
     }
 
     public CompatibleBlockSettings(CompatibleMaterial material, Function<BlockState, MapColor> mapColor) {
-        this.settings = AbstractBlock.Settings.create();
-        copyCompatibleMaterial(material, this);
-        mapColor(mapColor);
+        this.settings = AbstractBlock.Settings.of(material.getMaterial(), mapColor);
     }
 
     public static CompatibleBlockSettings of(CompatibleMaterial material, MapColor mapColor) {
@@ -109,12 +86,12 @@ public class CompatibleBlockSettings {
     }
 
     public CompatibleBlockSettings mapColor(DyeColor color) {
-        settings.mapColor(color);
+        settings.mapColor(color.getMapColor());
         return this;
     }
 
+    @Deprecated
     public CompatibleBlockSettings mapColor(Function<BlockState, MapColor> color) {
-        settings.mapColor(color);
         return this;
     }
 
