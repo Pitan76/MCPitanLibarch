@@ -10,7 +10,9 @@ public class ItemStackUtil {
     }
 
     public static ItemStack copyWithCount(ItemStack stack, int count) {
-        return stack.copyWithCount(count);
+        ItemStack copy = stack.copy();
+        copy.setCount(count);
+        return copy;
     }
 
     public static boolean areItemsEqual(ItemStack left, ItemStack right) {
