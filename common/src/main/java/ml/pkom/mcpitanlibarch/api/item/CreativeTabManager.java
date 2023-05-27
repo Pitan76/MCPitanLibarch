@@ -36,14 +36,14 @@ public class CreativeTabManager {
     public static void allRegister() {
         if (!bookingItems.isEmpty()) {
             for (BookingItem bookingItem : bookingItems) {
-                CreativeTabRegistry.appendBuiltin(bookingItem.itemGroup, ItemUtil.fromId(bookingItem.identifier));
+                CreativeTabRegistry.append(bookingItem.itemGroup, ItemUtil.fromId(bookingItem.identifier));
                 bookingItems.remove(bookingItem);
             }
         }
 
         if (!bookingStacks.isEmpty()) {
             for (BookingStack bookingStack : bookingStacks) {
-                CreativeTabRegistry.appendBuiltinStack(bookingStack.itemGroup, bookingStack.stack);
+                CreativeTabRegistry.appendStack(bookingStack.itemGroup, bookingStack.stack);
                 bookingStacks.remove(bookingStack);
             }
         }
@@ -53,7 +53,7 @@ public class CreativeTabManager {
         if (bookingItems.isEmpty()) return;
         for (BookingItem bookingItem : bookingItems) {
             if (!bookingItem.identifier.toString().equals(identifier.toString())) continue;
-            CreativeTabRegistry.appendBuiltin(bookingItem.itemGroup, ItemUtil.fromId(bookingItem.identifier));
+            CreativeTabRegistry.append(bookingItem.itemGroup, ItemUtil.fromId(bookingItem.identifier));
             bookingItems.remove(bookingItem);
             break;
         }

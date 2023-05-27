@@ -1,7 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.item;
 
 import dev.architectury.registry.CreativeTabRegistry;
-import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -61,15 +60,14 @@ public class CreativeTabBuilder {
     }
 
     public ItemGroup build() {
-        return CreativeTabRegistry.create((builder -> {
+        CreativeTabRegistry.TabSupplier tabSupplier = CreativeTabRegistry.create(identifier, (builder -> {
             if (displayName != null) builder.displayName(displayName);
-            else builder.displayName(TextUtil.translatable("itemGroup." + identifier.getNamespace() + "." + identifier.getPath()));
-
             if (iconSupplier != null) builder.icon(iconSupplier);
             if (noRenderedName) builder.noRenderedName();
             if (noScrollbar) builder.noScrollbar();
             if (special) builder.special();
             if (texture != null) builder.texture(texture);
         }));
+        return tabSupplier.get();
     }
 }
