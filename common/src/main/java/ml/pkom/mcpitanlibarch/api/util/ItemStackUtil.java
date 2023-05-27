@@ -20,6 +20,6 @@ public class ItemStackUtil {
     }
 
     public static boolean areNbtEqual(ItemStack left, ItemStack right) {
-        return ItemStack.areNbtEqual(left, right);
+        return ItemStack.areTagsEqual(left, right);
     }
 }

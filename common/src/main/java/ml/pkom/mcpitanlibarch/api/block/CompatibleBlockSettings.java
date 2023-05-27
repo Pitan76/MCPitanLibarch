@@ -86,8 +86,8 @@ public class CompatibleBlockSettings {
         return this;
     }
 
+    @Deprecated
     public CompatibleBlockSettings mapColor(DyeColor color) {
-        settings.mapColor(color.getMapColor());
         return this;
     }
 

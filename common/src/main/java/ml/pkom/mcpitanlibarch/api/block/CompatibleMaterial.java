@@ -121,7 +121,7 @@ public final class CompatibleMaterial {
         FIRE = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().material(Material.FIRE).build();
         DECORATION = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().material(Material.DECORATION).build();
         COBWEB = (new Builder(MapColor.WHITE_GRAY)).allowsMovement().lightPassesThrough().destroyedByPiston().material(Material.COBWEB).build();
-        SCULK = (new Builder(MapColor.BLACK)).material(Material.SCULK).build();
+        SCULK = (new Builder(MapColor.BLACK)).build();
         REDSTONE_LAMP = (new Builder(MapColor.CLEAR)).material(Material.REDSTONE_LAMP).build();
         ORGANIC_PRODUCT = (new Builder(MapColor.LIGHT_BLUE_GRAY)).material(Material.ORGANIC_PRODUCT).build();
         SOIL = (new Builder(MapColor.DIRT_BROWN)).material(Material.SOIL).build();
@@ -150,8 +150,8 @@ public final class CompatibleMaterial {
         GOURD = (new Builder(MapColor.DARK_GREEN)).destroyedByPiston().material(Material.GOURD).build();
         EGG = (new Builder(MapColor.DARK_GREEN)).destroyedByPiston().material(Material.EGG).build();
         CAKE = (new Builder(MapColor.CLEAR)).destroyedByPiston().material(Material.CAKE).build();
-        AMETHYST = (new Builder(MapColor.PURPLE)).material(Material.AMETHYST).build();
-        POWDER_SNOW = (new Builder(MapColor.WHITE)).notSolid().allowsMovement().material(Material.POWDER_SNOW).build();
+        AMETHYST = (new Builder(MapColor.PURPLE)).build();
+        POWDER_SNOW = (new Builder(MapColor.WHITE)).notSolid().allowsMovement().build();
     }
 
     public static class Builder {
