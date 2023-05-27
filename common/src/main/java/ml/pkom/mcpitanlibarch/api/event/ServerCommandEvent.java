@@ -58,7 +58,7 @@ public class ServerCommandEvent extends CommandEvent<ServerCommandSource> {
     }
 
     public void sendSuccess(Text message, boolean broadcastToOps) {
-        context.getSource().sendFeedback(message, broadcastToOps);
+        context.getSource().sendFeedback(() -> message, broadcastToOps);
     }
 
     public void sendFailure(Text message) {

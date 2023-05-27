@@ -166,7 +166,7 @@ public class Player {
     }
 
     public World getWorld() {
-        return getEntity().world;
+        return getEntity().getWorld();
     }
 
     public ScreenHandler getCurrentScreenHandler() {

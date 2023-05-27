@@ -3,6 +3,7 @@ package ml.pkom.mcpitanlibarch.api.registry;
 import me.shedaniel.architectury.registry.RegistrySupplier;
 import ml.pkom.mcpitanlibarch.MCPitanLibarch;
 import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
+import ml.pkom.mcpitanlibarch.api.block.CompatibleMaterial;
 import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
 import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandlerTypeBuilder;
 import ml.pkom.mcpitanlibarch.api.item.CompatibleItemSettings;
@@ -12,7 +13,6 @@ import ml.pkom.mcpitanlibarch.api.util.ItemUtil;
 import ml.pkom.mcpitanlibarch.core.registry.FuelRegistry;
 import ml.pkom.mcpitanlibarch.core.registry.MCPLRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
@@ -46,7 +46,7 @@ public class ArchRegistry {
     }
 
     public RegistryEvent<Block> registerBlock(Identifier id, Supplier<Block> supplier) {
-        if (MCPitanLibarch.blockBlackList.contains(id.toString())) supplier = () -> BlockUtil.of(CompatibleBlockSettings.of(Material.STONE));
+        if (MCPitanLibarch.blockBlackList.contains(id.toString())) supplier = () -> BlockUtil.of(CompatibleBlockSettings.of(CompatibleMaterial.STONE));
         return new RegistryEvent<>(mcplr.registryBlock(id, supplier));
     }
 

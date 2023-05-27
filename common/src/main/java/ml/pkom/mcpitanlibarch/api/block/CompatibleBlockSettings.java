@@ -1,6 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.block;
 
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.DyeColor;
 
@@ -11,35 +12,62 @@ public class CompatibleBlockSettings {
     private final AbstractBlock.Settings settings;
     private float resistance, hardness = 0.0f;
 
-    public CompatibleBlockSettings(Material material, MapColor mapColor) {
-        this.settings = AbstractBlock.Settings.of(material, mapColor);
+    public CompatibleBlockSettings() {
+        this.settings = AbstractBlock.Settings.create();
     }
 
-    public CompatibleBlockSettings(Material material, DyeColor dyeColor) {
-        this.settings = AbstractBlock.Settings.of(material, dyeColor);
+    private static CompatibleBlockSettings copyCompatibleMaterial(CompatibleMaterial material, CompatibleBlockSettings settings) {
+        settings.mapColor(material.getColor());
+        if (material.isLiquid())
+            settings.settings.liquid();
+        if (material.isSolid())
+            settings.settings.solid();
+        if (material.isReplaceable())
+            settings.settings.replaceable();
+        if (material.isSolid())
+            settings.settings.solid();
+        if (material.isBurnable())
+            settings.settings.burnable();
+        settings.settings.pistonBehavior(material.getPistonBehavior());
+        return settings;
     }
 
-    public CompatibleBlockSettings(Material material) {
-        this.settings = AbstractBlock.Settings.of(material);
+    public CompatibleBlockSettings(CompatibleMaterial material, MapColor mapColor) {
+        this.settings = AbstractBlock.Settings.create();
+        copyCompatibleMaterial(material, this);
+        mapColor(mapColor);
     }
 
-    public CompatibleBlockSettings(Material material, Function<BlockState, MapColor> mapColor) {
-        this.settings = AbstractBlock.Settings.of(material, mapColor);
+    public CompatibleBlockSettings(CompatibleMaterial material, DyeColor dyeColor) {
+        this.settings = AbstractBlock.Settings.create();
+        copyCompatibleMaterial(material, this);
+        mapColor(dyeColor);
     }
 
-    public static CompatibleBlockSettings of(Material material, MapColor mapColor) {
+    public CompatibleBlockSettings(CompatibleMaterial material) {
+        this.settings = AbstractBlock.Settings.create();
+        copyCompatibleMaterial(material, this);
+    }
+
+    public CompatibleBlockSettings(CompatibleMaterial material, Function<BlockState, MapColor> mapColor) {
+        this.settings = AbstractBlock.Settings.create();
+        copyCompatibleMaterial(material, this);
+        mapColor(mapColor);
+    }
+
+    public static CompatibleBlockSettings of(CompatibleMaterial material, MapColor mapColor) {
         return new CompatibleBlockSettings(material, mapColor);
     }
 
-    public static CompatibleBlockSettings of(Material material, DyeColor dyeColor) {
+    public static CompatibleBlockSettings of(CompatibleMaterial material, DyeColor dyeColor) {
         return new CompatibleBlockSettings(material, dyeColor);
     }
 
-    public static CompatibleBlockSettings of(Material material) {
+    public static CompatibleBlockSettings of(CompatibleMaterial material) {
         return new CompatibleBlockSettings(material);
     }
 
-    public static CompatibleBlockSettings of(Material material, Function<BlockState, MapColor> mapColor) {
+    public static CompatibleBlockSettings of(CompatibleMaterial material, Function<BlockState, MapColor> mapColor) {
         return new CompatibleBlockSettings(material, mapColor);
     }
 
@@ -78,6 +106,16 @@ public class CompatibleBlockSettings {
 
     public CompatibleBlockSettings mapColor(MapColor color) {
         //settings.mapColor(color);
+        return this;
+    }
+
+    public CompatibleBlockSettings mapColor(DyeColor color) {
+        settings.mapColor(color);
+        return this;
+    }
+
+    public CompatibleBlockSettings mapColor(Function<BlockState, MapColor> color) {
+        settings.mapColor(color);
         return this;
     }
 
