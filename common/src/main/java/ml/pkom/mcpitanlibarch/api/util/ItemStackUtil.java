@@ -18,6 +18,6 @@ public class ItemStackUtil {
     }
 
     public static boolean areNbtEqual(ItemStack left, ItemStack right) {
-        return Objects.equals(left.getNbt(), right.getNbt());
+        return ItemStack.areNbtEqual(left, right);
     }
 }
