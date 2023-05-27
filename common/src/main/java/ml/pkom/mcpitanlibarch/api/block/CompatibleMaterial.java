@@ -1,6 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.block;
 
 import net.minecraft.block.MapColor;
+import net.minecraft.block.Material;
 import net.minecraft.block.piston.PistonBehavior;
 
 public final class CompatibleMaterial {
@@ -57,6 +58,7 @@ public final class CompatibleMaterial {
     private final boolean liquid;
     private final boolean replaceable;
     private final boolean solid;
+    private Material material;
 
     public CompatibleMaterial(MapColor color, boolean liquid, boolean solid, boolean burnable, boolean replaceable, PistonBehavior pistonBehavior) {
         this.color = color;
@@ -65,6 +67,17 @@ public final class CompatibleMaterial {
         this.burnable = burnable;
         this.replaceable = replaceable;
         this.pistonBehavior = pistonBehavior;
+        this.material = Material.STONE;
+    }
+
+    private CompatibleMaterial(Material material, MapColor color, boolean liquid, boolean solid, boolean burnable, boolean replaceable, PistonBehavior pistonBehavior) {
+        this(material.getColor(), material.isLiquid(), material.isSolid(), material.isBurnable(), material.isReplaceable(), material.getPistonBehavior());
+        this.material = material;
+    }
+
+    @Deprecated
+    public Material getMaterial() {
+        return material;
     }
 
     public boolean isLiquid() {
