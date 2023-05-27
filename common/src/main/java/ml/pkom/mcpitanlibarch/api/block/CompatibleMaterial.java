@@ -105,53 +105,53 @@ public final class CompatibleMaterial {
     }
 
     static {
-        AIR = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().replaceable().build();
-        STRUCTURE_VOID = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().replaceable().build();
-        PORTAL = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().blocksPistons().build();
-        CARPET = (new Builder(MapColor.WHITE_GRAY)).allowsMovement().lightPassesThrough().notSolid().burnable().build();
-        PLANT = (new Builder(MapColor.DARK_GREEN)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().build();
-        UNDERWATER_PLANT = (new Builder(MapColor.WATER_BLUE)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().build();
-        REPLACEABLE_PLANT = (new Builder(MapColor.DARK_GREEN)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().burnable().build();
-        NETHER_SHOOTS = (new Builder(MapColor.DARK_GREEN)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().build();
-        REPLACEABLE_UNDERWATER_PLANT = (new Builder(MapColor.WATER_BLUE)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().build();
-        WATER = (new Builder(MapColor.WATER_BLUE)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().build();
-        BUBBLE_COLUMN = (new Builder(MapColor.WATER_BLUE)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().build();
-        LAVA = (new Builder(MapColor.BRIGHT_RED)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().build();
-        SNOW_LAYER = (new Builder(MapColor.WHITE)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().build();
-        FIRE = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().build();
-        DECORATION = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().build();
-        COBWEB = (new Builder(MapColor.WHITE_GRAY)).allowsMovement().lightPassesThrough().destroyedByPiston().build();
-        SCULK = (new Builder(MapColor.BLACK)).build();
-        REDSTONE_LAMP = (new Builder(MapColor.CLEAR)).build();
-        ORGANIC_PRODUCT = (new Builder(MapColor.LIGHT_BLUE_GRAY)).build();
-        SOIL = (new Builder(MapColor.DIRT_BROWN)).build();
-        SOLID_ORGANIC = (new Builder(MapColor.PALE_GREEN)).build();
-        DENSE_ICE = (new Builder(MapColor.PALE_PURPLE)).build();
-        AGGREGATE = (new Builder(MapColor.PALE_YELLOW)).build();
-        SPONGE = (new Builder(MapColor.YELLOW)).build();
-        SHULKER_BOX = (new Builder(MapColor.PURPLE)).build();
-        WOOD = (new Builder(MapColor.OAK_TAN)).burnable().build();
-        NETHER_WOOD = (new Builder(MapColor.OAK_TAN)).build();
-        BAMBOO_SAPLING = (new Builder(MapColor.OAK_TAN)).burnable().destroyedByPiston().allowsMovement().build();
-        BAMBOO = (new Builder(MapColor.OAK_TAN)).burnable().destroyedByPiston().build();
-        WOOL = (new Builder(MapColor.WHITE_GRAY)).burnable().build();
-        TNT = (new Builder(MapColor.BRIGHT_RED)).burnable().lightPassesThrough().build();
-        LEAVES = (new Builder(MapColor.DARK_GREEN)).burnable().lightPassesThrough().destroyedByPiston().build();
-        GLASS = (new Builder(MapColor.CLEAR)).lightPassesThrough().build();
-        ICE = (new Builder(MapColor.PALE_PURPLE)).lightPassesThrough().build();
-        CACTUS = (new Builder(MapColor.DARK_GREEN)).lightPassesThrough().destroyedByPiston().build();
-        STONE = (new Builder(MapColor.STONE_GRAY)).build();
-        METAL = (new Builder(MapColor.IRON_GRAY)).build();
-        SNOW_BLOCK = (new Builder(MapColor.WHITE)).build();
-        REPAIR_STATION = (new Builder(MapColor.IRON_GRAY)).blocksPistons().build();
-        BARRIER = (new Builder(MapColor.CLEAR)).blocksPistons().build();
-        PISTON = (new Builder(MapColor.STONE_GRAY)).blocksPistons().build();
-        MOSS_BLOCK = (new Builder(MapColor.DARK_GREEN)).destroyedByPiston().build();
-        GOURD = (new Builder(MapColor.DARK_GREEN)).destroyedByPiston().build();
-        EGG = (new Builder(MapColor.DARK_GREEN)).destroyedByPiston().build();
-        CAKE = (new Builder(MapColor.CLEAR)).destroyedByPiston().build();
-        AMETHYST = (new Builder(MapColor.PURPLE)).build();
-        POWDER_SNOW = (new Builder(MapColor.WHITE)).notSolid().allowsMovement().build();
+        AIR = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().replaceable().material(Material.AIR).build();
+        STRUCTURE_VOID = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().replaceable().material(Material.STRUCTURE_VOID).build();
+        PORTAL = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().blocksPistons().material(Material.PORTAL).build();
+        CARPET = (new Builder(MapColor.WHITE_GRAY)).allowsMovement().lightPassesThrough().notSolid().burnable().material(Material.CARPET).build();
+        PLANT = (new Builder(MapColor.DARK_GREEN)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().material(Material.PLANT).build();
+        UNDERWATER_PLANT = (new Builder(MapColor.WATER_BLUE)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().material(Material.UNDERWATER_PLANT).build();
+        REPLACEABLE_PLANT = (new Builder(MapColor.DARK_GREEN)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().burnable().material(Material.REPLACEABLE_PLANT).build();
+        NETHER_SHOOTS = (new Builder(MapColor.DARK_GREEN)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().material(Material.NETHER_SHOOTS).build();
+        REPLACEABLE_UNDERWATER_PLANT = (new Builder(MapColor.WATER_BLUE)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().material(Material.REPLACEABLE_UNDERWATER_PLANT).build();
+        WATER = (new Builder(MapColor.WATER_BLUE)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().material(Material.WATER).build();
+        BUBBLE_COLUMN = (new Builder(MapColor.WATER_BLUE)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().material(Material.BUBBLE_COLUMN).build();
+        LAVA = (new Builder(MapColor.BRIGHT_RED)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().material(Material.LAVA).build();
+        SNOW_LAYER = (new Builder(MapColor.WHITE)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().material(Material.SNOW_LAYER).build();
+        FIRE = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().material(Material.FIRE).build();
+        DECORATION = (new Builder(MapColor.CLEAR)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().material(Material.DECORATION).build();
+        COBWEB = (new Builder(MapColor.WHITE_GRAY)).allowsMovement().lightPassesThrough().destroyedByPiston().material(Material.COBWEB).build();
+        SCULK = (new Builder(MapColor.BLACK)).material(Material.SCULK).build();
+        REDSTONE_LAMP = (new Builder(MapColor.CLEAR)).material(Material.REDSTONE_LAMP).build();
+        ORGANIC_PRODUCT = (new Builder(MapColor.LIGHT_BLUE_GRAY)).material(Material.ORGANIC_PRODUCT).build();
+        SOIL = (new Builder(MapColor.DIRT_BROWN)).material(Material.SOIL).build();
+        SOLID_ORGANIC = (new Builder(MapColor.PALE_GREEN)).material(Material.SOLID_ORGANIC).build();
+        DENSE_ICE = (new Builder(MapColor.PALE_PURPLE)).material(Material.DENSE_ICE).build();
+        AGGREGATE = (new Builder(MapColor.PALE_YELLOW)).material(Material.AGGREGATE).build();
+        SPONGE = (new Builder(MapColor.YELLOW)).material(Material.SPONGE).build();
+        SHULKER_BOX = (new Builder(MapColor.PURPLE)).material(Material.SHULKER_BOX).build();
+        WOOD = (new Builder(MapColor.OAK_TAN)).burnable().material(Material.WOOD).build();
+        NETHER_WOOD = (new Builder(MapColor.OAK_TAN)).material(Material.NETHER_WOOD).build();
+        BAMBOO_SAPLING = (new Builder(MapColor.OAK_TAN)).burnable().destroyedByPiston().allowsMovement().material(Material.BAMBOO_SAPLING).build();
+        BAMBOO = (new Builder(MapColor.OAK_TAN)).burnable().destroyedByPiston().material(Material.BAMBOO).build();
+        WOOL = (new Builder(MapColor.WHITE_GRAY)).burnable().material(Material.WOOL).build();
+        TNT = (new Builder(MapColor.BRIGHT_RED)).burnable().lightPassesThrough().material(Material.TNT).build();
+        LEAVES = (new Builder(MapColor.DARK_GREEN)).burnable().lightPassesThrough().destroyedByPiston().material(Material.LEAVES).build();
+        GLASS = (new Builder(MapColor.CLEAR)).lightPassesThrough().material(Material.GLASS).build();
+        ICE = (new Builder(MapColor.PALE_PURPLE)).lightPassesThrough().material(Material.ICE).build();
+        CACTUS = (new Builder(MapColor.DARK_GREEN)).lightPassesThrough().destroyedByPiston().material(Material.CACTUS).build();
+        STONE = (new Builder(MapColor.STONE_GRAY)).material(Material.STONE).build();
+        METAL = (new Builder(MapColor.IRON_GRAY)).material(Material.METAL).build();
+        SNOW_BLOCK = (new Builder(MapColor.WHITE)).material(Material.SNOW_BLOCK).build();
+        REPAIR_STATION = (new Builder(MapColor.IRON_GRAY)).blocksPistons().material(Material.REPAIR_STATION).build();
+        BARRIER = (new Builder(MapColor.CLEAR)).blocksPistons().material(Material.BARRIER).build();
+        PISTON = (new Builder(MapColor.STONE_GRAY)).blocksPistons().material(Material.PISTON).build();
+        MOSS_BLOCK = (new Builder(MapColor.DARK_GREEN)).destroyedByPiston().material(Material.MOSS_BLOCK).build();
+        GOURD = (new Builder(MapColor.DARK_GREEN)).destroyedByPiston().material(Material.GOURD).build();
+        EGG = (new Builder(MapColor.DARK_GREEN)).destroyedByPiston().material(Material.EGG).build();
+        CAKE = (new Builder(MapColor.CLEAR)).destroyedByPiston().material(Material.CAKE).build();
+        AMETHYST = (new Builder(MapColor.PURPLE)).material(Material.AMETHYST).build();
+        POWDER_SNOW = (new Builder(MapColor.WHITE)).notSolid().allowsMovement().material(Material.POWDER_SNOW).build();
     }
 
     public static class Builder {
@@ -163,6 +163,7 @@ public final class CompatibleMaterial {
         private boolean solid;
         private final MapColor color;
         private boolean blocksLight;
+        private Material material = Material.STONE;
 
         public Builder(MapColor color) {
             this.pistonBehavior = PistonBehavior.NORMAL;
@@ -212,8 +213,13 @@ public final class CompatibleMaterial {
             return this;
         }
 
+        protected Builder material(Material material) {
+            this.material = material;
+            return this;
+        }
+
         public CompatibleMaterial build() {
-            return new CompatibleMaterial(this.color, this.liquid, this.solid, this.burnable, this.replaceable, this.pistonBehavior);
+            return new CompatibleMaterial(material, this.color, this.liquid, this.solid, this.burnable, this.replaceable, this.pistonBehavior);
         }
     }
 }
