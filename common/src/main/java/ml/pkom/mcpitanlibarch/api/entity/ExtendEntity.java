@@ -59,8 +59,7 @@ public class ExtendEntity extends Entity {
         return nbt;
     }
 
-    @Override
     public World getWorld() {
-        return super.getWorld();
+        return super.world;
     }
 }
