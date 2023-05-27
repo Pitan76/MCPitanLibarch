@@ -5,14 +5,15 @@ import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.DrawBackgroundArgs
 import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.DrawForegroundArgs;
 import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.DrawMouseoverTooltipArgs;
 import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.RenderArgs;
+import ml.pkom.mcpitanlibarch.api.util.client.ScreenUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.render.item.ItemRenderer;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
@@ -39,39 +40,38 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
     }
 
     @Override
-    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-        DrawObjectDM drawObjectDM = new DrawObjectDM(context);
+    protected void drawBackground(MatrixStack stack, float delta, int mouseX, int mouseY) {
+        DrawObjectDM drawObjectDM = new DrawObjectDM(stack);
         drawBackgroundOverride(new DrawBackgroundArgs(drawObjectDM, delta, mouseX, mouseY));
     }
 
     public abstract void drawBackgroundOverride(DrawBackgroundArgs args);
 
     @Override
-    protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
-        DrawObjectDM drawObjectDM = new DrawObjectDM(context);
+    protected void drawForeground(MatrixStack stack, int mouseX, int mouseY) {
+        DrawObjectDM drawObjectDM = new DrawObjectDM(stack);
         drawForegroundOverride(new DrawForegroundArgs(drawObjectDM, mouseX, mouseY));
     }
 
     protected void drawForegroundOverride(DrawForegroundArgs args) {
-        super.drawForeground(args.drawObjectDM.getContext(), args.mouseX, args.mouseY);
+        super.drawForeground(args.drawObjectDM.getStack(), args.mouseX, args.mouseY);
     }
 
     public void callDrawTexture(DrawObjectDM drawObjectDM, Identifier texture, int x, int y, int u, int v, int width, int height) {
-        //ScreenUtil.setBackground(GUI);
-        //super.drawTexture(matrices, x, y, u, v, width, height);
-        drawObjectDM.getContext().drawTexture(texture, x, y, u, v, width, height);
+        ScreenUtil.setBackground(texture);
+        drawTexture(drawObjectDM.getStack(), x, y, u, v, width, height);
     }
 
     public void callRenderBackground(DrawObjectDM drawObjectDM) {
-        super.renderBackground(drawObjectDM.getContext());
+        super.renderBackground(drawObjectDM.getStack());
     }
 
     public void callDrawMouseoverTooltip(DrawMouseoverTooltipArgs args) {
-        super.drawMouseoverTooltip(args.drawObjectDM.getContext(), args.mouseX, args.mouseY);
+        super.drawMouseoverTooltip(args.drawObjectDM.getStack(), args.mouseX, args.mouseY);
     }
 
     public void renderOverride(RenderArgs args) {
-        super.render(args.drawObjectDM.getContext(), args.mouseX, args.mouseY, args.delta);
+        super.render(args.drawObjectDM.getStack(), args.mouseX, args.mouseY, args.delta);
     }
 
     public void resizeOverride(MinecraftClient client, int width, int height) {
@@ -100,7 +100,7 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
         this.x = super.x; //(this.width - this.backgroundWidth) / 2;
         this.y = super.y; //(this.height - this.backgroundHeight) / 2;
         this.textRenderer = super.textRenderer;
-        this.itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+        this.itemRenderer = super.itemRenderer;
         this.width = super.width;
         this.height = super.height;
     }
@@ -122,6 +122,7 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
 
     public void setItemRenderer(ItemRenderer itemRenderer) {
         this.itemRenderer = itemRenderer;
+        super.itemRenderer = itemRenderer;
     }
 
     public void setWidth(int width) {
@@ -153,8 +154,8 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
     }
 
     @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        DrawObjectDM drawObjectDM = new DrawObjectDM(context);
+    public void render(MatrixStack stack, int mouseX, int mouseY, float delta) {
+        DrawObjectDM drawObjectDM = new DrawObjectDM(stack);
         renderOverride(new RenderArgs(drawObjectDM, mouseX, mouseY, delta));
     }
 
