@@ -4,7 +4,7 @@ import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class TextComponent {
 

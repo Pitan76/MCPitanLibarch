@@ -3,7 +3,7 @@ package ml.pkom.mcpitanlibarch.api.event.registry;
 import dev.architectury.registry.registries.RegistrySupplier;
 import ml.pkom.mcpitanlibarch.api.event.BaseEvent;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class RegistryEvent<T> extends BaseEvent {
     public RegistrySupplier<T> supplier;
