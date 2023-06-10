@@ -7,10 +7,7 @@ dependencies {
 }
 
 architectury {
-    if (forgeEnabled.toBoolean())
-        common("forge")
-    else
-        common()
+    common(forgeEnabled.toBoolean())
 }
 
 loom {
