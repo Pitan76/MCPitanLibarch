@@ -6,8 +6,8 @@ call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
 call gradlew.bat generatePomFileForMavenFabricPublication
-copy /y ".\common\build\publications\mavenCommon\pom-default.xml" ".\common\build\publications\mavenCommon\mcpitanlibarch-1.20-rc1.pom"
-copy /y ".\fabric\build\publications\mavenFabric\pom-default.xml" ".\fabric\build\publications\mavenFabric\mcpitanlibarch-1.20-rc1.pom"
+copy /y ".\common\build\publications\mavenCommon\pom-default.xml" ".\common\build\publications\mavenCommon\mcpitanlibarch-1.20.pom"
+copy /y ".\fabric\build\publications\mavenFabric\pom-default.xml" ".\fabric\build\publications\mavenFabric\mcpitanlibarch-1.20.pom"
 
 git fetch origin
 git checkout 1.19.4
