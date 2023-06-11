@@ -71,7 +71,7 @@ copy /y ".\fabric\build\publications\mavenFabric\pom-default.xml" ".\fabric\buil
 copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\publications\mavenForge\mcpitanlibarch-1.16.5.pom"
 
 git fetch origin
-git checkout 1.19.4
+git checkout 1.20
 
 cd ".\php"
 
