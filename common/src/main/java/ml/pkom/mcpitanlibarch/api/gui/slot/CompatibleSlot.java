@@ -52,4 +52,28 @@ public class CompatibleSlot extends Slot {
     public boolean hasStack() {
         return callHasStack();
     }
+
+    public Inventory callGetInventory() {
+        return inventory;
+    }
+
+    public int callGetIndex() {
+        return super.getIndex();
+    }
+
+    public int callGetId() {
+        return super.id;
+    }
+
+    public int callGetX() {
+        return super.x;
+    }
+
+    public int callGetY() {
+        return super.y;
+    }
+
+    public void callMarkDirty() {
+        super.markDirty();
+    }
 }
