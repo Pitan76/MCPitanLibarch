@@ -95,15 +95,15 @@ public class ScreenUtil {
 
     public static class RendererUtil {
         public static int drawText(TextRenderer renderer, DrawObjectDM drawObjectDM, Text text, int x, int y, int color) {
-            return drawObjectDM.getContext().drawText(renderer, text, x, y, color, false);
+            return renderer.draw(drawObjectDM.getStack(), text, x, y, color);
         }
 
         public static int drawText(TextRenderer renderer, DrawObjectDM drawObjectDM, String text, int x, int y, int color) {
-            return drawObjectDM.getContext().drawText(renderer, text, x, y, color, false);
+            return renderer.draw(drawObjectDM.getStack(), text, x, y, color);
         }
 
         public static int drawText(TextRenderer renderer, DrawObjectDM drawObjectDM, OrderedText text, int x, int y, int color) {
-            return drawObjectDM.getContext().drawText(renderer, text, x, y, color, false);
+            return renderer.draw(drawObjectDM.getStack(), text, x, y, color);
         }
     }
 }
