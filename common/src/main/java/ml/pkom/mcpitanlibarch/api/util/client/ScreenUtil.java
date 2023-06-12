@@ -1,13 +1,16 @@
 package ml.pkom.mcpitanlibarch.api.util.client;
 
 import ml.pkom.mcpitanlibarch.api.client.gui.widget.RedrawableTexturedButtonWidget;
+import ml.pkom.mcpitanlibarch.api.client.render.DrawObjectDM;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.screen.ScreenTexts;
+import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -82,6 +85,20 @@ public class ScreenUtil {
     public static class TextFieldUtil {
         public static void setFocused(TextFieldWidget widget, boolean focused) {
             widget.setTextFieldFocused(focused);
+        }
+    }
+
+    public static class RendererUtil {
+        public static int drawText(TextRenderer renderer, DrawObjectDM drawObjectDM, Text text, int x, int y, int color) {
+            return renderer.draw(drawObjectDM.getStack(), text, x, y, color);
+        }
+
+        public static int drawText(TextRenderer renderer, DrawObjectDM drawObjectDM, String text, int x, int y, int color) {
+            return renderer.draw(drawObjectDM.getStack(), text, x, y, color);
+        }
+
+        public static int drawText(TextRenderer renderer, DrawObjectDM drawObjectDM, OrderedText text, int x, int y, int color) {
+            return renderer.draw(drawObjectDM.getStack(), text, x, y, color);
         }
     }
 }
