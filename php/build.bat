@@ -2,6 +2,7 @@ cd "..\"
 
 git fetch origin
 git checkout 1.20
+timeout /T 1
 call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
@@ -12,6 +13,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.19.4
+timeout /T 1
 call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
@@ -22,6 +24,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.19.3
+timeout /T 1
 call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
@@ -32,6 +35,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.19.2
+timeout /T 1
 call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
@@ -42,6 +46,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.18.2
+timeout /T 1
 call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
@@ -52,6 +57,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.17.1
+timeout /T 1
 call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
@@ -62,6 +68,7 @@ copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\p
 
 git fetch origin
 git checkout 1.16.5
+timeout /T 1
 call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
 call gradlew.bat generatePomFileForMavenForgePublication
