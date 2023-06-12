@@ -5,8 +5,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
 
 public class CompatibleSlot extends Slot {
+    private final int _index;
     public CompatibleSlot(Inventory inventory, int index, int x, int y) {
         super(inventory, index, x, y);
+        this._index = index;
     }
 
     public void callSetStack(ItemStack stack) {
@@ -58,7 +60,7 @@ public class CompatibleSlot extends Slot {
     }
 
     public int callGetIndex() {
-        return super.getIndex();
+        return _index;
     }
 
     public int callGetId() {
