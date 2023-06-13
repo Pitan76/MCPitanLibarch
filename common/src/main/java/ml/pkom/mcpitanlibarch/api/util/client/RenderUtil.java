@@ -30,4 +30,6 @@ public class RenderUtil {
     public static void disableTexture() {
         RenderSystem.disableTexture();
     }
+
+    public static class RendererUtil extends ScreenUtil.RendererUtil {}
 }
