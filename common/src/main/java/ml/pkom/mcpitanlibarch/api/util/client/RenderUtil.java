@@ -28,4 +28,6 @@ public class RenderUtil {
     public static void disableTexture() {
         // ～1.19.2
     }
+
+    public static class RendererUtil extends ScreenUtil.RendererUtil {}
 }
