@@ -105,5 +105,13 @@ public class ScreenUtil {
         public static int drawText(TextRenderer renderer, DrawObjectDM drawObjectDM, OrderedText text, int x, int y, int color) {
             return renderer.draw(drawObjectDM.getStack(), text, x, y, color);
         }
+
+        public static void drawTexture(DrawObjectDM drawObjectDM, Identifier texture, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+            drawObjectDM.getContext().drawTexture(texture, x, y, u, v, width, height, textureWidth, textureHeight);
+        }
+
+        public static void drawTexture(DrawObjectDM drawObjectDM, Identifier texture, int x, int y, float u, float v, int width, int height) {
+            drawObjectDM.getContext().drawTexture(texture, x, y, u, v, width, height, 256, 256);
+        }
     }
 }
