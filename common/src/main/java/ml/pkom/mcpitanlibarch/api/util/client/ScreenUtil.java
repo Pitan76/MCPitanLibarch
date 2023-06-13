@@ -6,6 +6,7 @@ import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
@@ -107,11 +108,13 @@ public class ScreenUtil {
         }
 
         public static void drawTexture(DrawObjectDM drawObjectDM, Identifier texture, int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight) {
-            drawObjectDM.getContext().drawTexture(texture, x, y, u, v, width, height, textureWidth, textureHeight);
+            RenderUtil.setShaderTexture(0, texture);
+            DrawableHelper.drawTexture(drawObjectDM.getStack(), x, y, u, v, width, height, textureWidth, textureHeight);
         }
 
         public static void drawTexture(DrawObjectDM drawObjectDM, Identifier texture, int x, int y, float u, float v, int width, int height) {
-            drawObjectDM.getContext().drawTexture(texture, x, y, u, v, width, height, 256, 256);
+            RenderUtil.setShaderTexture(0, texture);
+            DrawableHelper.drawTexture(drawObjectDM.getStack(), x, y, u, v, width, height, 256, 256);
         }
     }
 }

@@ -96,7 +96,7 @@ public class ArchRegistry {
     }
 
     public RegistryEvent<ItemGroup> registerItemGroup(Identifier id, Supplier<ItemGroup> supplier) {
-        return new RegistryEvent<>(mcplr1_20.registryItemGroup(id, supplier));
+        return new RegistryEvent<>(null);
     }
 
     public static void registerFuel(int time, ItemConvertible... item) {

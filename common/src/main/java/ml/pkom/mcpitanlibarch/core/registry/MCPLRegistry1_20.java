@@ -12,15 +12,15 @@ import java.util.function.Supplier;
 public class MCPLRegistry1_20 {
     private final MCPLRegistry mcplr;
 
-    public Registrar<ItemGroup> ITEM_GROUP;
+    //public Registrar<ItemGroup> ITEM_GROUP;
 
 
     public MCPLRegistry1_20(MCPLRegistry mcplr) {
         this.mcplr = mcplr;
-        ITEM_GROUP = mcplr.REGISTRIES.get().get(RegistryKeys.ITEM_GROUP);
+        //ITEM_GROUP = mcplr.REGISTRIES.get().get(RegistryKeys.ITEM_GROUP);
     }
 
     public RegistrySupplier<ItemGroup> registryItemGroup(Identifier id, Supplier<ItemGroup> supplier) {
-        return ITEM_GROUP.register(id, supplier);
+        return null;
     }
 }
