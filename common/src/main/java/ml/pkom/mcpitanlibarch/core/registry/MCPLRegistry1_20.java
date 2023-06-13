@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.core.registry;
 
-import dev.architectury.registry.registries.RegistrySupplier;
+import me.shedaniel.architectury.registry.RegistrySupplier;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 
