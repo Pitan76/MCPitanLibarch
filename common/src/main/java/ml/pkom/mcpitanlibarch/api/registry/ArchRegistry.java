@@ -12,12 +12,14 @@ import ml.pkom.mcpitanlibarch.api.util.BlockUtil;
 import ml.pkom.mcpitanlibarch.api.util.ItemUtil;
 import ml.pkom.mcpitanlibarch.core.registry.FuelRegistry;
 import ml.pkom.mcpitanlibarch.core.registry.MCPLRegistry;
+import ml.pkom.mcpitanlibarch.core.registry.MCPLRegistry1_20;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.sound.SoundEvent;
@@ -29,9 +31,11 @@ import java.util.function.Supplier;
 public class ArchRegistry {
 
     private final MCPLRegistry mcplr;
+    private final MCPLRegistry1_20 mcplr1_20;
 
     public ArchRegistry(String MOD_ID) {
         mcplr = new MCPLRegistry(MOD_ID);
+        mcplr1_20 = new MCPLRegistry1_20(mcplr);
     }
 
     public static ArchRegistry createRegistry(String MOD_ID) {
@@ -90,6 +94,10 @@ public class ArchRegistry {
 
     public RegistryEvent<ParticleType<?>> registerParticleType(Identifier id, Supplier<ParticleType<?>> supplier) {
         return new RegistryEvent<>(mcplr.registryParticleType(id, supplier));
+    }
+
+    public RegistryEvent<ItemGroup> registerItemGroup(Identifier id, Supplier<ItemGroup> supplier) {
+        return new RegistryEvent<>(null);
     }
 
     public static void registerFuel(int time, ItemConvertible... item) {
