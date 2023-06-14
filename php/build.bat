@@ -1,7 +1,7 @@
 cd "..\"
 
 git fetch origin
-git checkout 1.20
+git checkout 1.20.1
 timeout /T 1
 call gradlew.bat build
 call gradlew.bat generatePomFileForMavenCommonPublication
@@ -78,7 +78,7 @@ copy /y ".\fabric\build\publications\mavenFabric\pom-default.xml" ".\fabric\buil
 copy /y ".\forge\build\publications\mavenForge\pom-default.xml" ".\forge\build\publications\mavenForge\mcpitanlibarch-1.16.5.pom"
 
 git fetch origin
-git checkout 1.20
+git checkout 1.20.1
 
 cd ".\php"
 
