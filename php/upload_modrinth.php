@@ -1,6 +1,5 @@
 <?php
-
-define('VERSION', '1.1.5');
+define('VERSION', '1.6.8');
 define('CHANGE_LOG', '');
 
 define('DIRS', array(
@@ -11,9 +10,12 @@ define('DIRS', array(
 
 define('GAME_VERSIONS', array(
 	'1.16.5' => '"1.16.4", "1.16.5"', 
-	'1.17' => '"1.17", "1.17.1"', 
-	'1.18' => '"1.18", "1.18.1", "1.18.2"', 
-	'1.19' => '"1.19", "1.19.2", "1.19.2"',
+	'1.17.1' => '"1.17", "1.17.1"', 
+	'1.18.2' => '"1.18", "1.18.1", "1.18.2"', 
+	'1.19.2' => '"1.19", "1.19.1", "1.19.2"',
+	'1.19.3' => '"1.19.3"',
+	'1.19.4' => '"1.19.4"',
+	'1.20.1' => '"1.20", "1.20.1"',
 ));
 
 define('PLATFORM_FILE_MARK', array(
@@ -84,7 +86,7 @@ EOD;
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: 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'));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: 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'));
 		
 		$result = curl_exec($ch);
 		

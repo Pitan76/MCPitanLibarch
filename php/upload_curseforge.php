@@ -1,6 +1,5 @@
 <?php
-
-define('VERSION', '1.1.5');
+define('VERSION', '1.6.8');
 define('CHANGE_LOG', '');
 
 define('DIRS', array(
@@ -11,9 +10,22 @@ define('DIRS', array(
 
 define('GAME_VERSIONS', array(
 	'1.16.5' => '1.16', 
-	'1.17' => '1.17', 
-	'1.18' => '1.18', 
-	'1.19' => '1.19',
+	'1.17.1' => '1.17', 
+	'1.18.2' => '1.18', 
+	'1.19.2' => '1.19',
+	'1.19.3' => '1.19',
+	'1.19.4' => '1.19',
+	'1.20.1' => '1.20',
+));
+
+define('SUPPORT_VERSIONS', array(
+	'1.16.5' => ['1.16.4', '1.16.5'],
+	'1.17.1' => 'all',
+	'1.18.2' => 'all',
+	'1.19.2' => ['1.19', '1.19.1', '1.19.2'],
+	'1.19.3' => ['1.19.3'],
+	'1.19.4' => ['1.19.4'],
+	'1.20.1' => ['1.20', '1.20.1'],
 ));
 
 define('PLATFORM_FILE_MARK', array(
@@ -37,8 +49,8 @@ $game_version_types_data = json_decode($result, true);
 
 curl_close($ch);
 
-//file_put_contents('curse_forge_game_version_types.json', json_encode($game_version_json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
-
+//file_put_contents('curse_forge_game_version_types.json', json_encode($game_version_types_data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+//return;
 
 $postData = array();
 
@@ -73,11 +85,11 @@ foreach (DIRS as $type => $dir) {
 		foreach ($game_versions_data as $data) {
 			if ($data['gameVersionTypeID'] == $typeId) {
 				if (!str_ends_with($data['slug'], 'snapshot')) {
-					$version_id_list[] = $data['id'];
+					if (SUPPORT_VERSIONS[$file_ver] === 'all' || in_array($data['name'], SUPPORT_VERSIONS[$file_ver]))
+						$version_id_list[] = $data['id'];
 				}
 			}
 		}
-		
 		$postData = array();
 		
 		$releaseType = ($type === "fabric" ? 'release' : 'beta');
