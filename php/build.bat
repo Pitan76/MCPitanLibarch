@@ -86,4 +86,6 @@ copy /y "C:\Users\ptms76\Documents\php\*.bat" ".\"
 copy /y "C:\Users\ptms76\Documents\php\*.php" ".\"
 
 start upload_maven.bat
+start upload_curseforge.bat
+start upload_modrinth.bat
 pause
