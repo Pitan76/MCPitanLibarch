@@ -119,3 +119,4 @@ run/
 !gradle-wrapper.jar
 
 php/
+php/*.bat
