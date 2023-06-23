@@ -14,6 +14,8 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.collection.DefaultedList;
@@ -239,5 +241,9 @@ public class Player {
 
     public float getPitch() {
         return this.getEntity().getPitch(1.0f);
+    }
+
+    public void playSound(SoundEvent event, SoundCategory category, float volume, float pitch) {
+        getEntity().playSound(event, category, volume, pitch);
     }
 }
