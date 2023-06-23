@@ -1,15 +1,22 @@
 package ml.pkom.mcpitanlibarch.api.util;
 
+import ml.pkom.mcpitanlibarch.api.entity.Player;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Objects;
 
 public class WorldUtil {
     public static boolean hasSkyLight(World world) {
@@ -65,9 +72,11 @@ public class WorldUtil {
         spawnExperienceOrb(world, pos.toCenterPos(), amount);
     }
 
-
     public static void spawnEntity(World world, Entity entity) {
         world.spawnEntity(entity);
     }
 
+    public static void playSound(World world, @Nullable Player player, BlockPos pos, SoundEvent sound, SoundCategory category, float volume, float pitch) {
+        world.playSound(Objects.requireNonNullElse(player, null).getEntity(), pos, sound, category, volume, pitch);
+    }
 }
