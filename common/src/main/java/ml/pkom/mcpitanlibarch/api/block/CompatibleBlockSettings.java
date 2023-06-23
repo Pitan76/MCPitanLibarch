@@ -27,6 +27,11 @@ public class CompatibleBlockSettings {
         this.settings = AbstractBlock.Settings.of(material.getMaterial());
     }
 
+    @Deprecated
+    public CompatibleBlockSettings(Material material) {
+        this.settings = AbstractBlock.Settings.of(material);
+    }
+
     public CompatibleBlockSettings(CompatibleMaterial material, Function<BlockState, MapColor> mapColor) {
         this.settings = AbstractBlock.Settings.of(material.getMaterial(), mapColor);
     }
@@ -37,6 +42,11 @@ public class CompatibleBlockSettings {
 
     public static CompatibleBlockSettings of(CompatibleMaterial material, DyeColor dyeColor) {
         return new CompatibleBlockSettings(material, dyeColor);
+    }
+
+    @Deprecated
+    public static CompatibleBlockSettings of(Material material) {
+        return new CompatibleBlockSettings(material);
     }
 
     public static CompatibleBlockSettings of(CompatibleMaterial material) {
