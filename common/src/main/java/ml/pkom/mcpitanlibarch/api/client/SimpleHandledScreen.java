@@ -1,11 +1,8 @@
 package ml.pkom.mcpitanlibarch.api.client;
 
 import ml.pkom.mcpitanlibarch.api.client.render.DrawObjectDM;
-import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.DrawBackgroundArgs;
-import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.DrawForegroundArgs;
-import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.DrawMouseoverTooltipArgs;
-import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.RenderArgs;
 import ml.pkom.mcpitanlibarch.api.util.client.ScreenUtil;
+import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.Drawable;
@@ -37,6 +34,7 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
         // addButton
     }
 
+    @Deprecated
     @Override
     protected void drawBackground(MatrixStack stack, float delta, int mouseX, int mouseY) {
         DrawObjectDM drawObjectDM = new DrawObjectDM(stack);
@@ -45,6 +43,7 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
 
     public abstract void drawBackgroundOverride(DrawBackgroundArgs args);
 
+    @Deprecated
     @Override
     protected void drawForeground(MatrixStack stack, int mouseX, int mouseY) {
         DrawObjectDM drawObjectDM = new DrawObjectDM(stack);
@@ -78,6 +77,7 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
     public void initOverride() {
     }
 
+    @Deprecated
     @Override
     protected void init() {
         super.init();
@@ -85,6 +85,7 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
         initOverride();
     }
 
+    @Deprecated
     @Override
     public void resize(MinecraftClient client, int width, int height) {
         super.resize(client, width, height);
@@ -151,11 +152,30 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
         return super.backgroundHeight;
     }
 
+    @Deprecated
     @Override
     public void render(MatrixStack stack, int mouseX, int mouseY, float delta) {
         DrawObjectDM drawObjectDM = new DrawObjectDM(stack);
         renderOverride(new RenderArgs(drawObjectDM, mouseX, mouseY, delta));
     }
 
+    public boolean keyReleased(KeyEventArgs args) {
+        return super.keyReleased(args.keyCode, args.scanCode, args.modifiers);
+    }
 
+    public boolean keyPressed(KeyEventArgs args) {
+        return super.keyPressed(args.keyCode, args.scanCode, args.modifiers);
+    }
+
+    @Deprecated
+    @Override
+    public boolean keyReleased(int keyCode, int scanCode, int modifiers) {
+        return this.keyReleased(new KeyEventArgs(keyCode, scanCode, modifiers));
+    }
+
+    @Deprecated
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        return this.keyPressed(new KeyEventArgs(keyCode, scanCode, modifiers));
+    }
 }
