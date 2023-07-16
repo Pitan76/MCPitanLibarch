@@ -7,34 +7,34 @@ import net.minecraft.entity.damage.DamageSource;
 
 public class DamageSourceUtil {
     public DamageSource thrownProjectile(Entity projectile, Entity attacker, Entity source) {
-        return thrownProjectile(projectile, attacker);
+        return source.getDamageSources().thrown(projectile, attacker);
     }
 
     public DamageSource thrownProjectile(Entity projectile, Entity attacker) {
-        return DamageSource.thrownProjectile(projectile, attacker);
+        return thrownProjectile(projectile, attacker, projectile);
     }
 
     public DamageSource playerAttack(Player attacker, Entity source) {
-        return playerAttack(attacker);
+        return source.getDamageSources().playerAttack(attacker.getPlayerEntity());
     }
 
     public DamageSource playerAttack(Player attacker) {
-        return DamageSource.player(attacker.getPlayerEntity());
+        return playerAttack(attacker, attacker.getPlayerEntity());
     }
 
     public DamageSource mobAttack(LivingEntity attacker, Entity source) {
-        return mobAttack(attacker);
+        return source.getDamageSources().mobAttack(attacker);
     }
 
     public DamageSource mobAttack(LivingEntity attacker) {
-        return DamageSource.mob(attacker);
+        return mobAttack(attacker, attacker);
     }
 
     public DamageSource mobProjectile(Entity projectile, LivingEntity attacker, Entity source) {
-        return mobProjectile(projectile, attacker);
+        return source.getDamageSources().mobProjectile(projectile, attacker);
     }
 
     public DamageSource mobProjectile(Entity projectile, LivingEntity attacker) {
-        return DamageSource.mobProjectile(projectile, attacker);
+        return mobProjectile(projectile, attacker, projectile);
     }
 }
