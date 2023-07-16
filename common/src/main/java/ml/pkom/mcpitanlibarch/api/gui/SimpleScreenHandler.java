@@ -202,11 +202,11 @@ public class SimpleScreenHandler extends ScreenHandler {
     @Deprecated
     @Override
     public Slot getSlot(int index) {
-        return super.getSlot(index);
+        return callGetSlot(index);
     }
 
     public Slot callGetSlot(int index) {
-        return getSlot(index);
+        return super.getSlot(index);
     }
 
     @Deprecated
@@ -218,5 +218,26 @@ public class SimpleScreenHandler extends ScreenHandler {
 
     public void overrideOnSlotClick(int slotIndex, int button, SlotActionType actionType, Player player) {
         super.onSlotClick(slotIndex, button, actionType, player.getPlayerEntity());
+    }
+
+    public void callSetCursorStack(ItemStack stack) {
+        if (stack.getHolder() instanceof PlayerEntity) {
+            Player player = new Player((PlayerEntity) stack.getHolder());
+            player.getInventory().setCursorStack(stack);
+        }
+    }
+
+    @Override
+    @Deprecated
+    public void setStackInSlot(int slot, ItemStack stack) {
+        callSetStackInSlot(slot, -1, stack);
+    }
+
+    public void callSetStackInSlot(int slot, int revision, ItemStack stack) {
+        super.setStackInSlot(slot, stack);
+    }
+
+    public int callGetRevision() {
+        return -1;
     }
 }

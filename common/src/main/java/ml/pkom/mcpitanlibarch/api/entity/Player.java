@@ -3,11 +3,15 @@ package ml.pkom.mcpitanlibarch.api.entity;
 import me.shedaniel.architectury.registry.menu.ExtendedMenuProvider;
 import ml.pkom.mcpitanlibarch.api.gui.ExtendedNamedScreenHandlerFactory;
 import ml.pkom.mcpitanlibarch.api.util.ScreenHandlerUtil;
+import ml.pkom.mcpitanlibarch.core.player.ItemCooldown;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -16,6 +20,8 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.stat.Stat;
+import net.minecraft.stat.StatType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.collection.DefaultedList;
@@ -186,6 +192,9 @@ public class Player {
     public boolean isClient() {
         return getWorld().isClient();
     }
+    public boolean isServer() {
+        return !isClient();
+    }
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
         getEntity().readCustomDataFromNbt(nbt);
@@ -245,5 +254,23 @@ public class Player {
 
     public void playSound(SoundEvent event, SoundCategory category, float volume, float pitch) {
         getEntity().playSound(event, category, volume, pitch);
+    }
+
+    public ItemCooldown itemCooldown = new ItemCooldown(this);
+
+    public ItemCooldown getItemCooldown() {
+        return itemCooldown;
+    }
+
+    public ItemCooldownManager getItemCooldownManager() {
+        return getEntity().getItemCooldownManager();
+    }
+
+    public void incrementStat(Stat<?> stat) {
+        getEntity().incrementStat(stat);
+    }
+
+    public <T> void incrementStat(StatType<T> type, T object) {
+        getEntity().incrementStat(type.getOrCreateStat(object));
     }
 }
