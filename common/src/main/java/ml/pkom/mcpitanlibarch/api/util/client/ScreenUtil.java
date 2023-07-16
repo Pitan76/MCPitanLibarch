@@ -17,8 +17,6 @@ import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import org.jetbrains.annotations.Nullable;
-
 @Environment(EnvType.CLIENT)
 public class ScreenUtil {
     public static void setBackground(Identifier GUI, float f, float g, float h, float i) {
