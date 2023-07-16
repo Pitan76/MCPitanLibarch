@@ -77,6 +77,7 @@ public class WorldUtil {
     }
 
     public static void playSound(World world, @Nullable Player player, BlockPos pos, SoundEvent sound, SoundCategory category, float volume, float pitch) {
-        world.playSound(Objects.requireNonNullElse(player, null).getEntity(), pos, sound, category, volume, pitch);
+        PlayerEntity entity = player == null ? null : player.getEntity();
+        world.playSound(entity, pos, sound, category, volume, pitch);
     }
 }
