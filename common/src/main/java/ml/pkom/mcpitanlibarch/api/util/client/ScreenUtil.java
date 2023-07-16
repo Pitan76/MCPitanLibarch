@@ -3,7 +3,6 @@ package ml.pkom.mcpitanlibarch.api.util.client;
 import ml.pkom.mcpitanlibarch.api.client.gui.widget.RedrawableTexturedButtonWidget;
 import ml.pkom.mcpitanlibarch.api.client.render.DrawObjectDM;
 import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.RenderArgs;
-import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
@@ -17,6 +16,7 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class ScreenUtil {
