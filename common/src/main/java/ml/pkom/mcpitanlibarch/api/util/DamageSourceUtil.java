@@ -6,35 +6,35 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 
 public class DamageSourceUtil {
-    public DamageSource thrownProjectile(Entity projectile, Entity attacker, Entity source) {
+    public static DamageSource thrownProjectile(Entity projectile, Entity attacker, Entity source) {
         return source.getDamageSources().thrown(projectile, attacker);
     }
 
-    public DamageSource thrownProjectile(Entity projectile, Entity attacker) {
+    public static DamageSource thrownProjectile(Entity projectile, Entity attacker) {
         return thrownProjectile(projectile, attacker, projectile);
     }
 
-    public DamageSource playerAttack(Player attacker, Entity source) {
+    public static DamageSource playerAttack(Player attacker, Entity source) {
         return source.getDamageSources().playerAttack(attacker.getPlayerEntity());
     }
 
-    public DamageSource playerAttack(Player attacker) {
+    public static DamageSource playerAttack(Player attacker) {
         return playerAttack(attacker, attacker.getPlayerEntity());
     }
 
-    public DamageSource mobAttack(LivingEntity attacker, Entity source) {
+    public static DamageSource mobAttack(LivingEntity attacker, Entity source) {
         return source.getDamageSources().mobAttack(attacker);
     }
 
-    public DamageSource mobAttack(LivingEntity attacker) {
+    public static DamageSource mobAttack(LivingEntity attacker) {
         return mobAttack(attacker, attacker);
     }
 
-    public DamageSource mobProjectile(Entity projectile, LivingEntity attacker, Entity source) {
+    public static DamageSource mobProjectile(Entity projectile, LivingEntity attacker, Entity source) {
         return source.getDamageSources().mobProjectile(projectile, attacker);
     }
 
-    public DamageSource mobProjectile(Entity projectile, LivingEntity attacker) {
+    public static DamageSource mobProjectile(Entity projectile, LivingEntity attacker) {
         return mobProjectile(projectile, attacker, projectile);
     }
 }
