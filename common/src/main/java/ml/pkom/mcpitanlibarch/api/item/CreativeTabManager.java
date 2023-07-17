@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreativeTabManager {
-    private static final List<BookingItem> bookingItems = new ArrayList<>();
-    private static final List<BookingStack> bookingStacks = new ArrayList<>();
+    private static List<BookingItem> bookingItems = new ArrayList<>();
+    private static List<BookingStack> bookingStacks = new ArrayList<>();
 
     // グループ予約済みアイテム
     public static class BookingItem {
@@ -37,16 +37,15 @@ public class CreativeTabManager {
         if (!bookingItems.isEmpty()) {
             for (BookingItem bookingItem : bookingItems) {
                 bookingItem.itemGroup.appendStacks(DefaultedList.copyOf(ItemStack.EMPTY, new ItemStack(ItemUtil.fromId(bookingItem.identifier))));
-                //CreativeTabRegistry.append(bookingItem.itemGroup, ItemUtil.fromId(bookingItem.identifier));
-                bookingItems.remove(bookingItem);
             }
+            bookingItems = new ArrayList<>();
         }
 
         if (!bookingStacks.isEmpty()) {
             for (BookingStack bookingStack : bookingStacks) {
                 bookingStack.itemGroup.appendStacks(DefaultedList.copyOf(ItemStack.EMPTY, bookingStack.stack));
-                bookingStacks.remove(bookingStack);
             }
+            bookingStacks = new ArrayList<>();
         }
     }
 
