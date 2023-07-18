@@ -11,23 +11,23 @@ public class EntityUtil {
         return entity.getWorld();
     }
 
-    public static boolean damage(Entity entity, DamageSource damageSource, float amount) {
-        return entity.damage(damageSource, amount);
+    public static boolean damage(Entity target, DamageSource damageSource, float amount) {
+        return target.damage(damageSource, amount);
     }
 
-    public static boolean damageWithThrownProjectile(float damageAmount, Entity projectile, Entity attacker) {
-        return projectile.damage(DamageSourceUtil.thrownProjectile(projectile, attacker), damageAmount);
+    public static boolean damageWithThrownProjectile(Entity target, float damageAmount, Entity projectile, Entity attacker) {
+        return target.damage(DamageSourceUtil.thrownProjectile(projectile, attacker), damageAmount);
     }
 
-    public static boolean damageWithMobProjectile(float damageAmount, Entity projectile, LivingEntity attacker) {
-        return projectile.damage(DamageSourceUtil.mobProjectile(projectile, attacker), damageAmount);
+    public static boolean damageWithMobProjectile(Entity target, float damageAmount, Entity projectile, LivingEntity attacker) {
+        return target.damage(DamageSourceUtil.mobProjectile(projectile, attacker), damageAmount);
     }
 
-    public static boolean damageWithMobAttack(float damageAmount, Entity source, LivingEntity attacker) {
-        return source.damage(DamageSourceUtil.mobAttack(attacker, source), damageAmount);
+    public static boolean damageWithMobAttack(Entity target, float damageAmount, Entity source, LivingEntity attacker) {
+        return target.damage(DamageSourceUtil.mobAttack(attacker, source), damageAmount);
     }
 
-    public static boolean damageWithPlayerAttack(float damageAmount, Entity source, Player attacker) {
-        return source.damage(DamageSourceUtil.playerAttack(attacker, source), damageAmount);
+    public static boolean damageWithPlayerAttack(Entity target, float damageAmount, Entity source, Player attacker) {
+        return target.damage(DamageSourceUtil.playerAttack(attacker, source), damageAmount);
     }
 }
