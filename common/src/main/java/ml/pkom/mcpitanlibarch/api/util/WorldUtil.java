@@ -80,4 +80,8 @@ public class WorldUtil {
         PlayerEntity entity = player == null ? null : player.getEntity();
         world.playSound(entity, pos, sound, category, volume, pitch);
     }
+
+    public static void sendEntityStatus(World world, Entity entity, byte status) {
+        world.sendEntityStatus(entity, status);
+    }
 }
