@@ -28,10 +28,14 @@ public class WorldRandomUtil {
     }
 
     public static int nextBetween(World world, int min, int max) {
-        return world.getRandom().nextBetween(min, max);
+        return nextInt(world, max - min + 1) + min;
     }
 
     public static int nextBetweenExclusive(World world, int min, int max) {
-        return world.getRandom().nextBetweenExclusive(min, max);
+        if (min >= max) {
+            throw new IllegalArgumentException("bound - origin is non positive");
+        } else {
+            return min + nextInt(world, max - min);
+        }
     }
 }
