@@ -1,7 +1,5 @@
 package ml.pkom.mcpitanlibarch.api.network;
 
-import com.google.common.collect.Maps;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.netty.buffer.Unpooled;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.nbt.NbtCompound;
