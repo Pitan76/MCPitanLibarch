@@ -1,7 +1,9 @@
 package ml.pkom.mcpitanlibarch.api.network;
 
 import com.google.common.collect.Maps;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.netty.buffer.Unpooled;
+import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
@@ -9,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -24,7 +27,92 @@ public class PacketByteUtil {
     }
 
     public static <K, V> Map<K, V> readMap(PacketByteBuf buf, Function<PacketByteBuf, K> keyParser, Function<PacketByteBuf, V> valueParser) {
-        return buf.readMap(keyParser, valueParser);
+        NbtCompound nbt = buf.readUnlimitedNbt();
+        Map<K, V> map = new HashMap<>();
+        for (String key_v : Objects.requireNonNull(nbt).getKeys()) {
+            if (key_v.endsWith("_t") || key_v.endsWith("_k")) continue;
+            String key = key_v.substring(0, key_v.length() - 2);
+            String key_t = key + "_t";
+            key_v = key + "_v";
+
+            V v;
+            switch (key_t) {
+                case "int":
+                    v = (V) Integer.valueOf(nbt.getInt(key_v));
+                    break;
+                case "str":
+                    v = (V) nbt.getString(key_v);
+                    break;
+                case "short":
+                    v = (V) Short.valueOf(nbt.getShort(key_v));
+                    break;
+                case "long":
+                    v = (V) Long.valueOf(nbt.getLong(key_v));
+                    break;
+                case "float":
+                    v = (V) Float.valueOf(nbt.getFloat(key_v));
+                    break;
+                case "byte":
+                    v = (V) Byte.valueOf(nbt.getByte(key_v));
+                    break;
+                case "double":
+                    v = (V) Double.valueOf(nbt.getDouble(key_v));
+                    break;
+                case "bool":
+                    v = (V) Boolean.valueOf(nbt.getBoolean(key_v));
+                    break;
+                case "uuid":
+                    v = (V) nbt.getUuid(key_v);
+                    break;
+                case "text":
+                    v = (V) TextUtil.literal(nbt.getString(key_v));
+                    break;
+                default:
+                    v = null;
+                    break;
+            }
+
+            K k;
+            switch (nbt.getString("type_k")) {
+                case "int":
+                    k = (K) Integer.valueOf(key);
+                    break;
+                case "str":
+                    k = (K) key;
+                    break;
+                case "short":
+                    k = (K) Short.valueOf(key);
+                    break;
+                case "long":
+                    k = (K) Long.valueOf(key);
+                    break;
+                case "float":
+                    k = (K) Float.valueOf(key);
+                    break;
+                case "byte":
+                    k = (K) Byte.valueOf(key);
+                    break;
+                case "double":
+                    k = (K) Double.valueOf(key);
+                    break;
+                case "bool":
+                    k = (K) Boolean.valueOf(key);
+                    break;
+                case "uuid":
+                    k = (K) UUID.fromString(key);
+                    break;
+                case "text":
+                    k = (K) TextUtil.literal(key);
+                    break;
+                default:
+                    k = null;
+                    break;
+            }
+
+            if (k == null || v == null) continue;
+            map.put(k, v);
+        }
+        return map;
     }
 
     public static <K, V> void writeMap(PacketByteBuf buf, Map<K, V> map) {
@@ -32,7 +120,90 @@ public class PacketByteUtil {
     }
 
     public static <K, V> void writeMap(PacketByteBuf buf, Map<K, V> map, BiConsumer<PacketByteBuf, K> keySerializer, BiConsumer<PacketByteBuf, V> valueSerializer) {
-        buf.writeMap(map, keySerializer, valueSerializer);
+        NbtCompound nbt = new NbtCompound();
+
+        K lastK = null;
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            K k = entry.getKey();
+            V v = entry.getValue();
+            lastK = k;
+            String key = k.toString();
+            if (v instanceof Integer) {
+                nbt.putInt(key + "_v", (int) v);
+                nbt.putString(key + "_t", "int");
+            }
+            if (v instanceof String) {
+                nbt.putString(key, (String) v);
+                nbt.putString(key + "_t", "str");
+            }
+            if (v instanceof Long) {
+                nbt.putLong(key, (long) v);
+                nbt.putString(key + "_t", "long");
+            }
+            if (v instanceof Short) {
+                nbt.putShort(key, (short) v);
+                nbt.putString(key + "_t", "short");
+            }
+            if (v instanceof Double) {
+                nbt.putDouble(key, (double) v);
+                nbt.putString(key + "_t", "double");
+            }
+            if (v instanceof Boolean) {
+                nbt.putBoolean(key, (boolean) v);
+                nbt.putString(key + "_t", "bool");
+            }
+            if (v instanceof Float) {
+                nbt.putFloat(key, (float) v);
+                nbt.putString(key + "_t", "float");
+            }
+            if (v instanceof Byte) {
+                nbt.putByte(key, (byte) v);
+                nbt.putString(key + "_t", "byte");
+            }
+            if (v instanceof UUID) {
+                nbt.putUuid(key, (UUID) v);
+                nbt.putString(key + "_t", "uuid");
+            }
+            if (v instanceof Text) {
+                nbt.putString(key, ((Text) v).getString());
+                nbt.putString(key + "_t", "text");
+            }
+        }
+
+        if (lastK == null) return;
+
+        if (lastK instanceof Integer) {
+            nbt.putString("type_k", "int");
+        }
+        if (lastK instanceof String) {
+            nbt.putString("type_k", "str");
+        }
+        if (lastK instanceof Long) {
+            nbt.putString("type_k", "long");
+        }
+        if (lastK instanceof Short) {
+            nbt.putString("type_k", "short");
+        }
+        if (lastK instanceof Double) {
+            nbt.putString("type_k", "double");
+        }
+        if (lastK instanceof Boolean) {
+            nbt.putString("type_k", "bool");
+        }
+        if (lastK instanceof Float) {
+            nbt.putString("type_k", "float");
+        }
+        if (lastK instanceof Byte) {
+            nbt.putString("type_k", "byte");
+        }
+        if (lastK instanceof UUID) {
+            nbt.putString("type_k", "uuid");
+        }
+        if (lastK instanceof Text) {
+            nbt.putString("type_k", "text");
+        }
+
+        buf.writeNbt(nbt);
     }
 
     public static void writeVar(PacketByteBuf buf, Object obj) {
