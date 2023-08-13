@@ -24,7 +24,7 @@ public class PacketByteUtil {
     }
 
     public static <K, V> Map<K, V> readMap(PacketByteBuf buf, Function<PacketByteBuf, K> keyParser, Function<PacketByteBuf, V> valueParser) {
-        return buf.readMap(keyParser::apply, valueParser::apply);
+        return buf.readMap(keyParser, valueParser);
     }
 
     public static <K, V> void writeMap(PacketByteBuf buf, Map<K, V> map) {
@@ -32,7 +32,7 @@ public class PacketByteUtil {
     }
 
     public static <K, V> void writeMap(PacketByteBuf buf, Map<K, V> map, BiConsumer<PacketByteBuf, K> keySerializer, BiConsumer<PacketByteBuf, V> valueSerializer) {
-        buf.writeMap(map, keySerializer::accept, valueSerializer::accept);
+        buf.writeMap(map, keySerializer, valueSerializer);
     }
 
     public static void writeVar(PacketByteBuf buf, Object obj) {
