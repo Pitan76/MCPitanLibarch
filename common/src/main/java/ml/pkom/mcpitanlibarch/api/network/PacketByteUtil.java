@@ -1,13 +1,13 @@
 package ml.pkom.mcpitanlibarch.api.network;
 
-import com.google.common.collect.Maps;
 import io.netty.buffer.Unpooled;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.BiConsumer;
@@ -63,6 +63,18 @@ public class PacketByteUtil {
         if (obj instanceof NbtCompound) {
             NbtCompound nbt = (NbtCompound) obj;
             buf.writeNbt(nbt);
+        }
+        if (obj instanceof ItemStack) {
+            ItemStack stack = (ItemStack) obj;
+            buf.writeItemStack(stack);
+        }
+        if (obj instanceof Identifier) {
+            Identifier identifier = (Identifier) obj;
+            buf.writeIdentifier(identifier);
+        }
+        if (obj instanceof Float) {
+            Float f = (Float) obj;
+            buf.writeFloat(f);
         }
         if (obj instanceof UUID) {
             UUID uuid = (UUID) obj;
