@@ -1,10 +1,12 @@
 package ml.pkom.mcpitanlibarch.api.network;
 
 import io.netty.buffer.Unpooled;
+import net.minecraft.item.ItemStack;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.HashMap;
@@ -65,6 +67,12 @@ public class PacketByteUtil {
                 case "text":
                     v = (V) TextUtil.literal(nbt.getString(key_v));
                     break;
+                case "itemstack":
+                    v = (V) ItemStack.fromNbt(nbt.getCompound(key_v));
+                    break;
+                case "identifier":
+                    v = (V) new Identifier(nbt.getString(key_v));
+                    break;
                 default:
                     v = null;
                     break;
@@ -101,6 +109,9 @@ public class PacketByteUtil {
                     break;
                 case "text":
                     k = (K) TextUtil.literal(key);
+                    break;
+                case "identifier":
+                    k = (K) new Identifier(key);
                     break;
                 default:
                     k = null;
@@ -166,6 +177,16 @@ public class PacketByteUtil {
                 nbt.putString(key, ((Text) v).getString());
                 nbt.putString(key + "_t", "text");
             }
+            if (v instanceof ItemStack) {
+                NbtCompound stackNbt = new NbtCompound();
+                ((ItemStack) v).writeNbt(stackNbt);
+                nbt.put(key, stackNbt);
+                nbt.putString(key + "_t", "itemstack");
+            }
+            if (v instanceof Identifier) {
+                nbt.putString(key, v.toString());
+                nbt.putString(key + "_t", "identifier");
+            }
         }
 
         if (lastK == null) return;
@@ -200,6 +221,12 @@ public class PacketByteUtil {
         if (lastK instanceof Text) {
             nbt.putString("type_k", "text");
         }
+        if (lastK instanceof ItemStack) {
+            nbt.putString("type_k", "itemstack");
+        }
+        if (lastK instanceof Identifier) {
+            nbt.putString("type_k", "identifier");
+        }
 
         buf.writeNbt(nbt);
     }
@@ -232,6 +259,18 @@ public class PacketByteUtil {
         if (obj instanceof NbtCompound) {
             NbtCompound nbt = (NbtCompound) obj;
             buf.writeNbt(nbt);
+        }
+        if (obj instanceof ItemStack) {
+            ItemStack stack = (ItemStack) obj;
+            buf.writeItemStack(stack);
+        }
+        if (obj instanceof Identifier) {
+            Identifier identifier = (Identifier) obj;
+            buf.writeIdentifier(identifier);
+        }
+        if (obj instanceof Float) {
+            Float f = (Float) obj;
+            buf.writeFloat(f);
         }
         if (obj instanceof UUID) {
             UUID uuid = (UUID) obj;
