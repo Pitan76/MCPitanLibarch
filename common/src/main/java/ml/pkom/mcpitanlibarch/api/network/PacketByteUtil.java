@@ -73,6 +73,9 @@ public class PacketByteUtil {
                 case "identifier":
                     v = (V) new Identifier(nbt.getString(key_v));
                     break;
+                case "map":
+                    v = (V) key_v;
+                    break;
                 default:
                     v = null;
                     break;
