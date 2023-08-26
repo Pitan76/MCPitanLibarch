@@ -284,6 +284,10 @@ public class PacketByteUtil {
             BlockPos pos = (BlockPos) obj;
             buf.writeBlockPos(pos);
         }
+        if (obj instanceof Map) {
+            Map map = (Map) obj;
+            writeMap(buf, map);
+        }
     }
 }
 
