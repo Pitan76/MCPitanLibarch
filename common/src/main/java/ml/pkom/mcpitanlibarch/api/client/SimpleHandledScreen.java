@@ -61,8 +61,15 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
         drawTexture(drawObjectDM.getStack(), x, y, u, v, width, height);
     }
 
+    @Deprecated
     public void callRenderBackground(DrawObjectDM drawObjectDM) {
         super.renderBackground(drawObjectDM.getStack());
+        callRenderBackground(new RenderArgs(drawObjectDM, 0, 0, 0));
+    }
+
+
+    public void callRenderBackground(RenderArgs args) {
+        super.renderBackground(args.drawObjectDM.getContext(), args.mouseX, args.mouseY, args.delta);
     }
 
     public void callDrawMouseoverTooltip(DrawMouseoverTooltipArgs args) {
