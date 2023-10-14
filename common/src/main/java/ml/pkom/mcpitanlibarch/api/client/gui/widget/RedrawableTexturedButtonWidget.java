@@ -23,7 +23,7 @@ public class RedrawableTexturedButtonWidget extends CompatibleTexturedButtonWidg
     }
 
     public void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.drawTexture(texture, this.getX(), this.getY(), u, v + (isSelected() ? hoveredVOffset : 0), this.width, this.height, textureWidth, textureHeight);
+        super.renderButton(context, mouseX, mouseY, delta);
     }
 
     public void setTexture(Identifier texture) {

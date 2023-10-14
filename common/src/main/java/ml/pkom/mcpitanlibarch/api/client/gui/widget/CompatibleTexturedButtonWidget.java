@@ -45,6 +45,12 @@ public class CompatibleTexturedButtonWidget extends TexturedButtonWidget {
 
     @Override
     public void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.drawTexture(texture, this.getX(), this.getY(), u, v + (isSelected() ? hoveredVOffset : 0), this.width, this.height, textureWidth, textureHeight);
+        int i = v;
+        if (!this.isNarratable()) {
+            i = v + hoveredVOffset * 2;
+        } else if (this.isSelected()) {
+            i = v + hoveredVOffset;
+        }
+        context.drawTexture(texture, this.getX(), this.getY(), u, i, this.width, this.height, textureWidth, textureHeight);
     }
 }
