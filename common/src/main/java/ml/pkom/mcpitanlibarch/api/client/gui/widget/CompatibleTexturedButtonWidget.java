@@ -25,7 +25,7 @@ public class CompatibleTexturedButtonWidget extends TexturedButtonWidget {
     }
 
     public void setPos(int x, int y) {
-        setX(x);
-        setY(y);
+        this.x = x;
+        this.y = y;
     }
 }
