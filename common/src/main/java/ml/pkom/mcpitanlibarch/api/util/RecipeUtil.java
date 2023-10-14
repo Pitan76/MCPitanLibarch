@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class RecipeUtil {
     public static ShapelessRecipe createShapelessRecipe(Identifier id, String group, CompatibilityCraftingRecipeCategory category, ItemStack output, DefaultedList<Ingredient> input) {
-        return new ShapelessRecipe(id, group, CraftingRecipeCategory.valueOf(category.name()), output, input);
+        return new ShapelessRecipe(group, CraftingRecipeCategory.valueOf(category.name()), output, input);
     }
 
     public static ShapelessRecipe createShapelessRecipe(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input) {
@@ -25,7 +25,7 @@ public class RecipeUtil {
 
 
     public static <C extends Inventory> ItemStack getOutput(Recipe<C> recipe, World world) {
-        return recipe.getOutput(world.getRegistryManager());
+        return recipe.getResult(world.getRegistryManager());
     }
 
     public enum CompatibilityCraftingRecipeCategory {
