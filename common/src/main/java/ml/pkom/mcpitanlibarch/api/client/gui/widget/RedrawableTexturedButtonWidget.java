@@ -1,13 +1,10 @@
 package ml.pkom.mcpitanlibarch.api.client.gui.widget;
 
-import ml.pkom.mcpitanlibarch.api.util.client.RenderUtil;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class RedrawableTexturedButtonWidget extends TexturedButtonWidget {
+public class RedrawableTexturedButtonWidget extends CompatibleTexturedButtonWidget {
     public Identifier texture;
     public int u;
     public int v;
@@ -26,7 +23,7 @@ public class RedrawableTexturedButtonWidget extends TexturedButtonWidget {
     }
 
     public void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.drawTexture(context, texture, this.getX(), this.getY(), this.u, this.v, this.hoveredVOffset, this.width, this.height, this.textureWidth, this.textureHeight);
+        context.drawTexture(texture, this.getX(), this.getY(), u, v + (isSelected() ? hoveredVOffset : 0), this.width, this.height, textureWidth, textureHeight);
     }
 
     public void setTexture(Identifier texture) {
