@@ -66,7 +66,7 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
 
 
     public void callRenderBackground(RenderArgs args) {
-        super.renderBackground(args.drawObjectDM.getContext(), args.mouseX, args.mouseY, args.delta);
+        super.renderBackground(args.drawObjectDM.getContext());
     }
 
     public void callDrawMouseoverTooltip(DrawMouseoverTooltipArgs args) {
