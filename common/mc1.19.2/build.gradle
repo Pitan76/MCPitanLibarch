@@ -1,0 +1,34 @@
+def targetJavaVersion = 17
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = targetJavaVersion
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.19.2"
+    mappings "net.fabricmc:yarn:1.19.2+build.28:v2"
+
+    modApi "dev.architectury:architectury:6.5.85"
+}
+
+architectury {
+    common()
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/mcpitanlibarch.accesswidener")
+}
+
+publishing {
+    publications {
+        mavenCommon(MavenPublication) {
+            artifactId = info.archives_base_name
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+    }
+}
