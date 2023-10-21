@@ -3,15 +3,15 @@ dependencies {
     // Do NOT use other classes from fabric loader
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     // Remove the next line if you don't want to depend on the API
-    modApi "me.shedaniel:architectury:${rootProject.architectury_version}"
+    // modApi "dev.architectury:architectury:${rootProject.architectury_version}"
 }
 
 architectury {
     common()
 }
 
-loom {
-    accessWidenerPath = file("src/main/resources/mcpitanlibarch.accesswidener")
+subprojects.each {
+    remapJar.dependsOn "${it.path}:remapJar"
 }
 
 publishing {

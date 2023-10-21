@@ -7,10 +7,26 @@ pluginManagement {
     }
 }
 
-include("common")
-if (fabricEnabled.toBoolean())
+plugins {
+    id "org.gradle.toolchains.foojay-resolver-convention" version "0.5.0"
+}
+
+//include("common")
+include("common:mc1.16.5")
+include("common:mc1.17.1")
+include("common:mc1.18.2")
+include("common:mc1.19.2")
+include("common:mc1.19.3")
+include("common:mc1.19.4")
+include("common:mc1.20.1")
+include("common:mc1.20.2")
+if (fabricEnabled.toBoolean()) {
     include("fabric")
-if (forgeEnabled.toBoolean())
+    include("fabric-mc1.16.5")
+}
+if (forgeEnabled.toBoolean()) {
     include("forge")
+    include("forge-mc1.16.5")
+}
 if (quiltEnabled.toBoolean())
     include("quilt")

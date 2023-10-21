@@ -14,16 +14,16 @@
   },
   "license": "MIT",
   "icon": "icon.png",
-  "custom": {
-    "modmenu": {
-      "badges": ["library"]
-    }
-  },
   "environment": "*",
   "entrypoints": {
     "main": [
       "ml.pkom.mcpitanlibarch.fabric.MCPitanLibarchFabric"
     ]
+  },
+  "custom": {
+    "modmenu": {
+      "badges": ["library"]
+    }
   },
   "mixins": [
     "mcpitanlibarch.mixins.json",
@@ -31,7 +31,8 @@
   ],
   "accessWidener" : "mcpitanlibarch.accesswidener",
   "depends": {
+    "minecraft": ">1.19.3",
     "fabricloader": "*",
-    "minecraft": ">=1.16"
+    "architectury": "*"
   }
 }

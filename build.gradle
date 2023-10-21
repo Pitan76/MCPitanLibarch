@@ -1,29 +1,10 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "0.11.0-SNAPSHOT" apply false
+    id "dev.architectury.loom" version "1.1-SNAPSHOT" apply false
 }
 
 architectury {
     minecraft = rootProject.minecraft_version
-}
-
-subprojects {
-    apply plugin: "dev.architectury.loom"
-
-    loom {
-        silentMojangMappingsLicense()
-    }
-
-    dependencies {
-        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-        // The following line declares the mojmap mappings, you may use other mappings as well
-        // mappings loom.officialMojangMappings()
-        // The following line declares the yarn mappings you may select this one as well.
-        mappings "net.fabricmc:yarn:${rootProject.yarn_mappings}:v2"
-
-        // https://mvnrepository.com/artifact/org.yaml/snakeyaml
-        implementation 'org.yaml:snakeyaml:2.0'
-    }
 }
 
 def loadProperties(filename) {
@@ -46,21 +27,76 @@ allprojects {
     group = info.maven_group
 
     repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.
+        maven { url = "https://maven.fabricmc.net/" }
     }
 
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
-        options.release = 8
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+    tasks.withType(JavaCompile).configureEach {
+        it.options.release.set(8)
+    }
+
+    tasks.withType(JavaExec).configureEach {
+        it.javaLauncher.set(javaToolchains.launcherFor(java.toolchain))
     }
 
     java {
         withSourcesJar()
+    }
+}
+
+subprojects {
+    apply plugin: "dev.architectury.loom"
+
+    loom {
+        silentMojangMappingsLicense()
+    }
+
+    dependencies {
+        implementation(rootProject) {
+            exclude group: "net.fabricmc", module: "fabric-loader"
+            //exclude group: "com.mojang", module: "minecraft"
+        }
+
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        // The following line declares the mojmap mappings, you may use other mappings as well
+        // mappings loom.officialMojangMappings()
+        // The following line declares the yarn mappings you may select this one as well.
+        mappings "net.fabricmc:yarn:${rootProject.yarn_mappings}:v2"
+
+        subprojects.each {
+            include project("${it.name}:")
+        }
+        implementation 'org.yaml:snakeyaml:2.0'
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+
+        repositories {
+        }
+    }
+}
+
+def targetJavaVersion = 8
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = targetJavaVersion
+
+    options.release = 8
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+    options.release = 8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${rootProject.archivesBaseName}" }
     }
 }
