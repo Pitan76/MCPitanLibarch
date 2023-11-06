@@ -63,8 +63,10 @@ subprojects {
         mappings "net.fabricmc:yarn:${rootProject.yarn_mappings}:v2"
 
         subprojects.each {
-            include project("${it.name}:")
+            //print it.path
+            include project(it.path)
         }
+
         implementation 'org.yaml:snakeyaml:2.0'
     }
 

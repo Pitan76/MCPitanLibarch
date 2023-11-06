@@ -11,7 +11,8 @@ plugins {
     id "org.gradle.toolchains.foojay-resolver-convention" version "0.5.0"
 }
 
-//include("common")
+include("mc1.16.5")
+/*
 include("common:mc1.16.5")
 include("common:mc1.17.1")
 include("common:mc1.18.2")
@@ -30,3 +31,4 @@ if (forgeEnabled.toBoolean()) {
 }
 if (quiltEnabled.toBoolean())
     include("quilt")
+*/
