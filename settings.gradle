@@ -11,7 +11,17 @@ plugins {
     id "org.gradle.toolchains.foojay-resolver-convention" version "0.5.0"
 }
 
+rootProject.name = "mcpitanlibarch"
+
 include("mc1.16.5")
+include("mc1.16.5:common")
+include("mc1.16.5:fabric")
+include("mc1.16.5:forge")
+
+def mc1_16_5dir = project(':mc1.16.5').getProjectDir()
+project(':mc1.16.5:common').projectDir = new File(mc1_16_5dir, 'common')
+project(':mc1.16.5:fabric').projectDir = new File(mc1_16_5dir, 'fabric')
+project(':mc1.16.5:forge').projectDir = new File(mc1_16_5dir, 'forge')
 /*
 include("common:mc1.16.5")
 include("common:mc1.17.1")
