@@ -3,6 +3,7 @@ package ml.pkom.mcpitanlibarch.api.util;
 import ml.pkom.mcpitanlibarch.api.entity.Player;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -49,5 +50,25 @@ public class PlayerUtil {
 
     public static boolean isExistByUUID(World world, UUID uuid) {
         return isExistByUUID(world.getServer(), uuid);
+    }
+
+    public static boolean isExistByName(MinecraftServer server, String name) {
+        return server.getPlayerManager().getPlayer(name) != null;
+    }
+
+    public static boolean isExistByName(World world, String name) {
+        return isExistByName(world.getServer(), name);
+    }
+
+    public static boolean isExistByIP(MinecraftServer server, String ip) {
+        return !server.getPlayerManager().getPlayersByIp(ip).isEmpty();
+    }
+
+    public static boolean isExistByIP(World world, String ip) {
+        return isExistByIP(world.getServer(), ip);
+    }
+    
+    public static void sendMessage(Player player, String message) {
+        player.sendMessage(TextUtil.literal(message));
     }
 }
