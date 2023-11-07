@@ -7,6 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemStackActionEvent {
+
+    public static Boolean returnValue = null;
+
+    public static void setReturnValue(boolean setReturnValue) {
+        ItemStackActionEvent.returnValue = setReturnValue;
+    }
+
     private static final List<EventRegistry.ItemStackAction.ItemStackDamageState> states = new ArrayList<>();
 
     public static void register(EventRegistry.ItemStackAction.ItemStackDamageState state) {

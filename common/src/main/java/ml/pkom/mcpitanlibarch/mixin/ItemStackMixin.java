@@ -16,5 +16,7 @@ public abstract class ItemStackMixin {
     @Inject(method = "damage(ILjava/util/Random;Lnet/minecraft/server/network/ServerPlayerEntity;)Z", at = @At("HEAD"), cancellable = true)
     public void damage(int amount, Random random, ServerPlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
         ItemStackActionEvent.call((ItemStack) (Object) this);
+        if (ItemStackActionEvent.returnValue != null)
+            cir.setReturnValue(ItemStackActionEvent.returnValue);
     }
 }
