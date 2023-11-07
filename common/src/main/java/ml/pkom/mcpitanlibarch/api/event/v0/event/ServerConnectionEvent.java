@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.event.v0.event;
 
-import dev.architectury.event.events.common.PlayerEvent;
+import me.shedaniel.architectury.event.events.PlayerEvent;
 import ml.pkom.mcpitanlibarch.api.event.v0.EventRegistry;
 
 public class ServerConnectionEvent {
