@@ -2,6 +2,9 @@ package ml.pkom.mcpitanlibarch.api.event.v0;
 
 import dev.architectury.event.events.common.LifecycleEvent;
 import dev.architectury.event.events.common.PlayerEvent;
+import ml.pkom.mcpitanlibarch.api.event.v0.event.ItemStackActionEvent;
+import ml.pkom.mcpitanlibarch.api.event.v0.event.ServerConnectionEvent;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -12,11 +15,11 @@ public class EventRegistry {
     public static class ServerConnection {
         // Architectury: PlayerEvent
         public static void join(PlayerJoin state) {
-            PlayerEvent.PLAYER_JOIN.register(state::join);
+            ServerConnectionEvent.join(state);
         }
 
         public static void quit(PlayerQuit state) {
-            PlayerEvent.PLAYER_QUIT.register(state::quit);
+            ServerConnectionEvent.quit(state);
         }
 
         public interface PlayerJoin {
@@ -25,6 +28,16 @@ public class EventRegistry {
 
         public interface PlayerQuit {
             void quit(ServerPlayerEntity player);
+        }
+    }
+
+    public static class ItemStackAction {
+        public static void damage(ItemStackDamageState state) {
+            ItemStackActionEvent.register(state);
+        }
+
+        public interface ItemStackDamageState {
+            void onDamage(ItemStack stack);
         }
     }
 
