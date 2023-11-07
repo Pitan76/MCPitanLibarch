@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecipeUtil {
     public static ShapelessRecipe createShapelessRecipe(Identifier id, String group, CompatibilityCraftingRecipeCategory category, ItemStack output, DefaultedList<Ingredient> input) {
@@ -32,7 +33,7 @@ public class RecipeUtil {
 
     public static List<Recipe<?>> getAllRecipes(World world) {
         Collection<Recipe<?>> recipes = world.getRecipeManager().values();
-        return recipes.stream().toList();
+        return new ArrayList<>(recipes);
     }
 
     public enum CompatibilityCraftingRecipeCategory {
