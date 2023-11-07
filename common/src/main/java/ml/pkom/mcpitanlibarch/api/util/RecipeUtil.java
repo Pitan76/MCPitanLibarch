@@ -4,7 +4,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
@@ -32,13 +31,8 @@ public class RecipeUtil {
     }
 
     public static List<Recipe<?>> getAllRecipes(World world) {
-        Collection<RecipeEntry<?>> recipes = world.getRecipeManager().values();
-        List<Recipe<?>> outRecipes = new ArrayList<>();
-        for (RecipeEntry<?> recipeEntry : recipes) {
-            Recipe<?> recipe = recipeEntry.value();
-            outRecipes.add(recipe);
-        }
-        return outRecipes;
+        Collection<Recipe<?>> recipes = world.getRecipeManager().values();
+        return recipes.stream().toList();
     }
 
     public enum CompatibilityCraftingRecipeCategory {
