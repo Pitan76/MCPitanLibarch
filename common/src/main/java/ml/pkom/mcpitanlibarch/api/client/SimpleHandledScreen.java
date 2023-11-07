@@ -1,5 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.client;
 
+import ml.pkom.mcpitanlibarch.api.client.gui.widget.CompatibleTexturedButtonWidget;
 import ml.pkom.mcpitanlibarch.api.client.render.DrawObjectDM;
 import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.*;
 import net.minecraft.client.MinecraftClient;
@@ -28,9 +29,13 @@ public abstract class SimpleHandledScreen extends HandledScreen<ScreenHandler> {
         this.handler = handler;
     }
 
-    protected <T extends Element & Drawable & Selectable> T addDrawableChild_compatibility(T drawableElement) {
+    public <T extends Element & Drawable & Selectable> T addDrawableChild_compatibility(T drawableElement) {
         return super.addDrawableChild(drawableElement);
         // addButton
+    }
+
+    public CompatibleTexturedButtonWidget addDrawableCTBW(CompatibleTexturedButtonWidget widget) {
+        return addDrawableChild_compatibility(widget);
     }
 
     @Deprecated
