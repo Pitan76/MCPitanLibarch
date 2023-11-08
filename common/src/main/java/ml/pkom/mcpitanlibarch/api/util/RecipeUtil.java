@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.ShapelessRecipe;
+import net.minecraft.recipe.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -33,6 +34,14 @@ public class RecipeUtil {
     public static List<Recipe<?>> getAllRecipes(World world) {
         Collection<Recipe<?>> recipes = world.getRecipeManager().values();
         return new ArrayList<>(recipes);
+    }
+
+    public static RecipeType<?> getType(Recipe<?> recipe) {
+        return recipe.getType();
+    }
+
+    public static Identifier getId(Recipe<?> recipe) {
+        return new Identifier(recipe.getClass().hashCode() + "");
     }
 
     public enum CompatibilityCraftingRecipeCategory {
