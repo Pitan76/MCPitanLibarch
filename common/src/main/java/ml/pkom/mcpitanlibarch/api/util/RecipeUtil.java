@@ -2,10 +2,7 @@ package ml.pkom.mcpitanlibarch.api.util;
 
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeEntry;
-import net.minecraft.recipe.ShapelessRecipe;
+import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
@@ -36,10 +33,17 @@ public class RecipeUtil {
         Collection<RecipeEntry<?>> recipes = world.getRecipeManager().values();
         List<Recipe<?>> outRecipes = new ArrayList<>();
         for (RecipeEntry<?> recipeEntry : recipes) {
-            Recipe<?> recipe = recipeEntry.value();
-            outRecipes.add(recipe);
+            outRecipes.add(recipeEntry.value());
         }
         return outRecipes;
+    }
+
+    public static RecipeType<?> getType(Recipe<?> recipe) {
+        return recipe.getType();
+    }
+
+    public static Identifier getId(Recipe<?> recipe) {
+        return new Identifier(recipe.getClass().hashCode() + "");
     }
 
     public enum CompatibilityCraftingRecipeCategory {
