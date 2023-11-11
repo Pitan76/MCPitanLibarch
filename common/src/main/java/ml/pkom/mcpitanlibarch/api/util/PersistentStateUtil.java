@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 public class PersistentStateUtil {
     public static <T extends PersistentState> T getOrCreate(PersistentStateManager manager, String id, Supplier<T> supplier, Function<NbtCompound, T> function) {
-        return manager.getOrCreate(function, supplier, id);
+        return manager.getOrCreate(supplier, id);
     }
 
     public static PersistentStateManager getManagerFromServer(MinecraftServer server) {
