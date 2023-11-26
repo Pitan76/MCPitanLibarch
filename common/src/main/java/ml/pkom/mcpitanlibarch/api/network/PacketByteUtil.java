@@ -1,5 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.network;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import net.minecraft.item.ItemStack;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
@@ -359,7 +360,7 @@ public class PacketByteUtil {
         return buf.readVarLong();
     }
 
-    public static PacketByteBuf writeBoolean(PacketByteBuf buf, boolean b) {
+    public static ByteBuf writeBoolean(PacketByteBuf buf, boolean b) {
         return buf.writeBoolean(b);
     }
 
@@ -367,7 +368,7 @@ public class PacketByteUtil {
         return buf.readBoolean();
     }
 
-    public static PacketByteBuf writeByte(PacketByteBuf buf, byte b) {
+    public static ByteBuf writeByte(PacketByteBuf buf, byte b) {
         return buf.writeByte(b);
     }
 
@@ -375,7 +376,7 @@ public class PacketByteUtil {
         return buf.readByte();
     }
 
-    public static PacketByteBuf writeShort(PacketByteBuf buf, short s) {
+    public static ByteBuf writeShort(PacketByteBuf buf, short s) {
         return buf.writeShort(s);
     }
 
@@ -383,7 +384,7 @@ public class PacketByteUtil {
         return buf.readShort();
     }
 
-    public static PacketByteBuf writeInt(PacketByteBuf buf, int i) {
+    public static ByteBuf writeInt(PacketByteBuf buf, int i) {
         return buf.writeInt(i);
     }
 
@@ -391,7 +392,7 @@ public class PacketByteUtil {
         return buf.readInt();
     }
 
-    public static PacketByteBuf writeLong(PacketByteBuf buf, long l) {
+    public static ByteBuf writeLong(PacketByteBuf buf, long l) {
         return buf.writeLong(l);
     }
 
@@ -399,7 +400,7 @@ public class PacketByteUtil {
         return buf.readLong();
     }
 
-    public static PacketByteBuf writeFloat(PacketByteBuf buf, float f) {
+    public static ByteBuf writeFloat(PacketByteBuf buf, float f) {
         return buf.writeFloat(f);
     }
 
@@ -407,7 +408,7 @@ public class PacketByteUtil {
         return buf.readFloat();
     }
 
-    public static PacketByteBuf writeDouble(PacketByteBuf buf, double d) {
+    public static ByteBuf writeDouble(PacketByteBuf buf, double d) {
         return buf.writeDouble(d);
     }
 
@@ -448,7 +449,7 @@ public class PacketByteUtil {
     }
 
     public static NbtElement readUnlimitedNbt(PacketByteBuf buf) {
-        return buf.readNbt(NbtTagSizeTracker.ofUnlimitedBytes());
+        return buf.readNbt(new NbtTagSizeTracker(Long.MAX_VALUE));
     }
 }
 
