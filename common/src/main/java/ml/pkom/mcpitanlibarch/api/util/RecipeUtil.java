@@ -32,8 +32,13 @@ public class RecipeUtil {
     public static List<Recipe<?>> getAllRecipes(World world) {
         Collection<RecipeEntry<?>> recipes = world.getRecipeManager().values();
         List<Recipe<?>> outRecipes = new ArrayList<>();
-        for (RecipeEntry<?> recipeEntry : recipes) {
-            outRecipes.add(recipeEntry.value());
+        for (Object recipeEntryObj : recipes) {
+            if (recipeEntryObj instanceof RecipeEntry) {
+                RecipeEntry<?> recipeEntry = (RecipeEntry<?>) recipeEntryObj;
+                if (recipeEntry.value() instanceof Recipe) {
+                    outRecipes.add(recipeEntry.value());
+                }
+            }
         }
         return outRecipes;
     }
