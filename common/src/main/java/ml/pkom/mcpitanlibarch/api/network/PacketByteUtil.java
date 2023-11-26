@@ -4,6 +4,8 @@ import io.netty.buffer.Unpooled;
 import net.minecraft.item.ItemStack;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtTagSizeTracker;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -291,6 +293,162 @@ public class PacketByteUtil {
             Map map = (Map) obj;
             writeMap(buf, map);
         }
+    }
+
+    public static PacketByteBuf writeNbt(PacketByteBuf buf, NbtCompound nbt) {
+        return buf.writeNbt(nbt);
+    }
+
+    public static NbtCompound readNbt(PacketByteBuf buf) {
+        return buf.readNbt();
+    }
+
+    public static PacketByteBuf writeItemStack(PacketByteBuf buf, ItemStack stack) {
+        return buf.writeItemStack(stack);
+    }
+
+    public static ItemStack readItemStack(PacketByteBuf buf) {
+        return buf.readItemStack();
+    }
+
+    public static PacketByteBuf writeIdentifier(PacketByteBuf buf, Identifier identifier) {
+        return buf.writeIdentifier(identifier);
+    }
+
+    public static Identifier readIdentifier(PacketByteBuf buf) {
+        return buf.readIdentifier();
+    }
+
+    public static PacketByteBuf writeText(PacketByteBuf buf, Text text) {
+        return buf.writeText(text);
+    }
+
+    public static Text readText(PacketByteBuf buf) {
+        return buf.readText();
+    }
+
+    public static PacketByteBuf writeBlockPos(PacketByteBuf buf, BlockPos pos) {
+        return buf.writeBlockPos(pos);
+    }
+
+    public static BlockPos readBlockPos(PacketByteBuf buf) {
+        return buf.readBlockPos();
+    }
+
+    public static PacketByteBuf writeUuid(PacketByteBuf buf, UUID uuid) {
+        return buf.writeUuid(uuid);
+    }
+
+    public static UUID readUuid(PacketByteBuf buf) {
+        return buf.readUuid();
+    }
+
+    public static PacketByteBuf writeVarInt(PacketByteBuf buf, int i) {
+        return buf.writeVarInt(i);
+    }
+
+    public static int readVarInt(PacketByteBuf buf) {
+        return buf.readVarInt();
+    }
+
+    public static PacketByteBuf writeVarLong(PacketByteBuf buf, long l) {
+        return buf.writeVarLong(l);
+    }
+
+    public static long readVarLong(PacketByteBuf buf) {
+        return buf.readVarLong();
+    }
+
+    public static PacketByteBuf writeBoolean(PacketByteBuf buf, boolean b) {
+        return buf.writeBoolean(b);
+    }
+
+    public static boolean readBoolean(PacketByteBuf buf) {
+        return buf.readBoolean();
+    }
+
+    public static PacketByteBuf writeByte(PacketByteBuf buf, byte b) {
+        return buf.writeByte(b);
+    }
+
+    public static byte readByte(PacketByteBuf buf) {
+        return buf.readByte();
+    }
+
+    public static PacketByteBuf writeShort(PacketByteBuf buf, short s) {
+        return buf.writeShort(s);
+    }
+
+    public static short readShort(PacketByteBuf buf) {
+        return buf.readShort();
+    }
+
+    public static PacketByteBuf writeInt(PacketByteBuf buf, int i) {
+        return buf.writeInt(i);
+    }
+
+    public static int readInt(PacketByteBuf buf) {
+        return buf.readInt();
+    }
+
+    public static PacketByteBuf writeLong(PacketByteBuf buf, long l) {
+        return buf.writeLong(l);
+    }
+
+    public static long readLong(PacketByteBuf buf) {
+        return buf.readLong();
+    }
+
+    public static PacketByteBuf writeFloat(PacketByteBuf buf, float f) {
+        return buf.writeFloat(f);
+    }
+
+    public static float readFloat(PacketByteBuf buf) {
+        return buf.readFloat();
+    }
+
+    public static PacketByteBuf writeDouble(PacketByteBuf buf, double d) {
+        return buf.writeDouble(d);
+    }
+
+    public static double readDouble(PacketByteBuf buf) {
+        return buf.readDouble();
+    }
+
+    public static PacketByteBuf writeByteArray(PacketByteBuf buf, byte[] bytes) {
+        return buf.writeByteArray(bytes);
+    }
+
+    public static byte[] readByteArray(PacketByteBuf buf) {
+        return buf.readByteArray();
+    }
+
+    public static PacketByteBuf writeString(PacketByteBuf buf, String s) {
+        return buf.writeString(s);
+    }
+
+    public static String readString(PacketByteBuf buf) {
+        return buf.readString();
+    }
+
+    public static PacketByteBuf writeIntArray(PacketByteBuf buf, int[] ints) {
+        return buf.writeIntArray(ints);
+    }
+
+    public static int[] readIntArray(PacketByteBuf buf) {
+        return buf.readIntArray();
+    }
+
+    public static PacketByteBuf writeLongArray(PacketByteBuf buf, long[] longs) {
+        return buf.writeLongArray(longs);
+    }
+
+    public static long[] readLongArray(PacketByteBuf buf) {
+        return buf.readLongArray();
+    }
+
+    public static NbtElement readUnlimitedNbt(PacketByteBuf buf) {
+        return buf.readNbt(NbtTagSizeTracker.ofUnlimitedBytes());
     }
 }
 
