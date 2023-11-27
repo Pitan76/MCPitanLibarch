@@ -445,7 +445,8 @@ public class PacketByteUtil {
     }
 
     public static long[] readLongArray(PacketByteBuf buf) {
-        return buf.readLongArray();
+        long[] longs = new long[buf.readableBytes() / 8];
+        return buf.readLongArray(longs);
     }
 
     public static NbtElement readUnlimitedNbt(PacketByteBuf buf) {
