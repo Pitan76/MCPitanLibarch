@@ -10,7 +10,7 @@ import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 public class MCPitanLibarchNeoForge {
     public MCPitanLibarchNeoForge() {
         // Submit our event bus to let architectury register our content on the right time
-        EventBuses.registerModEventBus(MCPitanLibarch.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
+        //EventBuses.registerModEventBus(MCPitanLibarch.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
         //if (PlatformUtil.isDevelopmentEnvironment())
         //    EventBuses.registerModEventBus(ExampleMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
 
