@@ -17,7 +17,11 @@ public class PlatformUtil {
     }
 
     public static boolean isForge() {
-        return Platform.isForge();
+        return Platform.isMinecraftForge();
+    }
+
+    public static boolean isNeoForge() {
+        return Platform.isNeoForge();
     }
 
     public static boolean isModLoaded(String id) {

@@ -7,7 +7,7 @@ dependencies {
 }
 
 architectury {
-    common(forgeEnabled.toBoolean())
+    common("fabric", "forge", "neoforge")
 }
 
 loom {
