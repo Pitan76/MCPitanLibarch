@@ -49,9 +49,16 @@ public interface ExtendBlockEntityProvider extends BlockEntityProvider {
         return BlockEntityProvider.super.getTicker(world, state, type);
     }
 
+    @Nullable
+    default <T extends BlockEntity> ExtendBlockEntityTicker<T> getCompatibleTicker(World world, BlockState state, BlockEntityType<T> type) {
+        BlockEntityTicker<T> ticker = getTicker(world, state, type);
+        if (ticker instanceof ExtendBlockEntityTicker<T>)
+            return (ExtendBlockEntityTicker<T>) ticker;
+
+        return null;
+    }
+
     default boolean isTick() {
         return false;
     }
-
-
 }
