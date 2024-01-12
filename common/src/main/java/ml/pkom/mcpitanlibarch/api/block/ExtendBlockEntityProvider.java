@@ -52,7 +52,7 @@ public interface ExtendBlockEntityProvider extends BlockEntityProvider {
     @Nullable
     default <T extends BlockEntity> ExtendBlockEntityTicker<T> getCompatibleTicker(World world, BlockState state, BlockEntityType<T> type) {
         BlockEntityTicker<T> ticker = getTicker(world, state, type);
-        if (ticker instanceof ExtendBlockEntityTicker<T>)
+        if (ticker instanceof ExtendBlockEntityTicker<?>)
             return (ExtendBlockEntityTicker<T>) ticker;
 
         return null;
