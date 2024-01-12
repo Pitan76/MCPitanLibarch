@@ -60,6 +60,7 @@ public class ExtendBlockEntity extends BlockEntity implements Tickable {
         if (this instanceof ExtendBlockEntityTicker) {
             Block block = world.getMinecraftWorld().getBlockState(pos).getBlock();
             if (block instanceof ExtendBlockEntityProvider && ((ExtendBlockEntityProvider) block).isTick()) {
+
                 ExtendBlockEntityTicker<?> ticker = (ExtendBlockEntityTicker<?>) this;
                 ticker.tick(new TileTickEvent(world.getMinecraftWorld(), pos, getCachedState(), this));
             }
