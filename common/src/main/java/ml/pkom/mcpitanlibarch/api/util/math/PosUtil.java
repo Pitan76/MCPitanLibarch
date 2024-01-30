@@ -15,4 +15,12 @@ public class PosUtil {
     public static BlockPos flooredBlockPos(Vec3d pos) {
         return BlockPos.ofFloored(pos);
     }
+
+    public static double getSquaredDistance(BlockPos pos1, BlockPos pos2) {
+        return pos1.getSquaredDistance(pos2);
+    }
+
+    public static double getSquaredDistance(BlockPos pos1, double x, double y, double z) {
+        return pos1.getSquaredDistance(x, y, z);
+    }
 }
