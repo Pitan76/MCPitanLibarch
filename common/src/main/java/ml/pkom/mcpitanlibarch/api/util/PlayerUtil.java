@@ -4,6 +4,7 @@ import ml.pkom.mcpitanlibarch.api.entity.Player;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -70,5 +71,29 @@ public class PlayerUtil {
     
     public static void sendMessage(Player player, String message) {
         player.sendMessage(TextUtil.literal(message));
+    }
+
+    public static float getYaw(Player player) {
+        return player.getYaw();
+    }
+
+    public static float getPitch(Player player) {
+        return player.getPitch();
+    }
+
+    public static BlockPos getBlockPos(Player player) {
+        return player.getBlockPos();
+    }
+
+    public static World getWorld(Player player) {
+        return player.getWorld();
+    }
+
+    public static boolean isClient(Player player) {
+        return player.isClient();
+    }
+
+    public static void teleport(Player player, double x, double y, double z) {
+        player.teleport(x, y, z);
     }
 }

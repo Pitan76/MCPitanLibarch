@@ -273,4 +273,8 @@ public class Player {
     public <T> void incrementStat(StatType<T> type, T object) {
         getEntity().incrementStat(type.getOrCreateStat(object));
     }
+
+    public void teleport(double x, double y, double z) {
+        getEntity().teleport(x, y, z);
+    }
 }
