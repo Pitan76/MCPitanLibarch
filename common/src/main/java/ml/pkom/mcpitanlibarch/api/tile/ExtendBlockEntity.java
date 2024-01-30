@@ -16,7 +16,6 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class ExtendBlockEntity extends BlockEntity implements Tickable {
     ExtendWorld world;
@@ -33,13 +32,14 @@ public class ExtendBlockEntity extends BlockEntity implements Tickable {
         this.world = new ExtendWorld(world);
     }
 
-    @Nullable
     @Override
     @Deprecated
-    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+    public BlockEntityUpdateS2CPacket toUpdatePacket() {
         switch (getUpdatePacketType().name) {
             case "BLOCK_ENTITY_UPDATE_S2C":
-                return BlockEntityUpdateS2CPacket.create(this);
+                NbtCompound nbt = new NbtCompound();
+                writeNbtOverride(nbt);
+                return new BlockEntityUpdateS2CPacket(getPos(), 1, nbt);
         }
         return super.toUpdatePacket();
     }
