@@ -7,12 +7,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class ExtendBlockEntity extends BlockEntity {
     public ExtendWorld world;
@@ -24,13 +21,14 @@ public class ExtendBlockEntity extends BlockEntity {
         this(type, event.getBlockPos(), event.getBlockState());
     }
 
-    @Nullable
     @Override
     @Deprecated
-    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+    public BlockEntityUpdateS2CPacket toUpdatePacket() {
         switch (getUpdatePacketType().name) {
             case "BLOCK_ENTITY_UPDATE_S2C":
-                return BlockEntityUpdateS2CPacket.create(this);
+                NbtCompound nbt = new NbtCompound();
+                writeNbtOverride(nbt);
+                return new BlockEntityUpdateS2CPacket(getPos(), 1, nbt);
         }
         return super.toUpdatePacket();
     }

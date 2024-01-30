@@ -22,6 +22,6 @@ public class PosUtil {
     }
 
     public static double getSquaredDistance(BlockPos pos1, double x, double y, double z) {
-        return pos1.getSquaredDistance(x, y, z);
+        return getSquaredDistance(pos1, new BlockPos(x, y, z));
     }
 }
