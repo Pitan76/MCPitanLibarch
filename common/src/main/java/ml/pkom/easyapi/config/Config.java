@@ -36,6 +36,10 @@ public class Config implements IConfig {
         configMap = config.configMap;
     };
 
+    public boolean has(String key) {
+        return configMap.containsKey(key);
+    }
+
     /**
      * マップのキーから値を取得
      * "."でパスを区切る
