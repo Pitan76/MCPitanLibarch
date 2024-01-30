@@ -92,7 +92,7 @@ public class WorldUtil {
     }
 
     public static BlockPos getSpawnPos(World world) {
-        return world.getSpawnPos();
+        return new BlockPos(world.getLevelProperties().getSpawnX(), world.getLevelProperties().getSpawnY(), world.getLevelProperties().getSpawnZ());
     }
 
     public static World getWorld(World world, Identifier worldId) {
