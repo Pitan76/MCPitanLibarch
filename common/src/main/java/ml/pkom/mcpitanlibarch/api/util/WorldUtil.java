@@ -8,10 +8,16 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -83,5 +89,46 @@ public class WorldUtil {
 
     public static void sendEntityStatus(World world, Entity entity, byte status) {
         world.sendEntityStatus(entity, status);
+    }
+
+    public static BlockPos getSpawnPos(World world) {
+        return world.getSpawnPos();
+    }
+
+    public static World getWorld(World world, Identifier worldId) {
+        if (isClient(world)) return null;
+        return getWorld(world.getServer(), worldId);
+    }
+
+    public static World getOverworld(MinecraftServer server) {
+        return server.getWorld(World.OVERWORLD);
+    }
+
+    public static World getNether(MinecraftServer server) {
+        return server.getWorld(World.NETHER);
+    }
+
+    public static World getEnd(MinecraftServer server) {
+        return server.getWorld(World.END);
+    }
+
+    public static World getWorld(MinecraftServer server, Identifier worldId) {
+        return server.getWorld(RegistryKey.of(RegistryKeys.WORLD, worldId));
+    }
+
+    public static Identifier getWorldId(World world) {
+        return world.getRegistryKey().getValue();
+    }
+
+    public static boolean equals(World world, World world2) {
+        return Objects.equals(getWorldId(world), getWorldId(world2));
+    }
+
+    public static <T> void addTicket(ServerWorld world, ChunkTicketType<T> type, ChunkPos pos, int radius, T argument) {
+        world.getChunkManager().addTicket(type, pos, radius, argument);
+    }
+
+    public static <T> void removeTicket(ServerWorld world, ChunkTicketType<T> type, ChunkPos pos, int radius, T argument) {
+        world.getChunkManager().removeTicket(type, pos, radius, argument);
     }
 }
