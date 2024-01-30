@@ -14,7 +14,6 @@ public class ActionResultUtil {
             case FAIL:
                 return TypedActionResult.fail(t);
             case CONSUME:
-            case CONSUME_PARTIAL:
                 return TypedActionResult.consume(t);
         }
         return TypedActionResult.pass(t);
