@@ -6,6 +6,8 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
+import java.util.function.Supplier;
+
 public class CompatibleItemSettings {
     private final ExtendSettings settings = new ExtendSettings();
 
@@ -14,6 +16,7 @@ public class CompatibleItemSettings {
     }
 
     // ～1.19.2
+    @Deprecated
     public CompatibleItemSettings addGroup(ItemGroup itemGroup) {
         settings.addGroup(itemGroup);
         return this;
@@ -21,7 +24,13 @@ public class CompatibleItemSettings {
 
     // 1.19.3～
     // identifier: Item ID
+    @Deprecated
     public CompatibleItemSettings addGroup(ItemGroup itemGroup, Identifier identifier) {
+        settings.addGroup(itemGroup, identifier);
+        return this;
+    }
+
+    public CompatibleItemSettings addGroup(Supplier<ItemGroup> itemGroup, Identifier identifier) {
         settings.addGroup(itemGroup, identifier);
         return this;
     }
