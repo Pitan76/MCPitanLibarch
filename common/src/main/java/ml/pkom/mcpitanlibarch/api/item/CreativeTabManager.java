@@ -1,6 +1,5 @@
 package ml.pkom.mcpitanlibarch.api.item;
 
-import dev.architectury.registry.CreativeTabRegistry;
 import ml.pkom.mcpitanlibarch.api.util.ItemUtil;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
