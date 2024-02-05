@@ -15,7 +15,7 @@ public class ConfigCommand extends LiteralCommand {
 
     public final Config config;
     public File file;
-    public Supplier<Void> defaultConfigFunction;
+    public Supplier<Boolean> defaultConfigFunction;
     public String prefix = "[MCPitanLib]";
     
     public ConfigCommand(Config config, File file, String prefix) {
@@ -24,14 +24,14 @@ public class ConfigCommand extends LiteralCommand {
         this.prefix = prefix;
     }
     
-    public ConfigCommand(Config config, File file, String prefix, @Nullable Supplier<Void> supplier) {
+    public ConfigCommand(Config config, File file, String prefix, @Nullable Supplier<Boolean> supplier) {
         this.config = config;
         this.file = file;
         this.defaultConfigFunction = supplier;
         this.prefix = prefix;
     }
     
-    public ConfigCommand(Config config, File file, @Nullable Supplier<Void> supplier) {
+    public ConfigCommand(Config config, File file, @Nullable Supplier<Boolean> supplier) {
         this.config = config;
         this.file = file;
         this.defaultConfigFunction = supplier;
