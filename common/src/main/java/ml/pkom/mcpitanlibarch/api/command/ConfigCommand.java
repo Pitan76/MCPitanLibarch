@@ -50,73 +50,95 @@ public class ConfigCommand extends LiteralCommand {
     public void init(CommandSettings settings) {
         settings.permissionLevel(3);
 
-        addArgumentCommand("set", new StringCommand() {
-            @Override
-            public String getArgumentName() {
-                return "key";
-            }
-
+        addArgumentCommand("set", new LiteralCommand() {
             @Override
             public void init(CommandSettings settings) {
 
-                addArgumentCommand("value", new StringCommand() {
+                addArgumentCommand("key", new StringCommand() {
                     @Override
                     public String getArgumentName() {
-                        return "value";
+                        return "key";
+                    }
+
+
+                    @Override
+                    public void init(CommandSettings settings) {
+
+                        addArgumentCommand("value", new StringCommand() {
+                            @Override
+                            public String getArgumentName() {
+                                return "value";
+                            }
+
+                            @Override
+                            public void execute(StringCommandEvent event) {
+                                String key = StringArgumentType.getString(event.context, "key");
+                                String value = StringArgumentType.getString(event.context, "value");
+                                if (config.get(key) == null) {
+                                    event.sendFailure(TextUtil.literal(prefix + " Key not found."));
+                                    return;
+                                }
+                                if (config.get(key).getClass() == String.class) {
+                                    config.setString(key, value);
+                                    event.sendSuccess(TextUtil.literal(prefix + " Set " + key + " to " + value), false);
+
+                                } else if (config.get(key).getClass() == Integer.class) {
+                                    config.setInt(key, Integer.parseInt(value));
+                                    event.sendSuccess(TextUtil.literal(prefix + " Set " + key + " to " + value), false);
+
+                                } else if (config.get(key).getClass() == Double.class) {
+                                    config.setDouble(key, Double.parseDouble(value));
+                                    event.sendSuccess(TextUtil.literal(prefix + " Set " + key + " to " + value), false);
+
+                                } else if (config.get(key).getClass() == Boolean.class) {
+                                    config.setBoolean(key, Boolean.parseBoolean(value));
+                                    event.sendSuccess(TextUtil.literal(prefix + " Set " + key + " to " + value), false);
+
+                                } else {
+                                    event.sendFailure(TextUtil.literal(prefix + " Not supported type."));
+                                }
+                                if (file != null)
+                                    config.save(file);
+                            }
+                        });
                     }
 
                     @Override
                     public void execute(StringCommandEvent event) {
-                        String key = StringArgumentType.getString(event.context, "key");
-                        String value = StringArgumentType.getString(event.context, "value");
-                        if (config.get(key) == null) {
-                            event.sendFailure(TextUtil.literal(prefix + " Key not found."));
-                            return;
-                        }
-                        if (config.get(key).getClass() == String.class) {
-                            config.setString(key, value);
-                            event.sendSuccess(TextUtil.literal(prefix + " Set " + key + " to " + value), false);
-
-                        } else if (config.get(key).getClass() == Integer.class) {
-                            config.setInt(key, Integer.parseInt(value));
-                            event.sendSuccess(TextUtil.literal(prefix + " Set " + key + " to " + value), false);
-
-                        } else if (config.get(key).getClass() == Double.class) {
-                            config.setDouble(key, Double.parseDouble(value));
-                            event.sendSuccess(TextUtil.literal(prefix + " Set " + key + " to " + value), false);
-
-                        } else if (config.get(key).getClass() == Boolean.class) {
-                            config.setBoolean(key, Boolean.parseBoolean(value));
-                            event.sendSuccess(TextUtil.literal(prefix + " Set " + key + " to " + value), false);
-
-                        } else {
-                            event.sendFailure(TextUtil.literal(prefix + " Not supported type."));
-                        }
-                        if (file != null)
-                            config.save(file);
                     }
                 });
             }
 
             @Override
-            public void execute(StringCommandEvent event) {
+            public void execute(ServerCommandEvent event) {
+
             }
         });
 
-        addArgumentCommand("get", new StringCommand() {
+        addArgumentCommand("get", new LiteralCommand() {
             @Override
-            public String getArgumentName() {
-                return "key";
+            public void init(CommandSettings settings) {
+                addArgumentCommand("key", new StringCommand() {
+                    @Override
+                    public String getArgumentName() {
+                        return "key";
+                    }
+
+                    @Override
+                    public void execute(StringCommandEvent event) {
+                        String key = StringArgumentType.getString(event.context, "key");
+                        if (config.get(key) == null) {
+                            event.sendFailure(TextUtil.literal(prefix + " Key not found."));
+                            return;
+                        }
+                        event.sendSuccess(TextUtil.literal(prefix + " " + key + ": " + config.get(key).toString()), false);
+                    }
+                });
             }
 
             @Override
-            public void execute(StringCommandEvent event) {
-                String key = StringArgumentType.getString(event.context, "key");
-                if (config.get(key) == null) {
-                    event.sendFailure(TextUtil.literal(prefix + " Key not found."));
-                    return;
-                }
-                event.sendSuccess(TextUtil.literal(prefix + " " + key + ": " + config.get(key).toString()), false);
+            public void execute(ServerCommandEvent event) {
+
             }
         });
 
