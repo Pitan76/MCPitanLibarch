@@ -146,6 +146,6 @@ public class WorldUtil {
     }
 
     public static int getDimensionHeight(World world) {
-        return world.getDimension().getHeight();
+        return world.getDimension().getLogicalHeight();
     }
 }
