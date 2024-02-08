@@ -3,12 +3,16 @@ package ml.pkom.mcpitanlibarch.api.item.tool;
 import ml.pkom.mcpitanlibarch.api.item.CompatibleItemSettings;
 import ml.pkom.mcpitanlibarch.api.item.ExtendItemProvider;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShovelItem;
+import net.minecraft.item.ToolMaterial;
 
 public class CompatibleShovelItem extends ShovelItem implements ExtendItemProvider {
     public CompatibleShovelItem(CompatibleToolMaterial material, float attackDamage, float attackSpeed, CompatibleItemSettings settings) {
+        super(material, attackDamage, attackSpeed, settings.build());
+    }
+
+    public CompatibleShovelItem(ToolMaterial material, float attackDamage, float attackSpeed, CompatibleItemSettings settings) {
         super(material, attackDamage, attackSpeed, settings.build());
     }
 
