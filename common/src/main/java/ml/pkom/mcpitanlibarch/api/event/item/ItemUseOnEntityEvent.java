@@ -36,4 +36,8 @@ public class ItemUseOnEntityEvent extends BaseEvent {
     public LivingEntity getEntity() {
         return entity;
     }
+
+    public boolean isClient() {
+        return user.isClient();
+    }
 }
