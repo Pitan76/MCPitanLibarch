@@ -137,7 +137,7 @@ public class WorldUtil {
     }
 
     public static int getBottomY(World world) {
-        return world.getBottomY();
+        return 0;
     }
 
     public static int getTopY(World world) {
