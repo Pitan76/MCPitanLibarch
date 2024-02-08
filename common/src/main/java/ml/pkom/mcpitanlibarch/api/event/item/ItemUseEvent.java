@@ -32,8 +32,11 @@ public class ItemUseEvent extends BaseEvent {
     public World getWorld() {
         return world;
     }
-
     public Player getUser() {
         return user;
+    }
+
+    public boolean isClient() {
+        return world.isClient();
     }
 }

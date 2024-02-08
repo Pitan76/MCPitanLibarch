@@ -131,4 +131,16 @@ public class WorldUtil {
     public static <T> void removeTicket(ServerWorld world, ChunkTicketType<T> type, ChunkPos pos, int radius, T argument) {
         world.getChunkManager().removeTicket(type, pos, radius, argument);
     }
+
+    public static boolean isReceivingRedstonePower(World world, BlockPos pos) {
+        return world.isReceivingRedstonePower(pos);
+    }
+
+    public static int getBottomY(World world) {
+        return world.getBottomY();
+    }
+
+    public static int getTopY(World world) {
+        return world.getTopY();
+    }
 }
