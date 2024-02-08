@@ -6,9 +6,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolMaterial;
 
 public class CompatibleHoeItem extends HoeItem implements ExtendItemProvider {
     public CompatibleHoeItem(CompatibleToolMaterial material, int attackDamage, float attackSpeed, CompatibleItemSettings settings) {
+        super(material, attackDamage, attackSpeed, settings.build());
+    }
+
+    public CompatibleHoeItem(ToolMaterial material, int attackDamage, float attackSpeed, CompatibleItemSettings settings) {
         super(material, attackDamage, attackSpeed, settings.build());
     }
 

@@ -5,9 +5,14 @@ import ml.pkom.mcpitanlibarch.api.item.ExtendItemProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ToolMaterial;
 
 public class CompatiblePickaxeItem extends PickaxeItem implements ExtendItemProvider {
     public CompatiblePickaxeItem(CompatibleToolMaterial material, int attackDamage, float attackSpeed, CompatibleItemSettings settings) {
+        super(material, attackDamage, attackSpeed, settings.build());
+    }
+
+    public CompatiblePickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, CompatibleItemSettings settings) {
         super(material, attackDamage, attackSpeed, settings.build());
     }
 
