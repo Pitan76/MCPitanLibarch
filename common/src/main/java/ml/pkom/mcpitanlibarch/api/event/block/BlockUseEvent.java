@@ -56,4 +56,8 @@ public class BlockUseEvent extends BaseEvent {
     public BlockPos getPos() {
         return pos;
     }
+
+    public boolean isClient() {
+        return world.isClient();
+    }
 }

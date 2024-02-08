@@ -98,4 +98,14 @@ public class ExtendItem extends Item {
     public void appendTooltip(ItemAppendTooltipEvent event) {
         super.appendTooltip(event.stack, event.world, event.tooltip, event.context);
     }
+
+    @Deprecated
+    @Override
+    public void onCraft(ItemStack stack, World world) {
+        onCraft(new CraftEvent(stack, world));
+    }
+
+    public void onCraft(CraftEvent event) {
+        super.onCraft(event.stack, event.world);
+    }
 }

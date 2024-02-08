@@ -6,9 +6,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolMaterial;
 
 public class CompatibleSwordItem extends SwordItem implements ExtendItemProvider {
     public CompatibleSwordItem(CompatibleToolMaterial material, int attackDamage, float attackSpeed, CompatibleItemSettings settings) {
+        super(material, attackDamage, attackSpeed, settings.build());
+    }
+
+    public CompatibleSwordItem(ToolMaterial material, int attackDamage, float attackSpeed, CompatibleItemSettings settings) {
         super(material, attackDamage, attackSpeed, settings.build());
     }
 
