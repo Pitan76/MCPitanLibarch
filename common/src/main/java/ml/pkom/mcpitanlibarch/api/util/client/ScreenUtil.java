@@ -6,6 +6,7 @@ import ml.pkom.mcpitanlibarch.api.client.render.DrawObjectDM;
 import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.RenderArgs;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
@@ -133,5 +134,13 @@ public class ScreenUtil {
             RenderUtil.setShaderTexture(0, texture);
             DrawableHelper.drawTexture(drawObjectDM.getStack(), x, y, u, v, width, height, 256, 256);
         }
+
+        public static TextRenderer getTextRenderer() {
+            return MinecraftClient.getInstance().textRenderer;
+        }
+    }
+
+    public static int getWidth(Text text) {
+        return RendererUtil.getTextRenderer().getWidth(text);
     }
 }

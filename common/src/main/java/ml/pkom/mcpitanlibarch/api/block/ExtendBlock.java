@@ -1,14 +1,13 @@
 package ml.pkom.mcpitanlibarch.api.block;
 
-import ml.pkom.mcpitanlibarch.api.event.block.BlockScheduledTickEvent;
-import ml.pkom.mcpitanlibarch.api.event.block.BlockUseEvent;
-import ml.pkom.mcpitanlibarch.api.event.block.OutlineShapeEvent;
-import ml.pkom.mcpitanlibarch.api.event.block.ScreenHandlerCreateEvent;
+import ml.pkom.mcpitanlibarch.api.event.block.*;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
@@ -23,7 +22,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
+import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.Nullable;
 
 public class ExtendBlock extends Block {
     public ExtendBlock(Settings settings) {
@@ -85,5 +85,35 @@ public class ExtendBlock extends Block {
     @Nullable
     public Text getScreenTitle() {
         return TextUtil.literal("");
+    }
+
+    @Override
+    @Deprecated
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        onPlaced(new BlockPlacedEvent(world, pos, state, placer, itemStack));
+    }
+
+    public void onPlaced(BlockPlacedEvent event) {
+        super.onPlaced(event.world, event.pos, event.state, event.placer, event.stack);
+    }
+
+    @Override
+    @Deprecated
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        return onBreak(new BlockBreakEvent(world, pos, state, player));
+    }
+
+    public BlockState onBreak(BlockBreakEvent event) {
+        return super.onBreak(event.world, event.pos, event.state, event.getPlayerEntity());
+    }
+
+    @Override
+    @Deprecated
+    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+        return getPickStack(new PickStackEvent(world, pos, state));
+    }
+
+    public ItemStack getPickStack(PickStackEvent event) {
+        return super.getPickStack(event.worldView, event.pos, event.state);
     }
 }
