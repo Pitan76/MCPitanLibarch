@@ -100,21 +100,22 @@ public class ExtendBlock extends Block {
 
     @Override
     @Deprecated
-    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        return onBreak(new BlockBreakEvent(world, pos, state, player));
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        onBreak(new BlockBreakEvent(world, pos, state, player));
     }
 
     public BlockState onBreak(BlockBreakEvent event) {
-        return super.onBreak(event.world, event.pos, event.state, event.getPlayerEntity());
+        super.onBreak(event.world, event.pos, event.state, event.getPlayerEntity());
+        return event.state;
     }
 
     @Override
     @Deprecated
-    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         return getPickStack(new PickStackEvent(world, pos, state));
     }
 
     public ItemStack getPickStack(PickStackEvent event) {
-        return super.getPickStack(event.worldView, event.pos, event.state);
+        return super.getPickStack(event.blockView, event.pos, event.state);
     }
 }
