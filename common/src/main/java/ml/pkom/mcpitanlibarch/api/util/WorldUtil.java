@@ -144,4 +144,8 @@ public class WorldUtil {
     public static int getTopY(World world) {
         return world.getTopY(Heightmap.Type.MOTION_BLOCKING, 0, 0);
     }
+
+    public static int getDimensionHeight(World world) {
+        return world.getDimension().height();
+    }
 }

@@ -12,7 +12,7 @@ public class CompatibleShovelItem extends ShovelItem implements ExtendItemProvid
         super(material, attackDamage, attackSpeed, settings.build());
     }
 
-    public CompatibleShovelItem(ToolMaterial material, float attackDamage, float attackSpeed, CompatibleItemSettings settings) {
+    public CompatibleShovelItem(float attackDamage, float attackSpeed, ToolMaterial material, CompatibleItemSettings settings) {
         super(material, attackDamage, attackSpeed, settings.build());
     }
 
