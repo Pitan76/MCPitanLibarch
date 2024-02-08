@@ -13,7 +13,7 @@ public class CompatibleHoeItem extends HoeItem implements ExtendItemProvider {
         super(material, attackDamage, attackSpeed, settings.build());
     }
 
-    public CompatibleHoeItem(ToolMaterial material, int attackDamage, float attackSpeed, CompatibleItemSettings settings) {
+    public CompatibleHoeItem(int attackDamage, float attackSpeed, ToolMaterial material, CompatibleItemSettings settings) {
         super(material, attackDamage, attackSpeed, settings.build());
     }
 

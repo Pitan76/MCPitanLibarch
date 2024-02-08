@@ -13,7 +13,7 @@ public class CompatibleAxeItem extends AxeItem implements ExtendItemProvider {
         super(material, attackDamage, attackSpeed, settings.build());
     }
 
-    public CompatibleAxeItem(ToolMaterial material, float attackDamage, float attackSpeed, CompatibleItemSettings settings) {
+    public CompatibleAxeItem(float attackDamage, float attackSpeed, ToolMaterial material, CompatibleItemSettings settings) {
         super(material, attackDamage, attackSpeed, settings.build());
     }
 
