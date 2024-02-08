@@ -41,7 +41,7 @@ public class ExtendBlock extends Block {
     @Deprecated
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return super.getOutlineShape(state, world, pos, context);
+        return getOutlineShape(new OutlineShapeEvent(state, world, pos, context));
     }
 
     public void scheduledTick(BlockScheduledTickEvent event) {
@@ -115,5 +115,15 @@ public class ExtendBlock extends Block {
 
     public ItemStack getPickStack(PickStackEvent event) {
         return super.getPickStack(event.worldView, event.pos, event.state);
+    }
+
+    @Override
+    @Deprecated
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        onStateReplaced(new StateReplacedEvent(state, world, pos, newState, moved));
+    }
+
+    public void onStateReplaced(StateReplacedEvent event) {
+        super.onStateReplaced(event.state, event.world, event.pos, event.newState, event.moved);
     }
 }
