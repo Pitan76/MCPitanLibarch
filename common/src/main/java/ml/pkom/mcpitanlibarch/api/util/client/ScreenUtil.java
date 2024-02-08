@@ -130,5 +130,13 @@ public class ScreenUtil {
             RenderUtil.setShaderTexture(0, texture);
             DrawableHelper.drawTexture(drawObjectDM.getStack(), x, y, u, v, width, height, 256, 256);
         }
+
+        public static TextRenderer getTextRenderer() {
+            return MinecraftClient.getInstance().textRenderer;
+        }
+    }
+
+    public static int getWidth(Text text) {
+        return RendererUtil.getTextRenderer().getWidth(text);
     }
 }
