@@ -19,6 +19,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -141,6 +142,6 @@ public class WorldUtil {
     }
 
     public static int getTopY(World world) {
-        return world.getTopY();
+        return world.getTopY(Heightmap.Type.MOTION_BLOCKING, 0, 0);
     }
 }
