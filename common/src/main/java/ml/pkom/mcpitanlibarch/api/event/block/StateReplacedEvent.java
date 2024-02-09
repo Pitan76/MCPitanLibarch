@@ -14,7 +14,11 @@ public class StateReplacedEvent extends BaseEvent {
     public boolean moved;
 
     public StateReplacedEvent(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        super();
+        this.state = state;
+        this.world = world;
+        this.pos = pos;
+        this.newState = newState;
+        this.moved = moved;
     }
 
     public BlockState getState() {
