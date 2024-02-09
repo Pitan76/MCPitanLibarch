@@ -1,6 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.block;
 
 import ml.pkom.mcpitanlibarch.api.event.block.*;
+import ml.pkom.mcpitanlibarch.api.event.block.result.BlockBreakResult;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -104,9 +105,9 @@ public class ExtendBlock extends Block {
         onBreak(new BlockBreakEvent(world, pos, state, player));
     }
 
-    public BlockState onBreak(BlockBreakEvent event) {
+    public BlockBreakResult onBreak(BlockBreakEvent event) {
         super.onBreak(event.world, event.pos, event.state, event.getPlayerEntity());
-        return event.state;
+        return new BlockBreakResult(event.state);
     }
 
     @Override
