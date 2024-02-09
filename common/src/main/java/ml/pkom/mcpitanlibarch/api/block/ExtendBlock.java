@@ -1,6 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.block;
 
 import ml.pkom.mcpitanlibarch.api.event.block.*;
+import ml.pkom.mcpitanlibarch.api.event.block.result.BlockBreakResult;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -21,8 +22,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-
-import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 public class ExtendBlock extends Block {
@@ -103,9 +102,9 @@ public class ExtendBlock extends Block {
         onBreak(new BlockBreakEvent(world, pos, state, player));
     }
 
-    public BlockState onBreak(BlockBreakEvent event) {
+    public BlockBreakResult onBreak(BlockBreakEvent event) {
         super.onBreak(event.world, event.pos, event.state, event.getPlayerEntity());
-        return event.state;
+        return new BlockBreakResult(event.state);
     }
 
     @Override
