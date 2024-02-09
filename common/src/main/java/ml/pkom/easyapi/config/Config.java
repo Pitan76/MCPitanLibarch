@@ -129,6 +129,80 @@ public class Config implements IConfig {
     }
 
     /**
+     * マップのキーから値を取得、存在しない場合はデフォルト値を返す
+     * "."でパスを区切る
+     *
+     * @param key キー
+     * @param defaultValue デフォルト値
+     * @return 取得した値
+     */
+    public Object getOrDefault(String key, Object defaultValue) {
+        if (has(key)) {
+            return get(key);
+        }
+        return defaultValue;
+    }
+
+    /**
+     * マップのキーから値(文字列)を取得、存在しない場合はデフォルト値を返す
+     * "."でパスを区切る
+     *
+     * @param key キー
+     * @param defaultValue デフォルト値
+     * @return 取得した値
+     */
+    public String getStringOrDefault(String key, String defaultValue) {
+        if (has(key)) {
+            return getString(key);
+        }
+        return defaultValue;
+    }
+
+    /**
+     * マップのキーから値(数値)を取得、存在しない場合はデフォルト値を返す
+     * "."でパスを区切る
+     *
+     * @param key キー
+     * @param defaultValue デフォルト値
+     * @return 取得した値
+     */
+    public int getIntOrDefault(String key, int defaultValue) {
+        if (has(key)) {
+            return getInt(key);
+        }
+        return defaultValue;
+    }
+
+    /**
+     * マップのキーから値(数値)を取得、存在しない場合はデフォルト値を返す
+     * "."でパスを区切る
+     *
+     * @param key キー
+     * @param defaultValue デフォルト値
+     * @return 取得した値
+     */
+    public double getDoubleOrDefault(String key, double defaultValue) {
+        if (has(key)) {
+            return getDouble(key);
+        }
+        return defaultValue;
+    }
+    /**
+     * マップのキーから値(真偽値)を取得、存在しない場合はデフォルト値を返す
+     * "."でパスを区切る
+     *
+     * @param key キー
+     * @param defaultValue デフォルト値
+     * @return 取得した値
+     */
+    public boolean getBooleanOrDefault(String key, boolean defaultValue) {
+        if (has(key)) {
+            return getBoolean(key);
+        }
+        return defaultValue;
+    }
+
+    /**
      * マップのキーに値をセット
      * "."でパスを区切る
      * 失敗するとfalseを返す
@@ -217,6 +291,17 @@ public class Config implements IConfig {
      */
     public boolean setBoolean(String key, boolean value) {
         return set(key, value);
+    }
+
+    /**
+     * マップのキーから値を削除
+     * "."でパスを区切る
+     *
+     * @param key キー
+     * @return 真偽値
+     */
+    public boolean remove(String key) {
+        return configMap.remove(key) != null;
     }
 
     /**
