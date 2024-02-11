@@ -25,7 +25,7 @@ public class BoxUtil {
     }
 
     public static Box createBox(BlockPos pos1, BlockPos pos2) {
-        return new Box(pos1.toCenterPos(), pos2.toCenterPos());
+        return new Box(pos1, pos2);
     }
 
     public static Box createBox(BlockPos pos, int size) {
