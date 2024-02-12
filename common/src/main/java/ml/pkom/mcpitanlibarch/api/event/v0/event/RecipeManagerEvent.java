@@ -3,7 +3,7 @@ package ml.pkom.mcpitanlibarch.api.event.v0.event;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.JsonElement;
 import ml.pkom.mcpitanlibarch.api.recipe.CompatibleRecipeEntry;
-import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
@@ -17,9 +17,9 @@ public class RecipeManagerEvent {
     public Profiler profiler;
 
     @Deprecated
-    public Map<RecipeType<?>, ImmutableMap.Builder<Identifier, RecipeEntry<?>>> map;
+    public Map<RecipeType<?>, ImmutableMap.Builder<Identifier, Recipe<?>>> map;
 
-    public RecipeManagerEvent(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, Map<RecipeType<?>, ImmutableMap.Builder<Identifier, RecipeEntry<?>>> map2) {
+    public RecipeManagerEvent(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, Map<RecipeType<?>, ImmutableMap.Builder<Identifier, Recipe<?>>> map2) {
         this.jsonMap = map;
         this.resourceManager = resourceManager;
         this.profiler = profiler;
@@ -31,7 +31,7 @@ public class RecipeManagerEvent {
     }
 
     @Deprecated
-    public Map<RecipeType<?>, ImmutableMap.Builder<Identifier, RecipeEntry<?>>> getMap() {
+    public Map<RecipeType<?>, ImmutableMap.Builder<Identifier, Recipe<?>>> getMap() {
         return map;
     }
 
@@ -44,6 +44,10 @@ public class RecipeManagerEvent {
     }
 
     public void putCompatibleRecipeEntry(Identifier id, CompatibleRecipeEntry entry) {
-        map.get(entry.getType()).put(entry.getId(), entry.getRecipeEntry());
+        map.get(entry.getType()).put(id, entry.getRecipe());
+    }
+
+    public void putCompatibleRecipeEntry(CompatibleRecipeEntry entry) {
+        map.get(entry.getType()).put(entry.getId(), entry.getRecipe());
     }
 }
