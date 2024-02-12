@@ -11,6 +11,7 @@ public class CompatibleRecipeEntry {
     public String group = "";
     public RecipeUtil.CompatibilityCraftingRecipeCategory category = null;
 
+    @Deprecated
     public CompatibleRecipeEntry(RecipeEntry<?> entry) {
         this.entry = entry;
     }

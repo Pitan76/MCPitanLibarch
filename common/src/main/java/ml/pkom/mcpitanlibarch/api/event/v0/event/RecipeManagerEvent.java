@@ -46,4 +46,8 @@ public class RecipeManagerEvent {
     public void putCompatibleRecipeEntry(Identifier id, CompatibleRecipeEntry entry) {
         map.get(entry.getType()).put(entry.getId(), entry.getRecipeEntry());
     }
+
+    public void putCompatibleRecipeEntry(CompatibleRecipeEntry entry) {
+        map.get(entry.getType()).put(entry.getId(), entry.getRecipeEntry());
+    }
 }
