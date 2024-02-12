@@ -5,6 +5,7 @@ import ml.pkom.mcpitanlibarch.api.event.BaseEvent;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -59,5 +60,21 @@ public class BlockUseEvent extends BaseEvent {
 
     public boolean isClient() {
         return world.isClient();
+    }
+
+    public ActionResult success() {
+        return ActionResult.SUCCESS;
+    }
+
+    public ActionResult fail() {
+        return ActionResult.FAIL;
+    }
+
+    public ActionResult pass() {
+        return ActionResult.PASS;
+    }
+
+    public ActionResult consume() {
+        return ActionResult.CONSUME;
     }
 }
