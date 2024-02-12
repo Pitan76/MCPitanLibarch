@@ -83,4 +83,20 @@ public class MCPitanLibarch {
     public static Identifier id(String path) {
         return new Identifier(MOD_ID, path);
     }
+
+    public static boolean isItemBlackListed(Identifier id) {
+        try {
+            return itemBlackList.contains(id.toString());
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean isBlockBlackListed(Identifier id) {
+        try {
+            return blockBlackList.contains(id.toString());
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

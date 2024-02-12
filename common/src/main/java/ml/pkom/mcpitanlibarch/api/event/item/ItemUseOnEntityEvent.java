@@ -5,6 +5,7 @@ import ml.pkom.mcpitanlibarch.api.event.BaseEvent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
 public class ItemUseOnEntityEvent extends BaseEvent {
@@ -39,5 +40,21 @@ public class ItemUseOnEntityEvent extends BaseEvent {
 
     public boolean isClient() {
         return user.isClient();
+    }
+
+    public ActionResult success() {
+        return ActionResult.SUCCESS;
+    }
+
+    public ActionResult fail() {
+        return ActionResult.FAIL;
+    }
+
+    public ActionResult pass() {
+        return ActionResult.PASS;
+    }
+
+    public ActionResult consume() {
+        return ActionResult.CONSUME;
     }
 }
