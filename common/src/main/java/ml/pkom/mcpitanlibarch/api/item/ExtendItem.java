@@ -2,7 +2,7 @@ package ml.pkom.mcpitanlibarch.api.item;
 
 import ml.pkom.mcpitanlibarch.Dummy;
 import ml.pkom.mcpitanlibarch.api.event.item.*;
-import ml.pkom.mcpitanlibarch.mixin.ItemUsageContextMixin;
+import net.pitan76.mcpitanlib.mixin.ItemUsageContextMixin;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
