@@ -2,29 +2,29 @@ package ml.pkom.mcpitanlibarch.api.util;
 
 import net.minecraft.text.*;
 
+@Deprecated
 public class TextUtil {
     public static MutableText literal(String string) {
-        return Text.literal(string);
+        return net.pitan76.mcpitanlib.api.util.TextUtil.literal(string);
     }
 
     public static MutableText translatable(String key) {
-        return Text.translatable(key);
+        return net.pitan76.mcpitanlib.api.util.TextUtil.translatable(key);
     }
 
     public static MutableText translatable(String key, Object... args) {
-        return Text.translatable(key, args);
+        return net.pitan76.mcpitanlib.api.util.TextUtil.translatable(key, args);
     }
 
     public static MutableText empty() {
-        //return Text.empty();
-        return literal("");
+        return net.pitan76.mcpitanlib.api.util.TextUtil.empty();
     }
 
     public static MutableText keybind(String string) {
-        return Text.keybind(string);
+        return net.pitan76.mcpitanlib.api.util.TextUtil.keybind(string);
     }
 
     public static String txt2str(Text text) {
-        return text.getString();
+        return net.pitan76.mcpitanlib.api.util.TextUtil.txt2str(text);
     }
 }

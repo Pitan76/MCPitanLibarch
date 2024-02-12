@@ -1,12 +1,12 @@
 package ml.pkom.mcpitanlibarch.neoforge;
 
 import dev.architectury.platform.Platform;
-import ml.pkom.mcpitanlibarch.MCPitanLibarch;
+import net.pitan76.mcpitanlib.MCPitanLib;
 import ml.pkom.mcpitanlibarch.neoforge.client.MCPitanLibarchNeoForgeClient;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(MCPitanLibarch.MOD_ID)
+@Mod(MCPitanLib.MOD_ID)
 public class MCPitanLibarchNeoForge {
     public MCPitanLibarchNeoForge() {
         // Submit our event bus to let architectury register our content on the right time
@@ -14,7 +14,7 @@ public class MCPitanLibarchNeoForge {
         //if (PlatformUtil.isDevelopmentEnvironment())
         //    EventBuses.registerModEventBus(ExampleMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
 
-        MCPitanLibarch.init();
+        MCPitanLib.init();
 
         if (Platform.getEnv().isClient())
             FMLJavaModLoadingContext.get().getModEventBus().addListener(MCPitanLibarchNeoForgeClient::clientInit);

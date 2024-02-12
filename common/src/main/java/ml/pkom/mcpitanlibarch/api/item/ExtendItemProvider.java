@@ -1,6 +1,5 @@
 package ml.pkom.mcpitanlibarch.api.item;
 
-import ml.pkom.mcpitanlibarch.Dummy;
 import ml.pkom.mcpitanlibarch.api.event.item.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
