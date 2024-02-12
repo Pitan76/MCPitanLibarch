@@ -17,7 +17,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "ml.pkom.mcpitanlibarch.fabric.MCPitanLibarchFabric"
+      "net.pitan76.mcpitanlib.fabric.MCPitanLibFabric"
     ]
   },
   "custom": {
