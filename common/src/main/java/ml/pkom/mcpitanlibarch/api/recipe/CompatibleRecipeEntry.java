@@ -6,36 +6,31 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 public class CompatibleRecipeEntry {
-    private final RecipeEntry<?> entry;
+    private final Recipe<?> recipe;
+
+    private Identifier id;
 
     public String group = "";
     public RecipeUtil.CompatibilityCraftingRecipeCategory category = null;
 
-    public CompatibleRecipeEntry(RecipeEntry<?> entry) {
-        this.entry = entry;
+    @Deprecated
+    public CompatibleRecipeEntry(Recipe<?> recipe) {
+        this.recipe = recipe;
     }
 
     public CompatibleRecipeEntry(Identifier id, String group, RecipeUtil.CompatibilityCraftingRecipeCategory category, ShapelessRecipe shapelessRecipe) {
-        this.entry = new RecipeEntry<>(id, shapelessRecipe);
+        this.recipe = shapelessRecipe;
+        this.id = id;
         this.group = group;
         this.category = category;
     }
 
-    @Deprecated
-    public RecipeEntry<?> getRecipeEntry() {
-        return entry;
-    }
-
     public Recipe<?> getRecipe() {
-        Object object = entry.value();
-        if (object instanceof Recipe<?>) {
-            return (Recipe<?>) object;
-        }
-        return null;
+        return recipe;
     }
 
     public Identifier getId() {
-        return entry.id();
+        return id;
     }
 
     public RecipeType<?> getType() {
