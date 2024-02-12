@@ -1,6 +1,6 @@
 package ml.pkom.mcpitanlibarch.api.event.registry;
 
-import dev.architectury.registry.registries.RegistrySupplier;
+import me.shedaniel.architectury.registry.RegistrySupplier;
 import ml.pkom.mcpitanlibarch.api.event.BaseEvent;
 import org.jetbrains.annotations.Nullable;
 
