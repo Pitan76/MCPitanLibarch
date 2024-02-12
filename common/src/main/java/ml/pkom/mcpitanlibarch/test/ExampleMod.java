@@ -4,7 +4,7 @@ import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import ml.pkom.mcpitanlibarch.api.block.CompatibleMaterial;
 import ml.pkom.mcpitanlibarch.api.block.ExtendBlock;
 import ml.pkom.mcpitanlibarch.api.command.CommandRegistry;
-import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
+import ml.pkom.mcpitanlibarch.api.event.registry.RegistryResult;
 import ml.pkom.mcpitanlibarch.api.gui.SimpleScreenHandlerTypeBuilder;
 import ml.pkom.mcpitanlibarch.api.item.DefaultItemGroups;
 import ml.pkom.mcpitanlibarch.api.item.ExtendSettings;
@@ -34,14 +34,14 @@ public class ExampleMod {
 
     public static ArchRegistry registry = ArchRegistry.createRegistry(MOD_ID);
 
-    public static RegistryEvent<ScreenHandlerType<?>> supplierEXAMPLE_SCREENHANDLER = registry.registerScreenHandlerType(id("example_gui"), () -> new SimpleScreenHandlerTypeBuilder<>(ExampleScreenHandler::new).build());
+    public static RegistryResult<ScreenHandlerType<?>> supplierEXAMPLE_SCREENHANDLER = registry.registerScreenHandlerType(id("example_gui"), () -> new SimpleScreenHandlerTypeBuilder<>(ExampleScreenHandler::new).build());
 
-    public static RegistryEvent<Item> EXAMPLE_ITEM_SUPPLIER;
-    public static RegistryEvent<Block> EXAMPLE_BLOCK_SUPPLIER;
-    public static RegistryEvent<Item> EXAMPLE_BLOCK_ITEM_SUPPLIER;
-    public static RegistryEvent<Item> EXAMPLE_GUI_ITEM_SUPPLIER;
-    public static RegistryEvent<Block> EXAMPLE_GUI_BLOCK_SUPPLIER;
-    public static RegistryEvent<Item> EXAMPLE_GUI_BLOCK_ITEM_SUPPLIER;
+    public static RegistryResult<Item> EXAMPLE_ITEM_SUPPLIER;
+    public static RegistryResult<Block> EXAMPLE_BLOCK_SUPPLIER;
+    public static RegistryResult<Item> EXAMPLE_BLOCK_ITEM_SUPPLIER;
+    public static RegistryResult<Item> EXAMPLE_GUI_ITEM_SUPPLIER;
+    public static RegistryResult<Block> EXAMPLE_GUI_BLOCK_SUPPLIER;
+    public static RegistryResult<Item> EXAMPLE_GUI_BLOCK_ITEM_SUPPLIER;
 
     public static void init() {
         //EntityTypeBuilder.create().setSpawnGroup(SpawnGroup.AMBIENT).setEntityFactory(((type, world) -> new ZombieEntity((EntityType<? extends ZombieEntity>) type, world)));
