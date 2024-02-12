@@ -36,6 +36,11 @@ dependencies {
 
     shadowCommon 'org.yaml:snakeyaml:2.0'
     compileOnly 'org.yaml:snakeyaml:2.0'
+
+    modApi("me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+    include("me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_version}")
 }
 
 processResources {
