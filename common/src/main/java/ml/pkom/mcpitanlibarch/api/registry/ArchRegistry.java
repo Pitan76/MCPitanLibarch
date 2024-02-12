@@ -4,7 +4,7 @@ import me.shedaniel.architectury.registry.RegistrySupplier;
 import ml.pkom.mcpitanlibarch.MCPitanLibarch;
 import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import ml.pkom.mcpitanlibarch.api.block.CompatibleMaterial;
-import ml.pkom.mcpitanlibarch.api.event.registry.RegistryEvent;
+import ml.pkom.mcpitanlibarch.api.event.registry.RegistryResult;
 import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandlerTypeBuilder;
 import ml.pkom.mcpitanlibarch.api.item.CompatibleItemSettings;
 import ml.pkom.mcpitanlibarch.api.item.CreativeTabManager;
@@ -42,62 +42,62 @@ public class ArchRegistry {
         return new ArchRegistry(MOD_ID);
     }
 
-    public RegistryEvent<Item> registerItem(Identifier id, Supplier<Item> supplier) {
-        if (MCPitanLibarch.itemBlackList.contains(id.toString())) supplier = () -> ItemUtil.of(CompatibleItemSettings.of());
+    public RegistryResult<Item> registerItem(Identifier id, Supplier<Item> supplier) {
+        if (MCPitanLibarch.isItemBlackListed(id)) supplier = () -> ItemUtil.of(CompatibleItemSettings.of());
         RegistrySupplier<Item> registrySupplier = mcplr.registryItem(id, supplier);
         CreativeTabManager.register(id);
-        return new RegistryEvent<>(registrySupplier);
+        return new RegistryResult<>(registrySupplier);
     }
 
-    public RegistryEvent<Block> registerBlock(Identifier id, Supplier<Block> supplier) {
-        if (MCPitanLibarch.blockBlackList.contains(id.toString())) supplier = () -> BlockUtil.of(CompatibleBlockSettings.of(CompatibleMaterial.STONE));
-        return new RegistryEvent<>(mcplr.registryBlock(id, supplier));
+    public RegistryResult<Block> registerBlock(Identifier id, Supplier<Block> supplier) {
+        if (MCPitanLibarch.isBlockBlackListed(id)) supplier = () -> BlockUtil.of(CompatibleBlockSettings.of(CompatibleMaterial.STONE));
+        return new RegistryResult<>(mcplr.registryBlock(id, supplier));
     }
 
-    public RegistryEvent<ScreenHandlerType<?>> registerScreenHandlerType(Identifier id, Supplier<ScreenHandlerType<?>> supplier) {
-        return new RegistryEvent<>(mcplr.registryScreenHandlerType(id, supplier));
+    public RegistryResult<ScreenHandlerType<?>> registerScreenHandlerType(Identifier id, Supplier<ScreenHandlerType<?>> supplier) {
+        return new RegistryResult<>(mcplr.registryScreenHandlerType(id, supplier));
     }
 
     @Deprecated
-    public RegistryEvent<ScreenHandlerType<?>> registerExtendedScreenHandlerType(Identifier id, Supplier<ExtendedScreenHandlerTypeBuilder<?>> supplier) {
+    public RegistryResult<ScreenHandlerType<?>> registerExtendedScreenHandlerType(Identifier id, Supplier<ExtendedScreenHandlerTypeBuilder<?>> supplier) {
         return registerScreenHandlerType(id, () -> supplier.get().build());
     }
 
-    public RegistryEvent<ScreenHandlerType<?>> registerMenu(Identifier id, Supplier<ScreenHandlerType<?>> supplier) {
+    public RegistryResult<ScreenHandlerType<?>> registerMenu(Identifier id, Supplier<ScreenHandlerType<?>> supplier) {
         return registerScreenHandlerType(id, supplier);
     }
 
-    public RegistryEvent<BlockEntityType<?>> registerBlockEntityType(Identifier id, Supplier<BlockEntityType<?>> supplier) {
-        return new RegistryEvent<>(mcplr.registryBlockEntityType(id, supplier));
+    public RegistryResult<BlockEntityType<?>> registerBlockEntityType(Identifier id, Supplier<BlockEntityType<?>> supplier) {
+        return new RegistryResult<>(mcplr.registryBlockEntityType(id, supplier));
     }
 
-    public RegistryEvent<EntityType<?>> registerEntity(Identifier id, Supplier<EntityType<?>> supplier) {
-        return new RegistryEvent<>(mcplr.registryEntityType(id, supplier));
+    public RegistryResult<EntityType<?>> registerEntity(Identifier id, Supplier<EntityType<?>> supplier) {
+        return new RegistryResult<>(mcplr.registryEntityType(id, supplier));
     }
 
     @Deprecated
-    public RegistryEvent<SoundEvent> registerSoundEvent(Identifier id, Supplier<SoundEvent> supplier) {
-        return new RegistryEvent<>(mcplr.registrySoundEvent(id, supplier));
+    public RegistryResult<SoundEvent> registerSoundEvent(Identifier id, Supplier<SoundEvent> supplier) {
+        return new RegistryResult<>(mcplr.registrySoundEvent(id, supplier));
     }
 
-    public RegistryEvent<SoundEvent> registerSoundEvent(Identifier id) {
+    public RegistryResult<SoundEvent> registerSoundEvent(Identifier id) {
         return registerSoundEvent(id, () -> new SoundEvent(id));
     }
 
-    public RegistryEvent<SoundEvent> registerSoundEvent(Identifier id, float distanceToTravel) {
+    public RegistryResult<SoundEvent> registerSoundEvent(Identifier id, float distanceToTravel) {
         return registerSoundEvent(id);
     }
 
-    public RegistryEvent<Fluid> registerFluid(Identifier id, Supplier<Fluid> supplier) {
-        return new RegistryEvent<>(mcplr.registryFluid(id, supplier));
+    public RegistryResult<Fluid> registerFluid(Identifier id, Supplier<Fluid> supplier) {
+        return new RegistryResult<>(mcplr.registryFluid(id, supplier));
     }
 
-    public RegistryEvent<ParticleType<?>> registerParticleType(Identifier id, Supplier<ParticleType<?>> supplier) {
-        return new RegistryEvent<>(mcplr.registryParticleType(id, supplier));
+    public RegistryResult<ParticleType<?>> registerParticleType(Identifier id, Supplier<ParticleType<?>> supplier) {
+        return new RegistryResult<>(mcplr.registryParticleType(id, supplier));
     }
 
-    public RegistryEvent<ItemGroup> registerItemGroup(Identifier id, Supplier<ItemGroup> supplier) {
-        return new RegistryEvent<>(null);
+    public RegistryResult<ItemGroup> registerItemGroup(Identifier id, Supplier<ItemGroup> supplier) {
+        return new RegistryResult<>(null);
     }
 
     public static void registerFuel(int time, ItemConvertible... item) {
