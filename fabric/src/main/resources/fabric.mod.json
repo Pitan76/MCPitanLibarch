@@ -17,7 +17,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "ml.pkom.mcpitanlibarch.fabric.MCPitanLibarchFabric"
+      "net.pitan76.mcpitanlib.fabric.MCPitanLibFabric"
     ]
   },
   "custom": {
@@ -31,7 +31,7 @@
   ],
   "accessWidener" : "mcpitanlibarch.accesswidener",
   "depends": {
-    "minecraft": ">1.19.3",
+    "minecraft": ">1.19.4",
     "fabricloader": "*",
     "architectury": "*"
   }
