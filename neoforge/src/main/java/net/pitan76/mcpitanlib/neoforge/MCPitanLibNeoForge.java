@@ -1,4 +1,4 @@
-package ml.pkom.mcpitanlibarch.neoforge;
+package net.pitan76.mcpitanlib.neoforge;
 
 import net.neoforged.fml.common.Mod;
 import net.pitan76.mcpitanlib.MCPitanLib;
