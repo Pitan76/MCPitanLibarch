@@ -1,4 +1,4 @@
-package ml.pkom.mcpitanlibarch.neoforge.client;
+package net.pitan76.mcpitanlib.neoforge.client;
 
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
