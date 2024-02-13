@@ -71,11 +71,11 @@ public class ArchRegistry {
     }
 
     public RegistryEvent<SoundEvent> registerSoundEvent(Identifier id) {
-        return registerSoundEvent(id, () -> SoundEvent.of(id));
+        return new RegistryEvent<>(compatRegistry.registerSoundEvent(id).supplier);
     }
 
     public RegistryEvent<SoundEvent> registerSoundEvent(Identifier id, float distanceToTravel) {
-        return registerSoundEvent(id, () -> SoundEvent.of(id, distanceToTravel));
+        return new RegistryEvent<>(compatRegistry.registerSoundEvent(id, distanceToTravel).supplier);
     }
 
     public RegistryEvent<Fluid> registerFluid(Identifier id, Supplier<Fluid> supplier) {
