@@ -16,7 +16,6 @@ public class BlockUtilV2 {
      * @return If the block is in the tag.
      */
     public static boolean isIn(Block block, TagKey<Block> tagKey) {
-        if (block.getRegistryEntry().isIn(tagKey.getTagKey())) return true;
         return tagKey.isOf(block);
     }
 
