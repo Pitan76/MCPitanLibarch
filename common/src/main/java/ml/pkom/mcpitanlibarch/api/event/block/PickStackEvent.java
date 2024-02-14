@@ -1,6 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.event.block;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
@@ -40,5 +41,24 @@ public class PickStackEvent {
     @Nullable
     public WorldView getWorldView() {
         return worldView;
+    }
+
+    /**
+     * check if the block has a block entity
+     * @return boolean
+     */
+    public boolean hasBlockEntity() {
+        return getBlockEntity() != null;
+    }
+
+    /**
+     * @return BlockEntity
+     */
+    public BlockEntity getBlockEntity() {
+        if (blockView != null)
+            return blockView.getBlockEntity(pos);
+        if (worldView != null)
+            return worldView.getBlockEntity(pos);
+        return null;
     }
 }
