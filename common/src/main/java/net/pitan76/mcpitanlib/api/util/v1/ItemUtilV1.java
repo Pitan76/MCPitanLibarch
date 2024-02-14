@@ -22,7 +22,7 @@ public class ItemUtilV1 {
     }
 
     public static boolean isOf(ItemStack stack, Item item) {
-        return stack.isOf(item);
+        return stack.getItem().equals(item);
     }
 
     public static boolean isIn(ItemStack stack, TagKey<Item> tagKey) {
