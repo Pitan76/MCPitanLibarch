@@ -4,6 +4,7 @@ import ml.pkom.mcpitanlibarch.api.util.ItemUtil;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.pitan76.mcpitanlib.api.util.ItemUtil;
 import net.minecraft.util.collection.DefaultedList;
 
 import java.util.ArrayList;
