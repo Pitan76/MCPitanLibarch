@@ -4,7 +4,6 @@ import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import ml.pkom.mcpitanlibarch.api.tag.MineableToolTags;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public class BlockUtil {
     private static net.pitan76.mcpitanlib.api.util.BlockUtil newBlockUtil = new net.pitan76.mcpitanlib.api.util.BlockUtil();
     
     public static Block block(Identifier id) {
-        return Registries.BLOCK.get(id);
+        return newBlockUtil.block(id);
     }
 
     public static AbstractBlock.Settings breakByTool(AbstractBlock.Settings settings, MineableToolTags toolTags, int level) {
