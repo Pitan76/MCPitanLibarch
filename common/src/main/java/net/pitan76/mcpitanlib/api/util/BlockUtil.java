@@ -5,7 +5,6 @@ import ml.pkom.mcpitanlibarch.api.tag.MineableToolTags;
 import ml.pkom.mcpitanlibarch.api.tag.TagKey;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.pitan76.mcpitanlib.api.util.v1.BlockUtilV1;
 import net.pitan76.mcpitanlib.api.util.v2.BlockUtilV2;
@@ -19,7 +18,7 @@ public class BlockUtil {
      * @return Block of the Identifier.
      */
     public static Block block(Identifier id) {
-        return Registries.BLOCK.get(id);
+        return BlockUtilV1.block(id);
     }
 
     /**
