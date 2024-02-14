@@ -2,7 +2,6 @@ package ml.pkom.mcpitanlibarch.api.block;
 
 import ml.pkom.mcpitanlibarch.api.event.block.*;
 import ml.pkom.mcpitanlibarch.api.event.block.result.BlockBreakResult;
-import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -23,6 +22,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import net.pitan76.mcpitanlib.api.util.TextUtil;
 import org.jetbrains.annotations.Nullable;
 
 public class ExtendBlock extends Block {
