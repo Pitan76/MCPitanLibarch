@@ -3,6 +3,7 @@ package ml.pkom.mcpitanlibarch.api.event.block;
 import ml.pkom.mcpitanlibarch.api.entity.Player;
 import ml.pkom.mcpitanlibarch.api.event.BaseEvent;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -76,5 +77,21 @@ public class BlockUseEvent extends BaseEvent {
 
     public ActionResult consume() {
         return ActionResult.CONSUME;
+    }
+
+    /**
+     * check if the block has a block entity
+     * @return true if the block has a block entity
+     */
+    public boolean hasBlockEntity() {
+        return world.getBlockEntity(pos) != null;
+    }
+
+    /**
+     * get the block entity of the block
+     * @return the block entity of the block
+     */
+    public BlockEntity getBlockEntity() {
+        return world.getBlockEntity(pos);
     }
 }
