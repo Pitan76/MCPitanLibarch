@@ -7,8 +7,8 @@ import ml.pkom.mcpitanlibarch.api.block.CompatibleMaterial;
 import ml.pkom.mcpitanlibarch.api.gui.ExtendedScreenHandlerTypeBuilder;
 import ml.pkom.mcpitanlibarch.api.item.CompatibleItemSettings;
 import ml.pkom.mcpitanlibarch.api.item.CreativeTabManager;
-import ml.pkom.mcpitanlibarch.api.util.BlockUtil;
-import ml.pkom.mcpitanlibarch.api.util.ItemUtil;
+import net.pitan76.mcpitanlib.api.util.v1.BlockUtilV1;
+import net.pitan76.mcpitanlib.api.util.v1.ItemUtilV1;
 import net.pitan76.mcpitanlib.core.registry.FuelRegistry;
 import net.pitan76.mcpitanlib.core.registry.MCPLRegistry;
 import net.pitan76.mcpitanlib.core.registry.MCPLRegistry1_20;
@@ -42,14 +42,14 @@ public class CompatRegistry {
     }
 
     public RegistryResult<Item> registerItem(Identifier id, Supplier<Item> supplier) {
-        if (MCPitanLib.isItemBlackListed(id)) supplier = () -> ItemUtil.of(CompatibleItemSettings.of());
+        if (MCPitanLib.isItemBlackListed(id)) supplier = () -> ItemUtilV1.of(CompatibleItemSettings.of());
         RegistrySupplier<Item> registrySupplier = mcplr.registryItem(id, supplier);
         CreativeTabManager.register(id);
         return new RegistryResult<>(registrySupplier);
     }
 
     public RegistryResult<Block> registerBlock(Identifier id, Supplier<Block> supplier) {
-        if (MCPitanLib.isBlockBlackListed(id)) supplier = () -> BlockUtil.of(CompatibleBlockSettings.of(CompatibleMaterial.STONE));
+        if (MCPitanLib.isBlockBlackListed(id)) supplier = () -> BlockUtilV1.of(CompatibleBlockSettings.of(CompatibleMaterial.STONE));
         return new RegistryResult<>(mcplr.registryBlock(id, supplier));
     }
 
