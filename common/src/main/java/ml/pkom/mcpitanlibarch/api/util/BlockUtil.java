@@ -1,73 +1,64 @@
-package net.pitan76.mcpitanlib.api.util.v1;
+package ml.pkom.mcpitanlibarch.api.util;
 
 import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import ml.pkom.mcpitanlibarch.api.tag.MineableToolTags;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class BlockUtilV1 {
+@Deprecated
+public class BlockUtil {
+    private static net.pitan76.mcpitanlib.api.util.BlockUtil newBlockUtil = new net.pitan76.mcpitanlib.api.util.BlockUtil();
+    
     public static Block block(Identifier id) {
-        return Registry.BLOCK.get(id);
+        return Registries.BLOCK.get(id);
     }
 
-    /**
-     * ～1.16?
-     * @param settings
-     * @param toolTags
-     * @param level
-     * @return
-     */
     public static AbstractBlock.Settings breakByTool(AbstractBlock.Settings settings, MineableToolTags toolTags, int level) {
-        return settings;
+        return newBlockUtil.breakByTool(settings, toolTags, level);
     }
 
     public static AbstractBlock.Settings dropsNothing(AbstractBlock.Settings settings) {
-        return settings.dropsNothing();
+        return newBlockUtil.dropsNothing(settings);
     }
 
     public static AbstractBlock.Settings requiresTool(AbstractBlock.Settings settings) {
-        return settings.requiresTool();
+        return newBlockUtil.requiresTool(settings);
     }
 
     public static boolean isExist(Identifier identifier) {
-        return Registry.BLOCK.containsId(identifier);
+        return newBlockUtil.isExist(identifier);
     }
 
     public static Identifier toID(Block block) {
-        return Registry.BLOCK.getId(block);
+        return newBlockUtil.toID(block);
     }
 
     public static Block fromId(Identifier identifier) {
-        return Registry.BLOCK.get(identifier);
+        return newBlockUtil.fromId(identifier);
     }
 
     public static List<Block> getAllBlocks() {
-        List<Block> blocks = new ArrayList<>();
-        for (Block block : Registry.BLOCK) {
-            blocks.add(block);
-        }
-        return blocks;
+        return newBlockUtil.getAllBlocks();
     }
 
     @Deprecated
     public static Block of(AbstractBlock.Settings settings) {
-        return new Block(settings);
+        return newBlockUtil.of(settings);
     }
 
     public static Block of(CompatibleBlockSettings settings) {
-        return of(settings.build());
+        return newBlockUtil.of(settings);
     }
 
     public static int getRawId(Block block) {
-        return Registry.BLOCK.getRawId(block);
+        return newBlockUtil.getRawId(block);
     }
 
     public static Block fromIndex(int index) {
-        return Registry.BLOCK.get(index);
+        return newBlockUtil.fromIndex(index);
     }
 }
