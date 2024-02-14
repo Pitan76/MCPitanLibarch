@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 public class ExampleScreenHandler extends SimpleScreenHandler {
 
     public ExampleScreenHandler(int i, PlayerInventory playerInventory) {
-        super(ExampleMod.supplierEXAMPLE_SCREENHANDLER.getOrNull(), i);
+        super(ExampleMod.EXAMPLE_SCREENHANDLER.getOrNull(), i);
 
     }
 

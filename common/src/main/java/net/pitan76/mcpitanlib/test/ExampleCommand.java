@@ -19,7 +19,7 @@ public class ExampleCommand extends LiteralCommand {
                     @Override
                     public void execute(IntegerCommandEvent event) {
                         try {
-                            event.getPlayer().offerOrDrop(new ItemStack(ExampleMod.EXAMPLE_ITEM_SUPPLIER.getOrNull(), event.getValue()));
+                            event.getPlayer().offerOrDrop(new ItemStack(ExampleMod.EXAMPLE_ITEM.getOrNull(), event.getValue()));
                         } catch (CommandSyntaxException ignored) {
 
                         }
@@ -35,7 +35,7 @@ public class ExampleCommand extends LiteralCommand {
             @Override
             public void execute(ServerCommandEvent event) {
                 try {
-                    event.getPlayer().offerOrDrop(new ItemStack(ExampleMod.EXAMPLE_ITEM_SUPPLIER.getOrNull()));
+                    event.getPlayer().offerOrDrop(new ItemStack(ExampleMod.EXAMPLE_ITEM.getOrNull()));
                 } catch (CommandSyntaxException ignored) {
 
                 }

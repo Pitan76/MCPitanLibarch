@@ -1,11 +1,10 @@
 package net.pitan76.mcpitanlib.test;
 
 import ml.pkom.mcpitanlibarch.api.client.SimpleHandledScreen;
+import ml.pkom.mcpitanlibarch.api.client.gui.widget.CompatibleTexturedButtonWidget;
 import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.DrawBackgroundArgs;
 import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.DrawMouseoverTooltipArgs;
 import ml.pkom.mcpitanlibarch.api.client.render.handledscreen.RenderArgs;
-import net.minecraft.client.gui.screen.ButtonTextures;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
@@ -23,7 +22,7 @@ public class ExampleScreen extends SimpleHandledScreen {
     public void initOverride() {
         super.initOverride();
         System.out.println("hogehogehoge1111");
-        this.addDrawableChild_compatibility(new TexturedButtonWidget(0,  0, 30, 30, new ButtonTextures(GUI, GUI), (buttonWidget) -> {
+        this.addDrawableCTBW(new CompatibleTexturedButtonWidget(0,  0, 30, 30, 0, 0, GUI, (buttonWidget) -> {
             System.out.println("hogehoge");
         }));
     }

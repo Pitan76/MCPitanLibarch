@@ -32,26 +32,28 @@ public class ExampleMod {
         return new Identifier(MOD_ID, id);
     }
 
+    // en: Create a CompatRegistry instance. , ja: CompatRegistryインスタンスを作成します。
     public static CompatRegistry registry = CompatRegistry.createRegistry(MOD_ID);
 
-    public static RegistryResult<ScreenHandlerType<?>> supplierEXAMPLE_SCREENHANDLER = registry.registerScreenHandlerType(id("example_gui"), () -> new SimpleScreenHandlerTypeBuilder<>(ExampleScreenHandler::new).build());
+    public static RegistryResult<ScreenHandlerType<?>> EXAMPLE_SCREENHANDLER;
 
-    public static RegistryResult<Item> EXAMPLE_ITEM_SUPPLIER;
-    public static RegistryResult<Block> EXAMPLE_BLOCK_SUPPLIER;
-    public static RegistryResult<Item> EXAMPLE_BLOCK_ITEM_SUPPLIER;
-    public static RegistryResult<Item> EXAMPLE_GUI_ITEM_SUPPLIER;
-    public static RegistryResult<Block> EXAMPLE_GUI_BLOCK_SUPPLIER;
-    public static RegistryResult<Item> EXAMPLE_GUI_BLOCK_ITEM_SUPPLIER;
+    public static RegistryResult<Item> EXAMPLE_ITEM;
+    public static RegistryResult<Block> EXAMPLE_BLOCK;
+    public static RegistryResult<Item> EXAMPLE_BLOCK_ITEM;
+    public static RegistryResult<Item> EXAMPLE_GUI_ITEM;
+    public static RegistryResult<Block> EXAMPLE_GUI_BLOCK;
+    public static RegistryResult<Item> EXAMPLE_GUI_BLOCK_ITEM;
 
     public static void init() {
-        EXAMPLE_ITEM_SUPPLIER = registry.registerItem(id("example_item"), () -> new ExtendItem(new CompatibleItemSettings().addGroup(() -> DefaultItemGroups.INGREDIENTS, id("example_item"))));
-        EXAMPLE_BLOCK_SUPPLIER = registry.registerBlock(id("example_block"), () -> new ExtendBlock(CompatibleBlockSettings.of(CompatibleMaterial.STONE)));
-        EXAMPLE_BLOCK_ITEM_SUPPLIER = registry.registerItem(id("example_block"), () -> ItemUtil.ofBlock(EXAMPLE_BLOCK_SUPPLIER.supplier.get(), new CompatibleItemSettings().addGroup(() -> DefaultItemGroups.INGREDIENTS, id("example_block"))));
+        EXAMPLE_SCREENHANDLER = registry.registerScreenHandlerType(id("example_gui"), () -> new SimpleScreenHandlerTypeBuilder<>(ExampleScreenHandler::new).build());
+        EXAMPLE_ITEM = registry.registerItem(id("example_item"), () -> new ExtendItem(new CompatibleItemSettings().addGroup(() -> DefaultItemGroups.INGREDIENTS, id("example_item"))));
+        EXAMPLE_BLOCK = registry.registerBlock(id("example_block"), () -> new ExtendBlock(CompatibleBlockSettings.of(CompatibleMaterial.STONE)));
+        EXAMPLE_BLOCK_ITEM = registry.registerItem(id("example_block"), () -> ItemUtil.ofBlock(EXAMPLE_BLOCK.supplier.get(), new CompatibleItemSettings().addGroup(() -> DefaultItemGroups.INGREDIENTS, id("example_block"))));
 
-        EXAMPLE_GUI_ITEM_SUPPLIER = registry.registerItem(id("example_gui_item"), () -> new ExampleGuiItem(new CompatibleItemSettings().addGroup(() -> DefaultItemGroups.INGREDIENTS, id("example_gui_item"))));
+        EXAMPLE_GUI_ITEM = registry.registerItem(id("example_gui_item"), () -> new ExampleGuiItem(new CompatibleItemSettings().addGroup(() -> DefaultItemGroups.INGREDIENTS, id("example_gui_item"))));
 
-        EXAMPLE_GUI_BLOCK_SUPPLIER = registry.registerBlock(id("example_gui_block"), () -> new ExampleGuiBlock(CompatibleBlockSettings.of(CompatibleMaterial.STONE).build()));
-        EXAMPLE_GUI_BLOCK_ITEM_SUPPLIER = registry.registerItem(id("example_gui_block"), () -> ItemUtil.ofBlock(EXAMPLE_GUI_BLOCK_SUPPLIER.supplier.get(), new CompatibleItemSettings().addGroup(() -> DefaultItemGroups.INGREDIENTS, id("example_gui_block"))));
+        EXAMPLE_GUI_BLOCK = registry.registerBlock(id("example_gui_block"), () -> new ExampleGuiBlock(CompatibleBlockSettings.of(CompatibleMaterial.STONE).build()));
+        EXAMPLE_GUI_BLOCK_ITEM = registry.registerItem(id("example_gui_block"), () -> ItemUtil.ofBlock(EXAMPLE_GUI_BLOCK.supplier.get(), new CompatibleItemSettings().addGroup(() -> DefaultItemGroups.INGREDIENTS, id("example_gui_block"))));
 
         registry.allRegister();
 

@@ -4,6 +4,6 @@ import ml.pkom.mcpitanlibarch.api.client.registry.ArchRegistryClient;
 
 public class ExampleModClient {
     public static void init() {
-        ArchRegistryClient.registerScreen(ExampleMod.supplierEXAMPLE_SCREENHANDLER.getOrNull(), ExampleScreen::new);
+        ArchRegistryClient.registerScreen(ExampleMod.EXAMPLE_SCREENHANDLER.getOrNull(), ExampleScreen::new);
     }
 }

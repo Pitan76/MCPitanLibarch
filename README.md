@@ -43,6 +43,8 @@ mcpitanlib_version=x.x.x
 
 バージョンは[maven.pitan76.net](https://maven.pitan76.net/net/pitan76/)で確認してください。
 
+MCPitanLibを用いたMOD開発は「common/src/main/java/net/pitan76/mcpitanlib/test/ExampleMod.java」を参考にしてください。
+
 ## English
 MCPitanLib is a library. It is for supporting multiple MC versions with one jar. <br />
 It is under development, so the specification may change without notice, and there may be bugs. <br />
@@ -87,3 +89,6 @@ mcpitanlib_version=+x.x.x:x.x.x
 ```
 
 Please check the version at [maven.pitan76.net](https://maven.pitan76.net/net/pitan76/).
+
+For MOD development using MCPitanLib, refer to "common/src/main/java/net/pitan76/mcpitanlib/test/ExampleMod.java".
+
