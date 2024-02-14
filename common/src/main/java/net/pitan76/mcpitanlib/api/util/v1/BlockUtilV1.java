@@ -1,4 +1,4 @@
-package ml.pkom.mcpitanlibarch.api.util;
+package net.pitan76.mcpitanlib.api.util.v1;
 
 import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import ml.pkom.mcpitanlibarch.api.tag.MineableToolTags;
@@ -10,7 +10,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockUtil {
+public class BlockUtilV1 {
     public static Block block(Identifier id) {
         return Registry.BLOCK.get(id);
     }
