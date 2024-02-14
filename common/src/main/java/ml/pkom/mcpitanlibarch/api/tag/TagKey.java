@@ -1,9 +1,7 @@
 package ml.pkom.mcpitanlibarch.api.tag;
 
-import net.pitan76.mcpitanlib.api.util.v1.BlockUtilV1;
 import ml.pkom.mcpitanlibarch.api.util.EntityTypeUtil;
 import ml.pkom.mcpitanlibarch.api.util.FluidUtil;
-import net.pitan76.mcpitanlib.api.util.v1.ItemUtilV1;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
@@ -11,6 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
+import net.pitan76.mcpitanlib.api.util.BlockUtil;
+import net.pitan76.mcpitanlib.api.util.ItemUtil;
 
 public class TagKey<T> {
     private final net.minecraft.tag.TagKey<T> tagKey;
@@ -43,9 +43,9 @@ public class TagKey<T> {
 
     public boolean isOf(T value) {
         if (value instanceof Item)
-            return getTagKey() == net.minecraft.tag.TagKey.of(Registry.ITEM_KEY, ItemUtilV1.toID((Item) value));
+            return getTagKey() == net.minecraft.tag.TagKey.of(Registry.ITEM_KEY, ItemUtil.toID((Item) value));
         if (value instanceof Block)
-            return getTagKey() == net.minecraft.tag.TagKey.of(Registry.BLOCK_KEY, BlockUtilV1.toID((Block) value));
+            return getTagKey() == net.minecraft.tag.TagKey.of(Registry.BLOCK_KEY, BlockUtil.toID((Block) value));
         if (value instanceof Fluid)
             return getTagKey() == net.minecraft.tag.TagKey.of(Registry.FLUID_KEY, FluidUtil.toID((Fluid) value));
         if (value instanceof EntityType<?>)
