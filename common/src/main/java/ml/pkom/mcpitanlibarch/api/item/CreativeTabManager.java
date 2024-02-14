@@ -1,10 +1,10 @@
 package ml.pkom.mcpitanlibarch.api.item;
 
 import dev.architectury.registry.CreativeTabRegistry;
-import net.pitan76.mcpitanlib.api.util.v1.ItemUtilV1;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.pitan76.mcpitanlib.api.util.ItemUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class CreativeTabManager {
     public static void allRegister() {
         if (!bookingItems.isEmpty()) {
             for (BookingItem bookingItem : bookingItems) {
-                CreativeTabRegistry.appendBuiltin(bookingItem.getItemGroup(), ItemUtilV1.fromId(bookingItem.identifier));
+                CreativeTabRegistry.appendBuiltin(bookingItem.getItemGroup(), ItemUtil.fromId(bookingItem.identifier));
             }
             bookingItems = new ArrayList<>();
         }
@@ -86,7 +86,7 @@ public class CreativeTabManager {
         if (bookingItems.isEmpty()) return;
         for (BookingItem bookingItem : bookingItems) {
             if (!bookingItem.identifier.toString().equals(identifier.toString())) continue;
-            CreativeTabRegistry.appendBuiltin(bookingItem.getItemGroup(), ItemUtilV1.fromId(bookingItem.identifier));
+            CreativeTabRegistry.appendBuiltin(bookingItem.getItemGroup(), ItemUtil.fromId(bookingItem.identifier));
             bookingItems.remove(bookingItem);
             break;
         }
