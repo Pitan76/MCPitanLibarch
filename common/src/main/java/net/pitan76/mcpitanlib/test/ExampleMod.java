@@ -45,6 +45,7 @@ public class ExampleMod {
     public static RegistryResult<Item> EXAMPLE_GUI_BLOCK_ITEM;
 
     public static void init() {
+        // en: Register all items, blocks, and others. , ja: 全てのアイテム、ブロック、その他を登録します。
         EXAMPLE_SCREENHANDLER = registry.registerScreenHandlerType(id("example_gui"), () -> new SimpleScreenHandlerTypeBuilder<>(ExampleScreenHandler::new).build());
         EXAMPLE_ITEM = registry.registerItem(id("example_item"), () -> new ExtendItem(new CompatibleItemSettings().addGroup(() -> DefaultItemGroups.INGREDIENTS, id("example_item"))));
         EXAMPLE_BLOCK = registry.registerBlock(id("example_block"), () -> new ExtendBlock(CompatibleBlockSettings.of(CompatibleMaterial.STONE)));
@@ -55,8 +56,10 @@ public class ExampleMod {
         EXAMPLE_GUI_BLOCK = registry.registerBlock(id("example_gui_block"), () -> new ExampleGuiBlock(CompatibleBlockSettings.of(CompatibleMaterial.STONE).build()));
         EXAMPLE_GUI_BLOCK_ITEM = registry.registerItem(id("example_gui_block"), () -> ItemUtil.ofBlock(EXAMPLE_GUI_BLOCK.supplier.get(), new CompatibleItemSettings().addGroup(() -> DefaultItemGroups.INGREDIENTS, id("example_gui_block"))));
 
+        // en: Register all registered creative tabs and others , ja: 登録された全てのクリエイティブタブやその他を登録します
         registry.allRegister();
 
+        // en: Register the command , ja: コマンドを登録します
         CommandRegistry.register("mpla", new ExampleCommand());
     }
 }
